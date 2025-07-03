@@ -4,11 +4,11 @@ const uuidv4 = v4
 
 const createFavoritePlant = async (Faves) => {
     const SQL = `
-    INSERT INTO favorite_plants (id, user_id, plants_id)
+    INSERT INTO favorite_plants (id, user_id, plant_id)
     VALUES ($1, $2, $3)
     RETURNING *
     `
-    const response = await client.query(SQL, [uuidv4(), Faves.user_id, Faves.plants_id])
+    const response = await client.query(SQL, [uuidv4(), Faves.user_id, Faves.plant_id])
     return response.rows[0]
 }
 
