@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
+      <span>PlantScape</span> {"  "}
       <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
         Home
       </NavLink>
@@ -26,13 +27,6 @@ export default function Navbar() {
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         My Profile
-      </NavLink>
-      {"  "}
-      <NavLink
-        to="/newproject"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        New Project
       </NavLink>
     </>
   );
