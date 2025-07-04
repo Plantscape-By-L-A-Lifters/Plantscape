@@ -27,13 +27,6 @@ export default function Navbar() {
       >
         My Profile
       </NavLink>
-      {"  "}
-      <NavLink
-        to="/newproject"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        New Project
-      </NavLink>
     </>
   );
 }
