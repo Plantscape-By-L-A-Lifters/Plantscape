@@ -12,6 +12,10 @@ const {
 createPlant
 } = require('./plants');
 
+const {
+    createLayout
+} = require('./layouts')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
@@ -54,10 +58,7 @@ const seed = async () => {
     id UUID PRIMARY KEY,
     plant_id UUID REFERENCES plants(id),
     user_id UUID REFERENCES  users(id),
-    bedding_size INTEGER NOT NULL,
-    numb_plants INTEGER NOT NULL,
-    fave_plants_id UUID REFERENCES favorite_plants(id),
-    design_type UUID REFERENCES designs(id)
+    placement FLOAT NOT NULL
     );
 
     CREATE TABLE projects(
@@ -89,6 +90,10 @@ await Promise.all([
     createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false , design_type: Cottage.id ,size:15}),
     createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , design_type: Modern.id ,size:12})
 ]);
+
+await Promise.all([
+    createLayout({id: uuidv4(), user_id: })
+])
 console.log('Tables Seeded')
 }
 
