@@ -8,13 +8,15 @@ const
 const {
     createDesign
 } = require('./design')
+
 const {
 createPlant
 } = require('./plants');
 
 const {
-    createLayout
-} = require('./layouts')
+    createFavoritePlant
+} = require('./favorite_plants')
+
 
 const seed = async () => {
     const SQL = `
@@ -72,7 +74,7 @@ const seed = async () => {
     `
     await client.query(SQL)
 
-await Promise.all([
+const [Justin,Chelsea,Callen,Ellie] = await Promise.all([
     createUser({id: uuidv4(), username: 'Justin', password: '0710', is_admin:true}),
     createUser({id: uuidv4(), username: 'Chelsea', password: '1234', is_admin:true}),
     createUser({id: uuidv4(), username: 'Callen', password: '5678', is_admin:true}),
@@ -85,14 +87,17 @@ const [Cottage, Modern, Wild ] = await Promise.all([
     createDesign({id: uuidv4(), design_style_name: 'Wild' , design_attributes: 'Fall'})
 ])
 
-await Promise.all([
+const [Aloe,Fern,Rose] = await Promise.all([
     createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , design_type: Wild.id, size:10}),
     createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false , design_type: Cottage.id ,size:15}),
     createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , design_type: Modern.id ,size:12})
 ]);
 
 await Promise.all([
-    createLayout({id: uuidv4(), user_id: })
+    createFavoritePlant({id:uuidv4(), user_id: Justin.id , plant_id: Fern.id}),
+    createFavoritePlant({id:uuidv4(), user_id: Ellie.id, plant_id: Aloe.id}),
+    createFavoritePlant({id:uuidv4(), user_id: Callen.id, plant_id: Aloe.id}),
+    createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
 ])
 console.log('Tables Seeded')
 }
