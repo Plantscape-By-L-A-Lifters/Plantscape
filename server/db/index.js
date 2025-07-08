@@ -17,6 +17,9 @@ const {
     createFavoritePlant
 } = require('./favorite_plants')
 
+const {
+    createLayout
+} = require('./layouts')
 
 const seed = async () => {
     const SQL = `
@@ -58,9 +61,8 @@ const seed = async () => {
 
     CREATE TABLE layouts(
     id UUID PRIMARY KEY,
-    plant_id UUID REFERENCES plants(id),
-    user_id UUID REFERENCES  users(id),
-    placement FLOAT NOT NULL
+    bedding_size INTEGER NOT NULL,
+    design_type UUID REFERENCES designs(id)
     );
 
     CREATE TABLE projects(
@@ -99,6 +101,13 @@ await Promise.all([
     createFavoritePlant({id:uuidv4(), user_id: Callen.id, plant_id: Aloe.id}),
     createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
 ])
+
+await Promise.all([
+    createLayout({id:uuidv4(), bedding_size: 100, design_type: Cottage.id}),
+    createLayout({id:uuidv4(), bedding_size: 450, design_type: Modern.id}),
+    createLayout({id:uuidv4(), bedding_size: 210, design_type: Wild.id})
+])
+
 console.log('Tables Seeded')
 }
 
