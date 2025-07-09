@@ -1,14 +1,13 @@
 const express = require('express')
-express = express.Router()
+const app  = express.Router()
 
 const {
     createDesign,
     fetchDesign,
     fetchDesignById
 } = require('../db/design')
-const app = require('.')
 
-app.post('./', async (req, res, next ) => {
+app.post('/', async (req, res, next ) => {
     try {
         res.send(await createDesign(req.body))
     } catch (error) {
@@ -16,7 +15,7 @@ app.post('./', async (req, res, next ) => {
     }
 })
 
-app.get('./', async (req, res, next) => {
+app.get('/', async (req, res, next) => {
     try {
         res.send(await fetchDesign())
     } catch (error) {
@@ -24,7 +23,7 @@ app.get('./', async (req, res, next) => {
     }
 })
 
-app.get('./:id', async (req, res, next) => {
+app.get('/:id', async (req, res, next) => {
     try {
         res.send(fetchDesignById(req.params.id))
     } catch (error) {

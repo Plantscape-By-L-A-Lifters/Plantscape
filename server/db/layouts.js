@@ -16,7 +16,6 @@ const fetchLayouts = async () => {
     const SQL = `
     SELECT * 
     FROM layouts
-    RETURNING *
     `
     const response = await client.query(SQL)
     return response.rows
