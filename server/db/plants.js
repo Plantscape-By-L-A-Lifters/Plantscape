@@ -4,11 +4,11 @@ const uuidv4= v4
 
 const createPlant = async (plant) => {
     const SQL = `
-    INSERT INTO plants(id, plant_name, plant_type, toxic, design_type, size)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO plants(id, plant_name, plant_type, toxic, size)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *
     `
-    const response = await client.query(SQL, [uuidv4(), plant.plant_name, plant.plant_type, plant.toxic, plant.design_type, plant.size])
+    const response = await client.query(SQL, [uuidv4(), plant.plant_name, plant.plant_type, plant.toxic, plant.size])
     return response.rows[0]
 }
 

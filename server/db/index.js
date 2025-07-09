@@ -21,11 +21,16 @@ const {
     createLayout
 } = require('./layouts')
 
+const {
+createPlantDesign
+} = require('./plant_Design_Type')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
     DROP TABLE IF EXISTS layouts;
     DROP TABLE IF EXISTS favorite_plants;
+    DROP TABLE IF EXISTS plant_Design_Types;
     DROP TABLE IF EXISTS plants;
     DROP TABLE IF EXISTS designs;
     DROP TABLE IF EXISTS users;
@@ -43,12 +48,11 @@ const seed = async () => {
     design_attributes VARCHAR(50)
     );
 
-        CREATE TABLE plants(
+    CREATE TABLE plants(
     id UUID PRIMARY KEY,
     plant_name VARCHAR(100) NOT NULL,
     plant_type VARCHAR (50) NOT NULL,
     toxic BOOLEAN DEFAULT false NOT NULL,
-    design_type UUID REFERENCES designs(id), 
     size INTEGER NOT NULL 
     );
 
@@ -57,6 +61,12 @@ const seed = async () => {
     user_id UUID REFERENCES users(id),
     plant_id UUID REFERENCES plants(id),
     CONSTRAINT user_and_plant_id UNIQUE(user_id, plant_id)
+    );
+
+    CREATE TABLE plant_Design_Types(
+    id UUID PRIMARY KEY,
+    plant_id UUID REFERENCES plants(id),
+    design_id UUID REFERENCES designs(id)
     );
 
     CREATE TABLE layouts(
@@ -90,9 +100,9 @@ const [Cottage, Modern, Wild ] = await Promise.all([
 ])
 
 const [Aloe,Fern,Rose] = await Promise.all([
-    createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , design_type: Wild.id, size:10}),
-    createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false , design_type: Cottage.id ,size:15}),
-    createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , design_type: Modern.id ,size:12})
+    createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , size:10}),
+    createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false, size:15}),
+    createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , size:12})
 ]);
 
 await Promise.all([
@@ -106,6 +116,12 @@ await Promise.all([
     createLayout({id:uuidv4(), bedding_size: 100, design_type: Cottage.id}),
     createLayout({id:uuidv4(), bedding_size: 450, design_type: Modern.id}),
     createLayout({id:uuidv4(), bedding_size: 210, design_type: Wild.id})
+])
+
+await Promise.all([
+    createPlantDesign({id:uuidv4(), plant_id:Aloe.id , design_id: Wild.id}),
+    createPlantDesign({id:uuidv4(), plant_id: Fern.id, design_id: Cottage.id}),
+    createPlantDesign({id:uuidv4(), plant_id: Aloe.id, design_id: Cottage.id})
 ])
 
 console.log('Tables Seeded')
