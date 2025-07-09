@@ -7,7 +7,7 @@ const {
     fetchLayoutsById
 } = require('../db/layouts')
 
-app.post('./', async (req, res, next) => {
+app.post('/', async (req, res, next) => {
     try {
         res.send(await createLayout(req.body))
     } catch (error) {
@@ -15,7 +15,7 @@ app.post('./', async (req, res, next) => {
     }
 })
 
-app.get('./', async (req, res,next) => {
+app.get('/', async (req, res,next) => {
     try {
         res.send( await fetchLayouts())
     } catch (error) {
@@ -23,7 +23,7 @@ app.get('./', async (req, res,next) => {
     }
 })
 
-app.get('./:id', async(req, res, next)=>{
+app.get('/:id', async(req, res, next)=>{
     try {
         res.send( await fetchLayoutsById(id))
     } catch (error) {

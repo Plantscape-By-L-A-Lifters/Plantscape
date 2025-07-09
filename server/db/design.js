@@ -15,7 +15,7 @@ const createDesign = async (design) => {
 const fetchDesign = async () => {
     const SQL =  `
     SELECT *
-    FROM  design
+    FROM  designs
     `
     const response = await client.query(SQL)
     return response.rows
@@ -24,7 +24,7 @@ const fetchDesign = async () => {
 const fetchDesignById = async (id) => {
     const SQL = `
     SELECT *
-    FROM design 
+    FROM designs
     WHERE id = $1
     `
     const response = await client.query(SQL, [id])
