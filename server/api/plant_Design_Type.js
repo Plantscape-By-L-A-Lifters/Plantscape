@@ -6,7 +6,6 @@ const {
     fetchPlantDesign,
     fetchPlantDesignById
 } = require('../db/plant_Design_Type')
-const { fetchPlants } = require('../db/plants')
 
 app.post('/', async (req,res,next) => {
     try {
