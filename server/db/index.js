@@ -25,9 +25,14 @@ const {
 createPlantDesign
 } = require('./plant_Design_Type')
 
+const {
+    createPlantLayout
+} = require('./plant_layout')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
+    DROP TABLE IF EXISTS plant_layout;
     DROP TABLE IF EXISTS layouts;
     DROP TABLE IF EXISTS favorite_plants;
     DROP TABLE IF EXISTS plant_Design_Types;
@@ -71,8 +76,16 @@ const seed = async () => {
 
     CREATE TABLE layouts(
     id UUID PRIMARY KEY,
+    layout_name varchar(100) NOT NULL,
     bedding_size INTEGER NOT NULL,
     design_type UUID REFERENCES designs(id)
+    );
+
+    CREATE TABLE plant_layout(
+    id UUID PRIMARY KEY,
+    plant_id UUID REFERENCES plants(id),
+    layout_id UUID REFERENCES layouts(id),
+    placement FLOAT
     );
 
     CREATE TABLE projects(
@@ -112,16 +125,22 @@ await Promise.all([
     createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
 ])
 
-await Promise.all([
-    createLayout({id:uuidv4(), bedding_size: 100, design_type: Cottage.id}),
-    createLayout({id:uuidv4(), bedding_size: 450, design_type: Modern.id}),
-    createLayout({id:uuidv4(), bedding_size: 210, design_type: Wild.id})
+const [newBeginnigs,FernForest,AbsoluteSucculent ] = await Promise.all([
+    createLayout({id:uuidv4(), layout_name: 'newBeginnigs' ,bedding_size: 100, design_type: Cottage.id}),
+    createLayout({id:uuidv4(), layout_name: 'FernForest' ,bedding_size: 450, design_type: Modern.id}),
+    createLayout({id:uuidv4(), layout_name: 'AbsoluteSucculent',bedding_size: 210, design_type: Wild.id})
 ])
 
 await Promise.all([
-    createPlantDesign({id:uuidv4(), plant_id:Aloe.id , design_id: Wild.id}),
+    createPlantDesign({id:uuidv4(), plant_id: Aloe.id , design_id: Wild.id}),
     createPlantDesign({id:uuidv4(), plant_id: Fern.id, design_id: Cottage.id}),
     createPlantDesign({id:uuidv4(), plant_id: Aloe.id, design_id: Cottage.id})
+])
+
+await Promise.all ([
+    createPlantLayout({id:uuidv4(), plant_id: Rose.id , layout_id: newBeginnigs.id , placement: 78}),
+    createPlantLayout({id:uuidv4(), plant_id: Fern.id, layout_id:FernForest.id , placement:567}),
+    createPlantLayout({id:uuidv4(), plant_id: Aloe.id , layout_id: AbsoluteSucculent.id , placement:123})
 ])
 
 console.log('Tables Seeded')

@@ -17,7 +17,7 @@
     SELECT *
     FROM plant_Design_Types
     `
-    const response = await client.query(SQL,)
+    const response = await client.query(SQL)
     return response.rows
  }
 

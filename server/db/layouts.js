@@ -4,11 +4,11 @@ const uuidv4 = v4
 
 const createLayout = async (layout) => {
     const SQL = `
-    INSERT INTO layouts (id, bedding_size, design_type)
-    VALUES ($1, $2, $3)
+    INSERT INTO layouts (id, layout_name, bedding_size, design_type)
+    VALUES ($1, $2, $3, $4)
     RETURNING *
     `
-    const response = await client.query(SQL, [uuidv4(), layout.bedding_size, layout.design_type])
+    const response = await client.query(SQL, [uuidv4(), layout.layout_name, layout.bedding_size, layout.design_type])
     return response.rows[0]
 }
 
