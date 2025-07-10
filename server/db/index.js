@@ -29,6 +29,10 @@ const {
     createPlantLayout
 } = require('./plant_layout')
 
+const {
+    createFaveDesign
+} = require('./fave_design')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
@@ -36,6 +40,7 @@ const seed = async () => {
     DROP TABLE IF EXISTS layouts;
     DROP TABLE IF EXISTS favorite_plants;
     DROP TABLE IF EXISTS plant_Design_Types;
+    DROP TABLE IF EXISTS fave_design;
     DROP TABLE IF EXISTS plants;
     DROP TABLE IF EXISTS designs;
     DROP TABLE IF EXISTS users;
@@ -86,6 +91,12 @@ const seed = async () => {
     plant_id UUID REFERENCES plants(id),
     layout_id UUID REFERENCES layouts(id),
     placement FLOAT
+    );
+
+    CREATE TABLE fave_design(
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    design_id UUID REFERENCES designs(id)
     );
 
     CREATE TABLE projects(
@@ -141,6 +152,12 @@ await Promise.all ([
     createPlantLayout({id:uuidv4(), plant_id: Rose.id , layout_id: newBeginnigs.id , placement: 78}),
     createPlantLayout({id:uuidv4(), plant_id: Fern.id, layout_id:FernForest.id , placement:567}),
     createPlantLayout({id:uuidv4(), plant_id: Aloe.id , layout_id: AbsoluteSucculent.id , placement:123})
+])
+
+await Promise.all ([
+    createFaveDesign({id:uuidv4(), user_id: Ellie.id, design_id: Modern.id}),
+    createFaveDesign({id:uuidv4(), user_id: Callen.id, design_id: Wild.id}),
+    createFaveDesign({id:uuidv4(), user_id: Chelsea.id, design_id: Cottage.id})
 ])
 
 console.log('Tables Seeded')
