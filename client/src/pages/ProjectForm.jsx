@@ -1,7 +1,9 @@
 export default function ProjectForm() {
+  const bedWidth = 0;
+  const bedHeight = 0;
   return (
-    <div>
+    <form>
       <h1>user input here</h1>
-    </div>
+    </form>
   );
 }
