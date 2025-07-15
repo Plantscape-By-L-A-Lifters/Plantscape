@@ -12,7 +12,6 @@ app.post('./', async (req,res,next) => {
     } catch (error) {
         next(error)
     }
-    res
 })
 
 app.get('./', async (req,res,next) => {

@@ -33,6 +33,10 @@ const {
     createFaveDesign
 } = require('./fave_design')
 
+const{
+    createProject
+} = require('./Projects')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
@@ -79,11 +83,19 @@ const seed = async () => {
     design_id UUID REFERENCES designs(id)
     );
 
+    
+    CREATE TABLE projects(
+    id UUID PRIMARY KEY,
+    project_name VARCHAR(100) NOT NULL,
+    user_id UUID REFERENCES users(id)
+    );
+
     CREATE TABLE layouts(
     id UUID PRIMARY KEY,
     layout_name varchar(100) NOT NULL,
     bedding_size INTEGER NOT NULL,
-    design_type UUID REFERENCES designs(id)
+    design_type UUID REFERENCES designs(id),
+    projects_id UUID REFERENCES projects(id)
     );
 
     CREATE TABLE plant_layout(
@@ -97,15 +109,6 @@ const seed = async () => {
     id UUID PRIMARY KEY,
     user_id UUID REFERENCES users(id),
     design_id UUID REFERENCES designs(id)
-    );
-
-    CREATE TABLE projects(
-    id UUID PRIMARY KEY,
-    project_name VARCHAR(100) NOT NULL,
-    user_id UUID REFERENCES users(id),
-    layout_id UUID REFERENCES layouts(id),
-    project_count INTEGER NOT NULL,
-    project_design UUID REFERENCES designs(id)
     );
     `
     await client.query(SQL)
@@ -136,10 +139,14 @@ await Promise.all([
     createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
 ])
 
+const[BackyardForest] = await Promise.all ([
+    createProject({id:uuidv4(), project_name:'BackyardForest', user_id: Justin.id })
+])
+
 const [newBeginnigs,FernForest,AbsoluteSucculent ] = await Promise.all([
-    createLayout({id:uuidv4(), layout_name: 'newBeginnigs' ,bedding_size: 100, design_type: Cottage.id}),
-    createLayout({id:uuidv4(), layout_name: 'FernForest' ,bedding_size: 450, design_type: Modern.id}),
-    createLayout({id:uuidv4(), layout_name: 'AbsoluteSucculent',bedding_size: 210, design_type: Wild.id})
+    createLayout({id:uuidv4(), layout_name: 'newBeginnigs' ,bedding_size: 100, design_type: Cottage.id, projects_id: BackyardForest.id}),
+    createLayout({id:uuidv4(), layout_name: 'FernForest' ,bedding_size: 450, design_type: Modern.id, projects_id:BackyardForest.id}),
+    createLayout({id:uuidv4(), layout_name: 'AbsoluteSucculent',bedding_size: 210, design_type: Wild.id, projects_id:BackyardForest.id })
 ])
 
 await Promise.all([

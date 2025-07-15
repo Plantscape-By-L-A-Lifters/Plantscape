@@ -15,7 +15,7 @@ app.post('/', async (req, res, next) => {
     }
 })
 
-app.get('/', async (req, res,next) => {
+app.get('/', async (req, res, next) => {
     try {
         res.send( await fetchLayouts())
     } catch (error) {
@@ -30,4 +30,5 @@ app.get('/:id', async(req, res, next)=>{
         next(error)
     }
 })
+
 module.exports = app 
