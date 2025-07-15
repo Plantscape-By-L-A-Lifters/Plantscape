@@ -15,15 +15,7 @@
     font-family: 'Helvetica Neue', sans-serif;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
-  
-  .logo {
-    color: var(--dark-green);
-    font-size: 1.6rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
+
   .nav-links {
     display: flex;
     gap: 1.5rem;
@@ -37,33 +29,4 @@
     padding: 0.25rem 0;
     transition: color 0.3s ease;
   }
-  
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    height: 2px;
-    width: 0;
-    background-color: var(--dark-green);
-    transition: width 0.3s ease;
-  }
-  
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-  
-  .nav-links a:hover {
-    color: var(--dark-green);
-  }
-  
-  .nav-links .active {
-    color: var(--dark-green);
-  }
-  
-  .nav-links .active::after {
-    width: 100%;
-  }
-  
-
   

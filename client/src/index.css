@@ -1,1 +1,18 @@
-
+@media only screen and (min-width: 64rem) {}
+    #sbs-683 .cs-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sbs-683 .cs-image-group {
+        font-size: min(1.2vw, 1em);
+        flex: none;
+    }
+    #sbs-683 .cs-graphic {
+        width: 61.4375em;
+        height: auto;
+        display: block;
+        position: absolute;
+        bottom: 10.3125em;
+        right: -2em;
+        z-index: -1;
+    }
