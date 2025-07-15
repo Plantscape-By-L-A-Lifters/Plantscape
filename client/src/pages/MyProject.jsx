@@ -1,11 +1,12 @@
-import { Canvas } from "../components/canvas";
+import Canvas from "../components/canvas/script";
 
 export default function MyProject() {
-  bedWidth = 6; //placeholder entered in feet
-  bedHeight = 4; //placeholder entered in feet
+  let bedWidth = 6; //placeholder entered in feet
+  let bedHeight = 4; //placeholder entered in feet
+  let scaleFactor = 100;
+  const canvasWidth = bedWidth * scaleFactor; //will need if statement for large/small beds
+  const canvasHeight = bedHeight * scaleFactor;
 
-  const canvasWidth = bedWidth * 10; //will need if statement for large/small beds
-  const canvasHeight = bedHeight * 10;
   return (
     <div>
       <Canvas width={canvasWidth} height={canvasHeight} />
