@@ -43,7 +43,7 @@ export default function stylequiz() {
 
   return (
     <div className="picker-container">
-      <h1>  Garden Style Picker  </h1>
+      <h1>  Garden Style   </h1>
 
       {selectedStyle ? (
         <div className="details">
