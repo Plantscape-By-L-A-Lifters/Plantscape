@@ -14,9 +14,9 @@ app.get ('/', async (req, res, next )=> {
     }
 })
 
-app.post ('/register', async () => {
+app.post ('/register', async (req,res,next) => {
     try {
-        res.send(await createUser(req.body))
+        res.send( await createUser(req.body))
     } catch (error) {
         next(error)
     }
