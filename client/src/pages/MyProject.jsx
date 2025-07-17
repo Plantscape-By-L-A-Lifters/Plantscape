@@ -1,15 +1,24 @@
-import Canvas from "../components/canvas/script";
+import { useContext, useEffect } from "react";
+import { GardenPlanContext } from "../context/GardenPlanContext";
+import GardenCanvas from "../components/canvas/GardenCanvas";
 
-export default function MyProject() {
-  let bedWidth = 6; //placeholder entered in feet
-  let bedHeight = 4; //placeholder entered in feet
-  let scaleFactor = 100;
-  const canvasWidth = bedWidth * scaleFactor; //will need if statement for large/small beds
-  const canvasHeight = bedHeight * scaleFactor;
+const Results = () => {
+  const { placedPlants, setPlacedPlants } = useContext(GardenPlanContext);
+
+  // useEffect(() => {
+  //   // Just for testing
+  //   setPlacedPlants([
+  //     { name: "Coneflower", x: 2, y: 2, spacing: 18, color: "purple" },
+  //     { name: "Winecup", x: 4, y: 1, spacing: 12, color: "pink" },
+  //   ]);
+  // }, []);
 
   return (
     <div>
-      <Canvas width={canvasWidth} height={canvasHeight} />
+      <h2>Garden Layout</h2>
+      <GardenCanvas />
     </div>
   );
-}
+};
+
+export default Results;
