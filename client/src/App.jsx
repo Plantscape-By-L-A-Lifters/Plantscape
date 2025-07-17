@@ -9,7 +9,7 @@ import StyleQuiz from "./pages/StyleQuiz";
 import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
-
+import Login from "./components/login.jsx"
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
         <Route path="/newproject" element={<ProjectForm />} />
         <Route path="/projects" element={<MyProject />} /> //should actually map
         through all projects
+        <Route path = "/login" element ={<Login/>} />
       </Routes>
     </>
   );
