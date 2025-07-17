@@ -5,10 +5,10 @@ export const GardenPlanContext = createContext(null);
 GardenPlanContext.displayName = "GardenPlanContext";
 
 export const GardenPlanProvider = ({ children }) => {
-  const [bedSize, setBedSize] = useState({ width: 4, length: 8 });
+  const [bedSize, setBedSize] = useState({ length: 10, depth: 4 });
   const [placedPlants, setPlacedPlants] = useState([
-    { name: "Winecup", x: 1, y: 1, spacing: 12, color: "pink" },
-    { name: "Coneflower", x: 3, y: 2, spacing: 18, color: "purple" },
+    { name: "Winecup", x: 1, y: 1, spacing: 1, color: "pink" },
+    { name: "Coneflower", x: 3, y: 2, spacing: 1.5, color: "purple" },
   ]); // includes x/y positions
 
   // TODO: future states:

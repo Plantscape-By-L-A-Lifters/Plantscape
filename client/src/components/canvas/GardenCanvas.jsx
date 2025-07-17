@@ -5,27 +5,47 @@ export default function GardenCanvas() {
   const canvasRef = useRef(null);
   const { bedSize, placedPlants } = useContext(GardenPlanContext);
 
-  const scale = 40; //1 foot = 40px //TODO: needs to be flexible based on screen size and garden bed size
-
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
-    const width = bedSize.width * scale;
-    const height = bedSize.height * scale;
+    const getScale = (bedSize) => {
+      return bedSize.length > 8 ? 60 : 80;
+    }; //80; //1 foot = 80px //TODO: needs to be flexible based on screen size and garden bed size
+    const scale = getScale(bedSize);
+
+    const width = bedSize.length * scale;
+    const height = bedSize.depth * scale;
 
     //set canvas dimensions
     canvas.width = width;
     canvas.height = height;
 
+    //clear canvas
     ctx.clearRect(0, 0, width, height);
 
     //draw bed outline
     ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
     ctx.strokeRect(0, 0, width, height);
+
+    //find the center of the canvas
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    //determine grid spacing
+    function gridSpacingX(numCx) {
+      return Math.floor(width / numCx);
+    }
+
+    function gridSpacingY(numCy) {
+      return Math.floor(height / numCy);
+    }
+
+    function isOdd(number) {
+      return Math.abs(number % 2) === 1;
+    }
 
     // Draw each plant as a circle
     placedPlants.forEach((plant) => {
