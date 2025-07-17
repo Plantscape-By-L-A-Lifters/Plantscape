@@ -20,8 +20,7 @@ function App() {
         <Route path="/quiz" element={<StyleQuiz />} />
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/projects" element={<MyProject />} /> //should actually map
-        through all projects
+        <Route path="/myproject" element={<MyProject />} />
       </Routes>
     </>
   );
