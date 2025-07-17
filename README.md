@@ -13,3 +13,6 @@
 
 ## Project Images:
 [https://drive.google.com/drive/folders/1cO1zJvKdEZVsmCrbVu5xEHJ73YvLr84j?usp=drive_link]
+
+### Github Workflow:
+[https://github.com/FullstackAcademy/2501-FTB-ET-WEB-AM/blob/main/Github%20-%20Working%20Together/Github%20Workflow.md]
