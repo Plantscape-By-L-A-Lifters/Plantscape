@@ -17,11 +17,34 @@ const {
     createFavoritePlant
 } = require('./favorite_plants')
 
+const {
+    createLayout
+} = require('./layouts')
+
+const {
+createPlantDesign
+} = require('./plant_Design_Type')
+
+const {
+    createPlantLayout
+} = require('./plant_layout')
+
+const {
+    createFaveDesign
+} = require('./fave_design')
+
+const{
+    createProject
+} = require('./Projects')
+
 const seed = async () => {
     const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
+    DROP TABLE IF EXISTS plant_layout;
     DROP TABLE IF EXISTS layouts;
     DROP TABLE IF EXISTS favorite_plants;
+    DROP TABLE IF EXISTS plant_Design_Types;
+    DROP TABLE IF EXISTS fave_design;
     DROP TABLE IF EXISTS plants;
     DROP TABLE IF EXISTS designs;
     DROP TABLE IF EXISTS users;
@@ -39,12 +62,11 @@ const seed = async () => {
     design_attributes VARCHAR(50)
     );
 
-        CREATE TABLE plants(
+    CREATE TABLE plants(
     id UUID PRIMARY KEY,
     plant_name VARCHAR(100) NOT NULL,
     plant_type VARCHAR (50) NOT NULL,
     toxic BOOLEAN DEFAULT false NOT NULL,
-    design_type UUID REFERENCES designs(id), 
     size INTEGER NOT NULL 
     );
 
@@ -55,23 +77,38 @@ const seed = async () => {
     CONSTRAINT user_and_plant_id UNIQUE(user_id, plant_id)
     );
 
-    CREATE TABLE layouts(
+    CREATE TABLE plant_Design_Types(
     id UUID PRIMARY KEY,
     plant_id UUID REFERENCES plants(id),
-    user_id UUID REFERENCES  users(id),
-    bedding_size INTEGER NOT NULL,
-    numb_plants INTEGER NOT NULL,
-    fave_plants_id UUID REFERENCES favorite_plants(id),
-    design_type UUID REFERENCES designs(id)
+    design_id UUID REFERENCES designs(id)
     );
 
+    
     CREATE TABLE projects(
     id UUID PRIMARY KEY,
     project_name VARCHAR(100) NOT NULL,
-    user_id UUID REFERENCES users(id),
+    user_id UUID REFERENCES users(id)
+    );
+
+    CREATE TABLE layouts(
+    id UUID PRIMARY KEY,
+    layout_name varchar(100) NOT NULL,
+    bedding_size INTEGER NOT NULL,
+    design_type UUID REFERENCES designs(id),
+    projects_id UUID REFERENCES projects(id)
+    );
+
+    CREATE TABLE plant_layout(
+    id UUID PRIMARY KEY,
+    plant_id UUID REFERENCES plants(id),
     layout_id UUID REFERENCES layouts(id),
-    project_count INTEGER NOT NULL,
-    project_design UUID REFERENCES designs(id)
+    placement FLOAT
+    );
+
+    CREATE TABLE fave_design(
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    design_id UUID REFERENCES designs(id)
     );
     `
     await client.query(SQL)
@@ -90,9 +127,9 @@ const [Cottage, Modern, Wild ] = await Promise.all([
 ])
 
 const [Aloe,Fern,Rose] = await Promise.all([
-    createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , design_type: Wild.id, size:10}),
-    createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false , design_type: Cottage.id ,size:15}),
-    createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , design_type: Modern.id ,size:12})
+    createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , size:10}),
+    createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false, size:15}),
+    createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , size:12})
 ]);
 
 await Promise.all([
@@ -101,6 +138,35 @@ await Promise.all([
     createFavoritePlant({id:uuidv4(), user_id: Callen.id, plant_id: Aloe.id}),
     createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
 ])
+
+const[BackyardForest] = await Promise.all ([
+    createProject({id:uuidv4(), project_name:'BackyardForest', user_id: Justin.id })
+])
+
+const [newBeginnigs,FernForest,AbsoluteSucculent ] = await Promise.all([
+    createLayout({id:uuidv4(), layout_name: 'newBeginnigs' ,bedding_size: 100, design_type: Cottage.id, projects_id: BackyardForest.id}),
+    createLayout({id:uuidv4(), layout_name: 'FernForest' ,bedding_size: 450, design_type: Modern.id, projects_id:BackyardForest.id}),
+    createLayout({id:uuidv4(), layout_name: 'AbsoluteSucculent',bedding_size: 210, design_type: Wild.id, projects_id:BackyardForest.id })
+])
+
+await Promise.all([
+    createPlantDesign({id:uuidv4(), plant_id: Aloe.id , design_id: Wild.id}),
+    createPlantDesign({id:uuidv4(), plant_id: Fern.id, design_id: Cottage.id}),
+    createPlantDesign({id:uuidv4(), plant_id: Aloe.id, design_id: Cottage.id})
+])
+
+await Promise.all ([
+    createPlantLayout({id:uuidv4(), plant_id: Rose.id , layout_id: newBeginnigs.id , placement: 78}),
+    createPlantLayout({id:uuidv4(), plant_id: Fern.id, layout_id:FernForest.id , placement:567}),
+    createPlantLayout({id:uuidv4(), plant_id: Aloe.id , layout_id: AbsoluteSucculent.id , placement:123})
+])
+
+await Promise.all ([
+    createFaveDesign({id:uuidv4(), user_id: Ellie.id, design_id: Modern.id}),
+    createFaveDesign({id:uuidv4(), user_id: Callen.id, design_id: Wild.id}),
+    createFaveDesign({id:uuidv4(), user_id: Chelsea.id, design_id: Cottage.id})
+])
+
 console.log('Tables Seeded')
 }
 

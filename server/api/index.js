@@ -3,6 +3,12 @@ const app = express.Router()
 
 app.use('/users', require('./users'))
 app.use('/plants', require('./plants'))
-app.use('./favorite_plants', require('./favorite_plants'))
+app.use('/favorite_plants', require('./favorite_plants'))
+app.use('/layouts', require('./layouts'))
+app.use('/design', require('./design'))
+app.use('/plantDesign', require('./plant_Design_Type'))
+app.use('/plantLayout', require('./plant_layout'))
+app.use('./faveDesign', require('./fave_design'))
+app.use('/projects', require('./projects'))
 
-module.exports = app 
+module.exports = app;
