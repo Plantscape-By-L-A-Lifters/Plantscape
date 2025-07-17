@@ -3,7 +3,7 @@ import { GardenPlanContext } from "../context/GardenPlanContext";
 import GardenCanvas from "../components/canvas/GardenCanvas";
 
 const Results = () => {
-  const { placedPlants, setPlacedPlants } = useContext(GardenPlanContext);
+  const { setPlacedPlants } = useContext(GardenPlanContext);
 
   // useEffect(() => {
   //   // Just for testing
