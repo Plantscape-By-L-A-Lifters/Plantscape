@@ -1,5 +1,5 @@
 // src/context/GardenPlanContext.jsx
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const GardenPlanContext = createContext(null);
 GardenPlanContext.displayName = "GardenPlanContext";
