@@ -6,6 +6,7 @@ export function animateGridLines(ctx, width, height, cols, rows) {
   const lineDelay = 200; // ms delay between lines
 
   let lines = [];
+  let plants = [];
 
   // Generate vertical lines (skip first and last)
   for (let i = 1; i < cols; i++) {
@@ -56,13 +57,11 @@ export function animateGridLines(ctx, width, height, cols, rows) {
   }
 
   function drawNext() {
-    if (currentLine >= lines.length) return;
-
-    const line = lines[currentLine];
-    currentLine++;
-
-    animateLine(line, drawNext);
+    if (currentLine >= lines.length) {
+      onComplete();
+      return;
+    }
+    animateLine(lines[currentLine++], drawNext);
   }
-
   drawNext(); // Start animation
 }

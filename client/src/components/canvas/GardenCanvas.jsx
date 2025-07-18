@@ -1,53 +1,38 @@
 import { useRef, useEffect, useContext } from "react";
 import { GardenPlanContext } from "../../context/GardenPlanContext";
-import { animateGridLines } from "../../utils/canvasGridAnimation";
-
+import { renderGardenBed } from "../../utils/canvasRenderGardenBed";
+import { getScale } from "../../utils/getScale";
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
   const { bedSize, placedPlants } = useContext(GardenPlanContext);
 
+  //Dummy test data
+
   useEffect(() => {
     const canvas = canvasRef.current;
-
     const ctx = canvas.getContext("2d");
 
-    const getScale = (bedSize) => {
-      return bedSize.length > 8 ? 60 : 80;
-    }; //80; //1 foot = 80px //TODO: needs to be flexible based on screen size and garden bed size
     const scale = getScale(bedSize);
+    console.log(scale);
 
     const width = bedSize.length * scale;
     const height = bedSize.depth * scale;
 
-    //set canvas dimensions
     canvas.width = width;
     canvas.height = height;
 
-    //clear canvas
     ctx.clearRect(0, 0, width, height);
 
-    //draw bed outline
     ctx.strokeStyle = "black";
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 3;
     ctx.fillStyle = "white";
-    // ctx.strokeRect(0, 0, width, height);
     ctx.fillRect(0, 0, width, height);
 
-    // Animate the grid
-    animateGridLines(ctx, width, height, 4, 3);
+    const cols = 4;
+    const rows = 3;
+    console.log(cols);
 
-    // Draw each plant as a circle
-    placedPlants.forEach((plant) => {
-      const x = plant.x * scale;
-      const y = plant.y * scale;
-      const radius = (plant.diameter / 2) * scale;
-
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = plant.color || "green";
-      ctx.fill();
-      ctx.stroke();
-    });
+    renderGardenBed(ctx, width, height, 4, 3, placedPlants);
   }, [bedSize, placedPlants]);
 
   return (
@@ -238,3 +223,17 @@ export default function GardenCanvas() {
 //       axis: "y",
 //       count: 3,
 //     });
+
+//before animating plants
+// // Draw each plant as a circle
+// placedPlants.forEach((plant) => {
+//   const x = plant.x * scale;
+//   const y = plant.y * scale;
+//   const radius = (plant.diameter / 2) * scale;
+
+//   ctx.beginPath();
+//   ctx.arc(x, y, radius, 0, 2 * Math.PI);
+//   ctx.fillStyle = plant.color || "green";
+//   ctx.fill();
+//   ctx.stroke();
+// });
