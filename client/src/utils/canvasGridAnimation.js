@@ -1,28 +1,40 @@
-export function animateGridLines(ctx, width, height, cols, rows) {
-  const verticalSpacing = width / cols;
-  const horizontalSpacing = height / rows;
+import { getScale } from "./getScale";
 
-  const drawSpeed = 4; // pixels per frame
+/**
+ *  onComplete - optional callback after animation
+ */
+export function animateGridLines(
+  ctx,
+  cols,
+  rows,
+  bedSize,
+  onComplete = () => {}
+) {
+  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
+
+  const verticalSpacing = scaledWidth / cols;
+  const horizontalSpacing = scaledHeight / rows;
+
+  const drawSpeed = 8; // pixels per frame
   const lineDelay = 200; // ms delay between lines
 
-  let lines = [];
-  let plants = [];
+  const lines = [];
 
   // Generate vertical lines (skip first and last)
   for (let i = 1; i < cols; i++) {
     const x = i * verticalSpacing;
-    lines.push({ x1: x, y1: 0, x2: x, y2: height });
+    lines.push({ x1: x, y1: 0, x2: x, y2: scaledHeight });
   }
 
   // Generate horizontal lines (skip first and last)
   for (let i = 1; i < rows; i++) {
     const y = i * horizontalSpacing;
-    lines.push({ x1: 0, y1: y, x2: width, y2: y });
+    lines.push({ x1: 0, y1: y, x2: scaledWidth, y2: y });
   }
 
   let currentLine = 0;
 
-  function animateLine({ x1, y1, x2, y2 }, onComplete) {
+  function animateLine({ x1, y1, x2, y2 }, onCompleteLine) {
     const totalLength = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
     let progress = 0;
 
@@ -43,13 +55,12 @@ export function animateGridLines(ctx, width, height, cols, rows) {
       if (progress < totalLength) {
         requestAnimationFrame(step);
       } else {
-        // Ensure final segment is drawn fully
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.stroke();
 
-        setTimeout(onComplete, lineDelay);
+        setTimeout(onCompleteLine, lineDelay);
       }
     }
 
@@ -58,10 +69,12 @@ export function animateGridLines(ctx, width, height, cols, rows) {
 
   function drawNext() {
     if (currentLine >= lines.length) {
-      onComplete();
+      onComplete(); // Call final callback if provided
       return;
     }
+
     animateLine(lines[currentLine++], drawNext);
   }
-  drawNext(); // Start animation
+
+  drawNext();
 }

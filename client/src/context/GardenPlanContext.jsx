@@ -8,7 +8,8 @@ export const GardenPlanProvider = ({ children }) => {
   const [bedSize, setBedSize] = useState({ length: 10, depth: 4 });
   const [placedPlants, setPlacedPlants] = useState([
     {
-      id: 25,
+      id: 1,
+      plant_id: 25,
       name: "Japanese Painted Fern",
       technical_name: "Athyrium niponicum var. pictum",
       diameter_min_ft: 1,
@@ -19,7 +20,8 @@ export const GardenPlanProvider = ({ children }) => {
       accent_color: "pale_green",
     },
     {
-      id: 29,
+      id: 2,
+      plant_id: 29,
       name: "Foamflower",
       technical_name: "Tiarella cordifolia",
       diameter_min_ft: 1,
