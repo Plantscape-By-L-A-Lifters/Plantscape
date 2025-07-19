@@ -1,54 +1,67 @@
-import { useRef, useEffect, useContext } from "react";
-import { GardenPlanContext } from "../../context/GardenPlanContext";
-import { animateGridLines } from "../../utils/canvasGridAnimation";
+import { useRef, useEffect } from "react";
+import { renderGardenBed } from "../../utils/renderGardenBed";
+import { getScale } from "../../utils/getScale";
 
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
-  const { bedSize, placedPlants } = useContext(GardenPlanContext);
+
+  // Test data
+  const bedSize = { length: 6, depth: 4 }; // 6x4 grid
+  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
+  const placedPlants = [
+    {
+      id: 1,
+      plant_id: 101,
+      name: "Lavender",
+      diameter: 2,
+      x: 1.5,
+      y: 1,
+      color: "#D3D3FF",
+      accent_color: "#FFFFFF",
+    },
+    {
+      id: 2,
+      plant_id: 102,
+      name: "Sage",
+      diameter: 1,
+      x: 3,
+      y: 2,
+      color: "#98A869",
+      accent_color: "#D6B588",
+    },
+    {
+      id: 3,
+      plant_id: 103,
+      name: "Emerald Fern",
+      diameter: 1,
+      x: 4,
+      y: 3,
+      color: "#00674F",
+      accent_color: "#FFFFFF",
+    },
+  ];
 
   useEffect(() => {
+    console.log("Placed plants", placedPlants);
     const canvas = canvasRef.current;
-
     const ctx = canvas.getContext("2d");
 
-    const getScale = (bedSize) => {
-      return bedSize.length > 8 ? 60 : 80;
-    }; //80; //1 foot = 80px //TODO: needs to be flexible based on screen size and garden bed size
-    const scale = getScale(bedSize);
+    const scale = bedSize.length > 8 ? 60 : 80;
+    const scaledWidth = bedSize.length * scale;
+    const scaledHeight = bedSize.depth * scale;
 
-    const width = bedSize.length * scale;
-    const height = bedSize.depth * scale;
+    canvas.width = scaledWidth;
+    canvas.height = scaledHeight;
 
-    //set canvas dimensions
-    canvas.width = width;
-    canvas.height = height;
-
-    //clear canvas
-    ctx.clearRect(0, 0, width, height);
-
-    //draw bed outline
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 1;
+    ctx.clearRect(0, 0, scaledWidth, scaledHeight);
     ctx.fillStyle = "white";
-    // ctx.strokeRect(0, 0, width, height);
-    ctx.fillRect(0, 0, width, height);
+    ctx.fillRect(0, 0, scaledWidth, scaledHeight);
 
-    // Animate the grid
-    animateGridLines(ctx, width, height, 4, 3);
+    const cols = 4;
+    const rows = 3;
 
-    // Draw each plant as a circle
-    placedPlants.forEach((plant) => {
-      const x = plant.x * scale;
-      const y = plant.y * scale;
-      const radius = (plant.diameter / 2) * scale;
-
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = plant.color || "green";
-      ctx.fill();
-      ctx.stroke();
-    });
-  }, [bedSize, placedPlants]);
+    renderGardenBed(ctx, cols, rows, placedPlants, bedSize);
+  }, []);
 
   return (
     <canvas
@@ -57,6 +70,54 @@ export default function GardenCanvas() {
     />
   );
 }
+
+//temporary comment
+// import { useRef, useEffect, useContext } from "react";
+// import { GardenPlanContext } from "../../context/GardenPlanContext";
+// import { renderGardenBed } from "../../utils/canvasRenderGardenBed";
+// import { getScale } from "../../utils/getScale";
+// export default function GardenCanvas() {
+//   const canvasRef = useRef(null);
+//   const { bedSize, placedPlants } = useContext(GardenPlanContext);
+
+//   //Dummy test data
+
+//   useEffect(() => {
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext("2d");
+
+//     const scale = getScale(bedSize);
+//     console.log(scale);
+
+//     const width = bedSize.length * scale;
+//     const height = bedSize.depth * scale;
+
+//     canvas.width = width;
+//     canvas.height = height;
+
+//     ctx.clearRect(0, 0, width, height);
+
+//     ctx.strokeStyle = "black";
+//     ctx.lineWidth = 3;
+//     ctx.fillStyle = "white";
+//     ctx.fillRect(0, 0, width, height);
+
+//     const cols = 4;
+//     const rows = 3;
+//     console.log(cols);
+
+//     renderGardenBed(ctx, width, height, 4, 3, placedPlants);
+//   }, [bedSize, placedPlants]);
+
+//   return (
+//     <canvas
+//       ref={canvasRef}
+//       style={{ border: "1px solid #ccc", marginTop: "1rem" }}
+//     />
+//   );
+// }
+
+//temporary comment
 
 //future algorithm considerations
 //  givens:
@@ -238,3 +299,17 @@ export default function GardenCanvas() {
 //       axis: "y",
 //       count: 3,
 //     });
+
+//before animating plants
+// // Draw each plant as a circle
+// placedPlants.forEach((plant) => {
+//   const x = plant.x * scale;
+//   const y = plant.y * scale;
+//   const radius = (plant.diameter / 2) * scale;
+
+//   ctx.beginPath();
+//   ctx.arc(x, y, radius, 0, 2 * Math.PI);
+//   ctx.fillStyle = plant.color || "green";
+//   ctx.fill();
+//   ctx.stroke();
+// });
