@@ -5,6 +5,7 @@ export function drawPlacedPlants(ctx, cols, rows, placedPlants, bedSize) {
 
   const verticalSpacing = scaledWidth / cols;
   const horizontalSpacing = scaledHeight / rows;
+  //if rows is 0, then rows = bedSize.length, and should be transparent
 
   for (const plant of placedPlants) {
     const x = plant.x * verticalSpacing;
@@ -14,7 +15,7 @@ export function drawPlacedPlants(ctx, cols, rows, placedPlants, bedSize) {
     const radiusPx = (diameterFt * scale) / 2;
 
     const fillColor = plant.color || "rgba(34,139,34,0.6)";
-    const strokeColor = plant.accent_color || "green";
+    const strokeColor = plant.accent_color || plant.color;
 
     ctx.beginPath();
     ctx.arc(x, y, radiusPx, 0, 2 * Math.PI);
@@ -25,8 +26,6 @@ export function drawPlacedPlants(ctx, cols, rows, placedPlants, bedSize) {
     ctx.stroke();
   }
 }
-
-//in the long term, id like to be able to reference the grid lines created in the grid animation file to place the plants, but they will not always be snapped to the grid center points.
 
 //previous code before simplifying back to x,y coordinates
 // import { getScale } from "./getScale";

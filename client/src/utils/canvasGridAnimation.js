@@ -15,7 +15,7 @@ export function animateGridLines(
   const verticalSpacing = scaledWidth / cols;
   const horizontalSpacing = scaledHeight / rows;
 
-  const drawSpeed = 8; // pixels per frame
+  const drawSpeed = 20; // pixels per frame
   const lineDelay = 200; // ms delay between lines
 
   const lines = [];
