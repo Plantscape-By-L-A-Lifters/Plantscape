@@ -25,3 +25,27 @@
 - plant icons:
 - //add icons like this: https://thenounproject.com/browse/collection-icon/landscape-design-147731/
 - check out invoke-ai to make custom icons
+- GardenCanvas.jx, FUTURE Optimizations with classical layout in mind:
+- Plant placement on garden bed starts with tallest plant type centered at the top of the canvas, it repeats up to bedSize.length%diameter
+  const tallestPlant = find tallest plant in placedPlants;
+  plant height determines placement along the Y axis - tallest generally goes at the top. except when trees or vines are incorporated.
+  const widestPlant = findWidest plant in placed plants and optimize the placement and number of this plant. position it to get the max number.
+
+  info would be setup like this:
+  // {
+  id: 1,
+  plant_id: UUID
+  bed_id: UUID
+  x: 5, //bedSize.length/2-radius
+  y: 1, //tallest plant goes in back, so, just diameter/2
+  plants find by plant_id the following:
+  name: plant.name
+  diameter: plant.diameter_min_ft //for now... later we can optimize for range of sizes
+  height: plant.height_min_ft //for now... later we can optimize for range of sizes
+  color: "sage_green",
+  accent_color: "goldenrod",
+
+  colors.js find by name the following:
+  color: color.hexCode;
+  accent_color: color.hexcode
+  },

@@ -1,229 +1,22 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { GardenPlanContext } from "../../context/GardenPlanContext";
 import { renderGardenBed } from "../../utils/renderGardenBed";
 import { getScale } from "../../utils/getScale";
 
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
+  const { bedSize, placedPlants } = useContext(GardenPlanContext);
 
   // Test data for classical layout
-  const bedSize = { length: 12, depth: 8 };
-  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
-  const placedPlants = [
-    //first plant type repeats up to bedSize.length%diameter
-    {
-      id: 1,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 5, //length/2-radius
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      //TODO: UPDATE SO THE PLANTS ARE CENTERED IN THE BED
-      color: "#6FC500",
-      accent_color: "",
-    },
-    {
-      id: 2,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 7, //length/2+radius
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      color: "#6FC500",
-      accent_color: "",
-    },
-    {
-      id: 3,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 3, //length/2-radius-1*diameter
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      color: "#6FC500",
-      accent_color: "",
-    },
-    {
-      id: 4,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 9, //length/2+radius+1*diameter
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      color: "#6FC500",
-      accent_color: "",
-    },
-    {
-      id: 5,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 11, //length/2+radius+2*diameter
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      color: "#6FC500",
-      accent_color: "",
-    },
-    {
-      id: 6,
-      plant_id: 101,
-      name: "Boxwood",
-      diameter: 2,
-      height: 5,
-      x: 1, //length/2-radius-2*diameter
-      y: 1, //tallest plant goes in back, so, just diameter/2
-      color: "#6FC500",
-      accent_color: "",
-    },
-    //next row loops through next tallest plant
-    {
-      id: 7,
-      plant_id: 102,
-      name: "Spreading Japanese Plum Yew",
-      diameter: 3,
-      height: 3,
-      x: 6, //length/2 (starts right in the middle)
-      y: 3.5, // diameter of previous plant + diameter/2
-      color: "#ABD726",
-      accent_color: "",
-    },
-    {
-      id: 8,
-      plant_id: 102,
-      name: "Spreading Japanese Plum Yew",
-      diameter: 3,
-      height: 3,
-      x: 9, //length/2+diameter
-      y: 3.5, // diameter of previous plant + diameter/2
-      color: "#ABD726",
-      accent_color: "",
-    },
-    {
-      id: 9,
-      plant_id: 102,
-      name: "Spreading Japanese Plum Yew",
-      diameter: 3,
-      height: 3,
-      x: 3, //length/2-diameter
-      y: 3.5, // diameter of previous plant + diameter/2
-      color: "#ABD726",
-      accent_color: "",
-    },
-    {
-      id: 10,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 6.75, //length/2+radius
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 10,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 5.25, //length/2-radius
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 11,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 3.75, //length/2-radius-1*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 12,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 8.25, //length/2+radius+1*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 13,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 2.25, //length/2-radius-2*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 14,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 9.75, //length/2+radius+2*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 15,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 0.75, //length/2-radius-3*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-    {
-      id: 16,
-      plant_id: 135,
-      name: "Japanese Painted Fern",
-      diameter: 1.5,
-      height: 1.5,
-      x: 11.25, //length/2+radius+3*diameter
-      y: 5.75, //sum of diameter of previous plants + diameter/2
-      accent_color: "#E7FF9E",
-      color: "#683A45",
-    },
-  ];
-
-  //   {
-
-  // },
-  // {
-  //   id: 14,
-  //   name: "Hydrangeas, Big Daddy",
-  //   technical_name: "Hydrangea macrophylla",
-  //   diameter_min_ft: 5,
-  //   diameter_max_ft: 6,
-  //   height_min_ft: 5,
-  //   height_max_ft: 6,
-  //   image: "../../public/hydrangea-big-daddy.jpg",
-  //   icon: "/icons/hydrangea-big-daddy.svg",
-  // },
+  // const bedSize = { length: 12, depth: 8 };
 
   useEffect(() => {
     console.log("Placed plants", placedPlants);
+    if (!bedSize || !placedPlants) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    const scale = bedSize.length > 8 ? 60 : 80;
-    const scaledWidth = bedSize.length * scale;
-    const scaledHeight = bedSize.depth * scale;
+    const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
 
     canvas.width = scaledWidth;
     canvas.height = scaledHeight;
@@ -236,21 +29,13 @@ export default function GardenCanvas() {
     const rows = bedSize.depth;
 
     renderGardenBed(ctx, cols, rows, placedPlants, bedSize);
-  }, []);
+  }, [bedSize, placedPlants]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ border: "1px solid #ccc", marginTop: "1rem" }}
-    />
-  );
+  return <canvas ref={canvasRef} style={{ marginTop: "1rem" }} />;
 }
 
 //temporary comment
-// import { useRef, useEffect, useContext } from "react";
-// import { GardenPlanContext } from "../../context/GardenPlanContext";
-// import { renderGardenBed } from "../../utils/canvasRenderGardenBed";
-// import { getScale } from "../../utils/getScale";
+
 // export default function GardenCanvas() {
 //   const canvasRef = useRef(null);
 //   const { bedSize, placedPlants } = useContext(GardenPlanContext);
