@@ -5,7 +5,8 @@ export const GardenPlanContext = createContext(null);
 GardenPlanContext.displayName = "GardenPlanContext";
 
 export const GardenPlanProvider = ({ children }) => {
-  const [bedSize, setBedSize] = useState({ length: 10, depth: 4 });
+  const [bedSize, setBedSize] = useState({ length: 12, depth: 6 });
+
   const [placedPlants, setPlacedPlants] = useState([
     {
       id: 1,
@@ -54,3 +55,24 @@ export const GardenPlanProvider = ({ children }) => {
     </GardenPlanContext.Provider>
   );
 };
+
+// info would be setup like this:
+// // {
+//placedPlants State:
+// id: 1,
+// plant_id: UUID
+// bed_id: UUID
+// x: 5, //bedSize.length/2-radius
+// y: 1, //tallest plant goes in back, so, just diameter/2
+
+// plants find by plant_id the following:
+// name: plant.name
+// diameter: plant.diameter_min_ft //for now... later we can optimize for range of sizes
+// height: plant.height_min_ft //for now... later we can optimize for range of sizes
+// color: "sage_green",
+// accent_color: "goldenrod",
+
+// colors.js find by name the following:
+// color: color.hexCode;
+// accent_color: color.hexcode
+// },

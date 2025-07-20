@@ -1,54 +1,19 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { GardenPlanContext } from "../../context/GardenPlanContext";
 import { renderGardenBed } from "../../utils/renderGardenBed";
 import { getScale } from "../../utils/getScale";
 
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
-
-  // Test data
-  const bedSize = { length: 6, depth: 4 }; // 6x4 grid
-  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
-  const placedPlants = [
-    {
-      id: 1,
-      plant_id: 101,
-      name: "Lavender",
-      diameter: 2,
-      x: 1.5,
-      y: 1,
-      color: "#D3D3FF",
-      accent_color: "#FFFFFF",
-    },
-    {
-      id: 2,
-      plant_id: 102,
-      name: "Sage",
-      diameter: 1,
-      x: 3,
-      y: 2,
-      color: "#98A869",
-      accent_color: "#D6B588",
-    },
-    {
-      id: 3,
-      plant_id: 103,
-      name: "Emerald Fern",
-      diameter: 1,
-      x: 4,
-      y: 3,
-      color: "#00674F",
-      accent_color: "#FFFFFF",
-    },
-  ];
+  const { bedSize, placedPlants } = useContext(GardenPlanContext);
 
   useEffect(() => {
     console.log("Placed plants", placedPlants);
+    if (!bedSize || !placedPlants) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    const scale = bedSize.length > 8 ? 60 : 80;
-    const scaledWidth = bedSize.length * scale;
-    const scaledHeight = bedSize.depth * scale;
+    const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
 
     canvas.width = scaledWidth;
     canvas.height = scaledHeight;
@@ -57,67 +22,14 @@ export default function GardenCanvas() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, scaledWidth, scaledHeight);
 
-    const cols = 4;
-    const rows = 3;
+    const cols = bedSize.length;
+    const rows = bedSize.depth;
 
     renderGardenBed(ctx, cols, rows, placedPlants, bedSize);
-  }, []);
+  }, [bedSize, placedPlants]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ border: "1px solid #ccc", marginTop: "1rem" }}
-    />
-  );
+  return <canvas ref={canvasRef} style={{ marginTop: "1rem" }} />;
 }
-
-//temporary comment
-// import { useRef, useEffect, useContext } from "react";
-// import { GardenPlanContext } from "../../context/GardenPlanContext";
-// import { renderGardenBed } from "../../utils/canvasRenderGardenBed";
-// import { getScale } from "../../utils/getScale";
-// export default function GardenCanvas() {
-//   const canvasRef = useRef(null);
-//   const { bedSize, placedPlants } = useContext(GardenPlanContext);
-
-//   //Dummy test data
-
-//   useEffect(() => {
-//     const canvas = canvasRef.current;
-//     const ctx = canvas.getContext("2d");
-
-//     const scale = getScale(bedSize);
-//     console.log(scale);
-
-//     const width = bedSize.length * scale;
-//     const height = bedSize.depth * scale;
-
-//     canvas.width = width;
-//     canvas.height = height;
-
-//     ctx.clearRect(0, 0, width, height);
-
-//     ctx.strokeStyle = "black";
-//     ctx.lineWidth = 3;
-//     ctx.fillStyle = "white";
-//     ctx.fillRect(0, 0, width, height);
-
-//     const cols = 4;
-//     const rows = 3;
-//     console.log(cols);
-
-//     renderGardenBed(ctx, width, height, 4, 3, placedPlants);
-//   }, [bedSize, placedPlants]);
-
-//   return (
-//     <canvas
-//       ref={canvasRef}
-//       style={{ border: "1px solid #ccc", marginTop: "1rem" }}
-//     />
-//   );
-// }
-
-//temporary comment
 
 //future algorithm considerations
 //  givens:
