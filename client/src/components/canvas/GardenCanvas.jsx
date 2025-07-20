@@ -7,9 +7,6 @@ export default function GardenCanvas() {
   const canvasRef = useRef(null);
   const { bedSize, placedPlants } = useContext(GardenPlanContext);
 
-  // Test data for classical layout
-  // const bedSize = { length: 12, depth: 8 };
-
   useEffect(() => {
     console.log("Placed plants", placedPlants);
     if (!bedSize || !placedPlants) return;
@@ -33,51 +30,6 @@ export default function GardenCanvas() {
 
   return <canvas ref={canvasRef} style={{ marginTop: "1rem" }} />;
 }
-
-//temporary comment
-
-// export default function GardenCanvas() {
-//   const canvasRef = useRef(null);
-//   const { bedSize, placedPlants } = useContext(GardenPlanContext);
-
-//   //Dummy test data
-
-//   useEffect(() => {
-//     const canvas = canvasRef.current;
-//     const ctx = canvas.getContext("2d");
-
-//     const scale = getScale(bedSize);
-//     console.log(scale);
-
-//     const width = bedSize.length * scale;
-//     const height = bedSize.depth * scale;
-
-//     canvas.width = width;
-//     canvas.height = height;
-
-//     ctx.clearRect(0, 0, width, height);
-
-//     ctx.strokeStyle = "black";
-//     ctx.lineWidth = 3;
-//     ctx.fillStyle = "white";
-//     ctx.fillRect(0, 0, width, height);
-
-//     const cols = 4;
-//     const rows = 3;
-//     console.log(cols);
-
-//     renderGardenBed(ctx, width, height, 4, 3, placedPlants);
-//   }, [bedSize, placedPlants]);
-
-//   return (
-//     <canvas
-//       ref={canvasRef}
-//       style={{ border: "1px solid #ccc", marginTop: "1rem" }}
-//     />
-//   );
-// }
-
-//temporary comment
 
 //future algorithm considerations
 //  givens:

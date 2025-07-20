@@ -7,14 +7,14 @@ const defaultStyles = [
     id: 1,
     name: "Classical",
     gridMinCols: 4,
-    gridEven: true,
+    // gridEven: true,
     spacingFactor: 1.2,
   },
   {
     id: 2,
     name: "Modern",
     gridMinCols: 3,
-    gridOdd: true,
+    // gridOdd: true,
     spacingFactor: 1.4,
   },
   {
