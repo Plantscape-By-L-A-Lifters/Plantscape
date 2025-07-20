@@ -6,7 +6,7 @@ const {
     fetchProject
 }= require('../db/Projects')
 
-app.post('/projects', async (req, res, next ) => {
+app.post('/projects', async (req, res, next ) => {//  is logged in 
     try {
         res.send(await createProject(req.body))
     } catch (error) {
@@ -14,7 +14,7 @@ app.post('/projects', async (req, res, next ) => {
     }
 })
 
-app.get('/', async (req, res, next) => {
+app.get('/', async (req, res, next) => { // is logged in 
     try {
         res.send(await fetchProject())
     } catch (error) {

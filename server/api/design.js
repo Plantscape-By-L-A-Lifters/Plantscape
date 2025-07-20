@@ -7,7 +7,7 @@ const {
     fetchDesignById
 } = require('../db/design')
 
-app.post('/', async (req, res, next ) => {
+app.post('/', async (req, res, next ) => { // is admin and is logged in
     try {
         res.send(await createDesign(req.body))
     } catch (error) {

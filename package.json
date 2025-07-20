@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon Server/index.js"
+    "start:dev": "cross-env JWT=thePlantScape nodemon Server/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.10"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",

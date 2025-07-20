@@ -7,7 +7,7 @@ const {
     fetchPlantLayoutById
 } = require('../db/plant_layout')
 
-app.post('/', async (req, res, next) => {
+app.post('/', async (req, res, next) => {// is logged in for everything 
     try {
         res.send( await createPlantLayout(req.body))
     } catch (error) {

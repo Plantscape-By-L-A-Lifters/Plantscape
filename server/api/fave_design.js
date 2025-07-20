@@ -6,7 +6,7 @@ const {
     fetchFaveDesign
 } = require('../db/fave_design')
 
-app.post('./', async (req,res,next) => {
+app.post('./', async (req,res,next) => { // is logged in 
     try {
         res.send( await createFaveDesign(req.body))
     } catch (error) {
@@ -14,7 +14,7 @@ app.post('./', async (req,res,next) => {
     }
 })
 
-app.get('./', async (req,res,next) => {
+app.get('./', async (req,res,next) => { // is logged in 
     try {
         res.send( await fetchFaveDesign())
     } catch (error) {

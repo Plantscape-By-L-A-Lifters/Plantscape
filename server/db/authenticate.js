@@ -11,7 +11,7 @@ try {
     FROM users
     WHERE id = $1
     `
-    const response = await client.query(SQL, [payload])
+    const response = await client.query(SQL, [payload.id])
     return response.rows[0]
 } catch (error) {
     console.log(error)
