@@ -16,11 +16,20 @@
 
 [https://drive.google.com/drive/folders/1cO1zJvKdEZVsmCrbVu5xEHJ73YvLr84j?usp=drive_link]
 
+## Group Working Notes:
+
 ### Github Workflow:
 
 [https://github.com/FullstackAcademy/2501-FTB-ET-WEB-AM/blob/main/Github%20-%20Working%20Together/Github%20Workflow.md]
 
-#### Future Developments:
+### package.json script notes:
+
+    ####npm run seed
+    - seed will always add data, but can insert duplicates if run more than one time
+    ####npm run db:reset
+    - db:reset is for development period only - and resets everything back to what is hard-coded on the backend be cautious before running it
+
+## Future Developments:
 
 - plant icons:
 - //add icons like this: https://thenounproject.com/browse/collection-icon/landscape-design-147731/
