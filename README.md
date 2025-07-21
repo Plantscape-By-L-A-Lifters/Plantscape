@@ -58,3 +58,44 @@
   color: color.hexCode;
   accent_color: color.hexcode
   },
+
+//current plant db
+createPlant({
+id: uuidv4(),
+plant_name: "Japanese Painted Fern",
+plant_type: "Herbaceous",
+toxic: true,
+size: 1,
+}),
+//future plant db
+createPlant({
+id: uuidv4(),
+plant_name: "Japanese Painted Fern",
+plant_technical_name: "",
+plant_growth_form: "Herbaceous",
+toxic: true,
+diameter_min_ft: 1,
+diameter_max_ft: 1,
+plant_height_min_ft: 1,
+plant_height_max_ft: 1,
+primary_color: green //ties to colors.js on the front end
+accent_color: //ties to colors.js on the front end
+sun_requirements: - uses thru table
+adaptable_styles: - uses thru table
+}),
+
+//current plant db
+createPlantLayout({
+id: uuidv4(),
+plant_id: JPFern.id,
+layout_id: newBeginnigs.id,
+placement: 78,
+}),
+//future plant db
+createPlacedPlant({
+id: uuidv4(),
+plant_id: JPFern.id,
+layout_id: newBeginnigs.id, <--- change to bed id???
+x:
+y:
+}),

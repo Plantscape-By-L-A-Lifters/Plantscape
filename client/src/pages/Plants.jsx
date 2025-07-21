@@ -3,7 +3,7 @@ import { PlantCatalogContext } from "../context/PlantCatalogContext";
 
 export default function Plants() {
   const { plantCatalog } = useContext(PlantCatalogContext);
-  console.log("full plant catalog", plantCatalog);
+  // console.log("full plant catalog", plantCatalog);
   return (
     <div>
       <h1>Creating your dream gardens </h1>
@@ -12,7 +12,7 @@ export default function Plants() {
       <div>
         {plantCatalog.length > 0 ? (
           plantCatalog.map((plant) => {
-            console.log("each plant", plant.name, plant.id);
+            // console.log("each plant", plant.name, plant.id);
             return (
               <div key={plant.id} className="plantContainer">
                 <h3>{plant.plant_name || "Unnamed Plant"}</h3>
