@@ -9,21 +9,21 @@ export default function Plants() {
       <br></br>
       <ul>
         <li>Cedar sedge</li>
-        <img src="/public/cedar-sedge.jpg" alt="cedar_sedge" />
+        <img src="/cedar-sedge.jpg" alt="cedar_sedge" />
         <li>Corn flowers</li>
-        <img src="/public/corn_flowers.jpeg" alt="corn_flowers" />
+        <img src="/corn_flowers.jpeg" alt="corn_flowers" />
         <li>Elephant Ears</li>
-        <img src="/public/Elephant-Ear.jpeg" alt="Elephant-Ear" />
+        <img src="/Elephant-Ear.jpeg" alt="Elephant-Ear" />
         <li>Lavender </li>
-        <img src="/public/lavender.jpeg" alt="lavender" />
+        <img src="/lavender.jpeg" alt="lavender" />
         <li>Foam flowers</li>
-        <img src="/public/foam flower.jpeg" alt="foamflower" />
+        <img src="/foam flower.jpeg" alt="foamflower" />
         <li>Halone grass</li>
-        <img src="/public/hakone_grass.jpeg" alt="hakone_grass" />
+        <img src="/hakone_grass.jpeg" alt="hakone_grass" />
         <li>Lamb's Ears</li>
-        <img src="/public/lamb's ear.jpeg" alt="lamb's ear" />
+        <img src="/lamb's ear.jpeg" alt="lamb's ear" />
         <li>Tea Roses</li>
-        <img src="/public/roses.jpeg" alt="roses" />
+        <img src="/roses.jpeg" alt="roses" />
       </ul>
       <br></br>
       <h2>Characteristics </h2>
