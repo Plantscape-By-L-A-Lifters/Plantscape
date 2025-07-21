@@ -2,12 +2,17 @@ import { useContext, useEffect } from "react";
 import { PlantLibraryContext } from "../context/PlantLibraryContext";
 
 export default function Plants() {
+  const { plantCatalog } = useContext(PlantLibraryContext);
+
   return (
     <div>
       <h1>Creating your dream gardens </h1>
       <p> Plant Lists</p>
       <br></br>
       <ul>
+        {plantCatalog.map((plant) => {
+          return <li key={plant.id}>{plant.name}</li>;
+        })}
         <li>Cedar sedge</li>
         <img src="/public/cedar-sedge.jpg" alt="cedar_sedge" />
         <li>Corn flowers</li>
