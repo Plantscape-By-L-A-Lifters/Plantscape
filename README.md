@@ -29,7 +29,16 @@
     ####npm run db:reset
     - db:reset is for development period only - and resets everything back to what is hard-coded on the backend be cautious before running it
 
+### image hosting:
+
+our images are hosted on cloudinary - get with chelsea if you want to upload more
+
 ## Future Developments:
+
+- 3d development:
+
+  - cloudinary (our image host) is in a beta version of 3d lifestyle creation where you can load a 3d file and modify camera settings, etc.
+  - 3d models can be found on sites like cgtrader.com, or sketchup warehouse. many are free.
 
 - plant icons:
 - //add icons like this: https://thenounproject.com/browse/collection-icon/landscape-design-147731/
