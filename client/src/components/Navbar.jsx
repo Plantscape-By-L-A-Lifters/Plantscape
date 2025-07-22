@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
-import "./navbar.css";// Import CSS
+import './navbar.css';
 
 export default function Navbar() {
   return (
+    <nav className="navbar">
     <>
       <span>PlantScape</span> {"  "}
       <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -30,5 +31,6 @@ export default function Navbar() {
         My Profile
       </NavLink>
     </>
+    </nav>
   );
 }

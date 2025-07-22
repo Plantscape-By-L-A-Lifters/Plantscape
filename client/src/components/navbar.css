@@ -1,8 +1,15 @@
 /* navbar.css */
-
+.brand {
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links a.active {
+  border-bottom: 2px solid var(--white);
+}
 :root {
     --dark-green: #004d40;
-    --black: #000000;
+    --black: #e0cfcf;
     --white: #ffffff;
   }
   
@@ -12,7 +19,7 @@
     align-items: center;
     background-color: var(--black);
     padding: 1rem 2rem;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 

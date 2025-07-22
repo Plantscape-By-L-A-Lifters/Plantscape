@@ -10,6 +10,8 @@ import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
 
+import { GardenPlanProvider } from "./context/GardenPlanContext";
+
 function App() {
   return (
     <>
@@ -20,8 +22,15 @@ function App() {
         <Route path="/quiz" element={<StyleQuiz />} />
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/projects" element={<MyProject />} /> //should actually map
-        through all projects
+        <Route
+          path="/projects"
+          element={
+            <GardenPlanProvider>
+              <MyProject />
+            </GardenPlanProvider>
+          }
+        />
+        //should actually map through all projects
       </Routes>
     </>
   );

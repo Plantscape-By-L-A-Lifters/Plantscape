@@ -1,44 +1,25 @@
-const client = require('./client')
-const { v4: uuidv4 } = require('uuid');
-const 
-{
-    createUser
-} = require('./user');
+const client = require("./client");
+const { v4: uuidv4 } = require("uuid");
+const { createUser } = require("./user");
 
-const {
-    createDesign
-} = require('./design')
+const { createDesign } = require("./design");
 
-const {
-createPlant
-} = require('./plants');
+const { createPlant } = require("./plants");
 
-const {
-    createFavoritePlant
-} = require('./favorite_plants')
+const { createFavoritePlant } = require("./favorite_plants");
 
-const {
-    createLayout
-} = require('./layouts')
+const { createLayout } = require("./layouts");
 
-const {
-createPlantDesign
-} = require('./plant_Design_Type')
+const { createPlantDesign } = require("./plant_Design_Type");
 
-const {
-    createPlantLayout
-} = require('./plant_layout')
+const { createPlantLayout } = require("./plant_layout");
 
-const {
-    createFaveDesign
-} = require('./fave_design')
+const { createFaveDesign } = require("./fave_design");
 
-const{
-    createProject
-} = require('./Projects')
+const { createProject } = require("./Projects");
 
 const seed = async () => {
-    const SQL = `
+  const SQL = `
     DROP TABLE IF EXISTS projects CASCADE;
     DROP TABLE IF EXISTS plant_layout;
     DROP TABLE IF EXISTS layouts;
@@ -110,67 +91,186 @@ const seed = async () => {
     user_id UUID REFERENCES users(id),
     design_id UUID REFERENCES designs(id)
     );
-    `
-    await client.query(SQL)
+    `;
+  await client.query(SQL);
 
-const [Justin,Chelsea,Callen,Ellie] = await Promise.all([
-    createUser({id: uuidv4(), username: 'Justin', password: '0710', is_admin:true}),
-    createUser({id: uuidv4(), username: 'Chelsea', password: '1234', is_admin:true}),
-    createUser({id: uuidv4(), username: 'Callen', password: '5678', is_admin:true}),
-    createUser({id: uuidv4(), username: 'Ellie', password: '9012', is_admin:true})
-]);
+  const [Justin, Chelsea, Callen, Ellie] = await Promise.all([
+    createUser({
+      id: uuidv4(),
+      username: "Justin",
+      password: "0710",
+      is_admin: true,
+    }),
+    createUser({
+      id: uuidv4(),
+      username: "Chelsea",
+      password: "1234",
+      is_admin: true,
+    }),
+    createUser({
+      id: uuidv4(),
+      username: "Callen",
+      password: "5678",
+      is_admin: true,
+    }),
+    createUser({
+      id: uuidv4(),
+      username: "Ellie",
+      password: "9012",
+      is_admin: true,
+    }),
+  ]);
 
-const [Cottage, Modern, Wild ] = await Promise.all([
-    createDesign({id: uuidv4(), design_style_name: 'Cottage' , design_attributes: 'Summer'}),
-    createDesign({id: uuidv4(), design_style_name: 'Modern' , design_attributes: 'Spring'}),
-    createDesign({id: uuidv4(), design_style_name: 'Wild' , design_attributes: 'Fall'})
-])
+  const [Cottage, Modern, Wild] = await Promise.all([
+    createDesign({
+      id: uuidv4(),
+      design_style_name: "Cottage",
+      design_attributes: "Summer",
+    }),
+    createDesign({
+      id: uuidv4(),
+      design_style_name: "Modern",
+      design_attributes: "Spring",
+    }),
+    createDesign({
+      id: uuidv4(),
+      design_style_name: "Wild",
+      design_attributes: "Fall",
+    }),
+  ]);
 
-const [Aloe,Fern,Rose] = await Promise.all([
-    createPlant({id: uuidv4(), plant_name:'Aloe', plant_type: 'Succulent', toxic:true , size:10}),
-    createPlant({id: uuidv4(), plant_name:'Fern', plant_type: 'Foliage', toxic:false, size:15}),
-    createPlant({id: uuidv4(), plant_name:'Rose', plant_type: 'Flower', toxic:false , size:12})
-]);
+  const [Boxwood, SJPYew, JPFern] = await Promise.all([
+    createPlant({
+      id: uuidv4(),
+      plant_name: "Boxwood",
+      plant_type: "Shrub",
+      toxic: false,
+      size: 2,
+    }),
+    createPlant({
+      id: uuidv4(),
+      plant_name: "Spreading Japanese Plum Yew",
+      plant_type: "Shrub",
+      toxic: true,
+      size: 3,
+    }),
+    createPlant({
+      id: uuidv4(),
+      plant_name: "Japanese Painted Fern",
+      plant_type: "Herbaceous",
+      toxic: true,
+      size: 1,
+    }),
+  ]);
 
-await Promise.all([
-    createFavoritePlant({id:uuidv4(), user_id: Justin.id , plant_id: Fern.id}),
-    createFavoritePlant({id:uuidv4(), user_id: Ellie.id, plant_id: Aloe.id}),
-    createFavoritePlant({id:uuidv4(), user_id: Callen.id, plant_id: Aloe.id}),
-    createFavoritePlant({id:uuidv4(), user_id: Chelsea.id, plant_id: Rose.id})
-])
+  await Promise.all([
+    createFavoritePlant({
+      id: uuidv4(),
+      user_id: Justin.id,
+      plant_id: JPFern.id,
+    }),
+    createFavoritePlant({
+      id: uuidv4(),
+      user_id: Ellie.id,
+      plant_id: SJPYew.id,
+    }),
+    createFavoritePlant({
+      id: uuidv4(),
+      user_id: Callen.id,
+      plant_id: Boxwood.id,
+    }),
+    createFavoritePlant({
+      id: uuidv4(),
+      user_id: Chelsea.id,
+      plant_id: SJPYew.id,
+    }),
+  ]);
 
-const[BackyardForest] = await Promise.all ([
-    createProject({id:uuidv4(), project_name:'BackyardForest', user_id: Justin.id })
-])
+  const [BackyardForest] = await Promise.all([
+    createProject({
+      id: uuidv4(),
+      project_name: "BackyardForest",
+      user_id: Justin.id,
+    }),
+  ]);
 
-const [newBeginnigs,FernForest,AbsoluteSucculent ] = await Promise.all([
-    createLayout({id:uuidv4(), layout_name: 'newBeginnigs' ,bedding_size: 100, design_type: Cottage.id, projects_id: BackyardForest.id}),
-    createLayout({id:uuidv4(), layout_name: 'FernForest' ,bedding_size: 450, design_type: Modern.id, projects_id:BackyardForest.id}),
-    createLayout({id:uuidv4(), layout_name: 'AbsoluteSucculent',bedding_size: 210, design_type: Wild.id, projects_id:BackyardForest.id })
-])
+  const [newBeginnigs, FernForest, AbsoluteSucculent] = await Promise.all([
+    createLayout({
+      id: uuidv4(),
+      layout_name: "newBeginnigs",
+      bedding_size: 100,
+      design_type: Cottage.id,
+      projects_id: BackyardForest.id,
+    }),
+    createLayout({
+      id: uuidv4(),
+      layout_name: "FernForest",
+      bedding_size: 450,
+      design_type: Modern.id,
+      projects_id: BackyardForest.id,
+    }),
+    createLayout({
+      id: uuidv4(),
+      layout_name: "AbsoluteSucculent",
+      bedding_size: 210,
+      design_type: Wild.id,
+      projects_id: BackyardForest.id,
+    }),
+  ]);
 
-await Promise.all([
-    createPlantDesign({id:uuidv4(), plant_id: Aloe.id , design_id: Wild.id}),
-    createPlantDesign({id:uuidv4(), plant_id: Fern.id, design_id: Cottage.id}),
-    createPlantDesign({id:uuidv4(), plant_id: Aloe.id, design_id: Cottage.id})
-])
+  await Promise.all([
+    createPlantDesign({
+      id: uuidv4(),
+      plant_id: Boxwood.id,
+      design_id: Wild.id,
+    }),
+    createPlantDesign({
+      id: uuidv4(),
+      plant_id: SJPYew.id,
+      design_id: Cottage.id,
+    }),
+    createPlantDesign({
+      id: uuidv4(),
+      plant_id: Boxwood.id,
+      design_id: Cottage.id,
+    }),
+  ]);
 
-await Promise.all ([
-    createPlantLayout({id:uuidv4(), plant_id: Rose.id , layout_id: newBeginnigs.id , placement: 78}),
-    createPlantLayout({id:uuidv4(), plant_id: Fern.id, layout_id:FernForest.id , placement:567}),
-    createPlantLayout({id:uuidv4(), plant_id: Aloe.id , layout_id: AbsoluteSucculent.id , placement:123})
-])
+  await Promise.all([
+    createPlantLayout({
+      id: uuidv4(),
+      plant_id: JPFern.id,
+      layout_id: newBeginnigs.id,
+      placement: 78,
+    }),
+    createPlantLayout({
+      id: uuidv4(),
+      plant_id: SJPYew.id,
+      layout_id: FernForest.id,
+      placement: 567,
+    }),
+    createPlantLayout({
+      id: uuidv4(),
+      plant_id: Boxwood.id,
+      layout_id: AbsoluteSucculent.id,
+      placement: 123,
+    }),
+  ]);
 
-await Promise.all ([
-    createFaveDesign({id:uuidv4(), user_id: Ellie.id, design_id: Modern.id}),
-    createFaveDesign({id:uuidv4(), user_id: Callen.id, design_id: Wild.id}),
-    createFaveDesign({id:uuidv4(), user_id: Chelsea.id, design_id: Cottage.id})
-])
+  await Promise.all([
+    createFaveDesign({ id: uuidv4(), user_id: Ellie.id, design_id: Modern.id }),
+    createFaveDesign({ id: uuidv4(), user_id: Callen.id, design_id: Wild.id }),
+    createFaveDesign({
+      id: uuidv4(),
+      user_id: Chelsea.id,
+      design_id: Cottage.id,
+    }),
+  ]);
 
-console.log('Tables Seeded')
-}
+  console.log("Tables Seeded");
+};
 
 module.exports = {
-    client,
-    seed
-}
+  client,
+  seed,
+};
