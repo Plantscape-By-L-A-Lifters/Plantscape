@@ -34,8 +34,6 @@ export default function Navbar({user, logout}) {
        {"  "}
       <button onClick={logout}>logout</button>
       </>
-
-
   ) : ( 
   <>
           <span>PlantScape</span>  {"  "}
@@ -55,13 +53,6 @@ export default function Navbar({user, logout}) {
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         Style Quiz
-      </NavLink>
-       {"  "}
-      <NavLink
-        to="/profile"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        My Profile
       </NavLink>
        {"  "}
       <NavLink

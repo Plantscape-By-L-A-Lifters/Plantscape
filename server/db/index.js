@@ -35,7 +35,7 @@ const {
 
 const{
     createProject
-} = require('./Projects')
+} = require('./projects')
 
 const seed = async () => {
     const SQL = `
