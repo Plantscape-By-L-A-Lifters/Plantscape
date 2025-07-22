@@ -1,3 +1,6 @@
+import { useContext, useEffect } from "react";
+import { GardenPlanContext } from "../context/GardenPlanContext";
+
 export default function ProjectForm() {
   const bedWidth = 0;
   const bedHeight = 0;
