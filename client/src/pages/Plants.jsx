@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
+import './plants.css';
 
 export default function Plants() {
   const { plantCatalog } = useContext(PlantCatalogContext);
   // console.log("full plant catalog", plantCatalog);
   return (
+    <div className="plants-container">
     <div>
-      <h1>Creating your dream gardens </h1>
-      <p>Plant Lists</p>
+      <h1>Creating Your Dream Garden </h1>
+      <p>Select A Plant!</p>
       <br></br>
       <div>
         {plantCatalog.length > 0 ? (
@@ -20,27 +22,35 @@ export default function Plants() {
             );
           })
         ) : (
-          <p>Loading plants...</p>
+          <p></p>
         )}
       </div>
       <div>
         <ul>
-          <li>Cedar sedge</li>
+          <li>Cedar sedge
           <img src="/cedar-sedge.jpg" alt="cedar_sedge" />
-          <li>Corn flowers</li>
+          </li>
+          <li>Corn flowers
           <img src="/corn_flowers.jpeg" alt="corn_flowers" />
-          <li>Elephant Ears</li>
+          </li>
+          <li>Elephant Ears
           <img src="/Elephant-Ear.jpeg" alt="Elephant-Ear" />
-          <li>Lavender </li>
+          </li>
+          <li>Lavender
           <img src="/lavender.jpeg" alt="lavender" />
-          <li>Foam flowers</li>
+          </li>
+          <li>Foam flowers
           <img src="/foam flower.jpeg" alt="foamflower" />
-          <li>Halone grass</li>
+          </li>
+          <li>Halone grass
           <img src="/hakone_grass.jpeg" alt="hakone_grass" />
-          <li>Lamb's Ears</li>
+          </li>
+          <li>Lamb's Ears
           <img src="/lamb's ear.jpeg" alt="lamb's ear" />
-          <li>Tea Roses</li>
+          </li>
+          <li>Tea Roses
           <img src="/roses.jpeg" alt="roses" />
+          </li>
         </ul>
         <br></br>
         <h2>Characteristics </h2>
@@ -65,6 +75,7 @@ export default function Plants() {
           <p>© 2025 Gardenia.net. All rights reserved.</p>
         </footer>
       </div>
+    </div>
     </div>
   );
 }

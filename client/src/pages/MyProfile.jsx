@@ -1,7 +1,9 @@
-import { Link } from "react-router";
+import { Link } from "react-router"
+import './myprofile.css'
 
 export default function MyProfile() {
   return (
+    <div className="myprofile-container">
     <div>
       <h1>user profile</h1>
       <h3>
@@ -14,6 +16,7 @@ export default function MyProfile() {
           <Link to="/myproject">My Project</Link>
         </li>
       </ul>
+    </div>
     </div>
   );
 }
