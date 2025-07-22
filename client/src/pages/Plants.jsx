@@ -23,9 +23,11 @@ export default function Plants() {
               );
             })
           ) : (
-            <p></p>
+            <p>No plant found</p>
           )}
         </div>
+        {/* CCRUZ: THIS WAS MY ATTEMPT AT GETTING THE IMAGES TO MAP, BUT THE FILE NAMING WASN'T STANDARDIZED SO IT DIDN'T WORK.
+        Keeping it as an example for future use - DELETE WHEN READY.
         <div className="plant-list">
           {plantCatalog.map((plant) => {
             const imgUrl = getImageUrl(plant.plant_name, {
@@ -48,7 +50,7 @@ export default function Plants() {
               </div>
             );
           })}
-        </div>
+        </div> */}
         <div>
           <ul>
             <li>
