@@ -5,7 +5,7 @@ export const GardenPlanContext = createContext(null);
 GardenPlanContext.displayName = "GardenPlanContext";
 
 export const GardenPlanProvider = ({ children }) => {
-  const [bedSize, setBedSize] = useState({ length: 12, depth: 6 });
+  const [bedSize, setBedSize] = useState({ bedLength: 12, bedDepth: 6 });
 
   const [placedPlants, setPlacedPlants] = useState([
     {

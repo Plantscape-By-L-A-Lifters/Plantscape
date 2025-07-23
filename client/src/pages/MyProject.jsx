@@ -254,8 +254,12 @@ const Results = () => {
 
   useEffect(() => {
     // Just for testing
-    setBedSize({ length: 12, depth: 6 });
-    setPlacedPlants(...sampleClassicalPlacedPlants);
+    try {
+      setBedSize({ bedLength: 12, bedDepth: 6 });
+      setPlacedPlants(...sampleClassicalPlacedPlants);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
