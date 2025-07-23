@@ -7,7 +7,7 @@ const {
     fetchPlantDesignById
 } = require('../db/plant_Design_Type')
 
-app.post('/', async (req,res,next) => {
+app.post('/', async (req,res,next) => {//is admin 
     try {
         res.send( await createPlantDesign(req.body))
     } catch (error) {

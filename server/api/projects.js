@@ -3,10 +3,15 @@ const app = express.Router()
 
 const {
     createProject,
-    fetchProject
-}= require('../db/Projects')
+    fetchProject,
+    fetchMyProject
+}= require('../db/projects')
 
-app.post('/projects', async (req, res, next ) => {
+const { 
+    isLoggedIn
+} = require('./middleware')
+
+app.post('/', isLoggedIn, async (req, res, next ) => {
     try {
         res.send(await createProject(req.body))
     } catch (error) {
@@ -14,9 +19,17 @@ app.post('/projects', async (req, res, next ) => {
     }
 })
 
-app.get('/', async (req, res, next) => {
+app.get('/Projects', async (req, res, next) => { 
     try {
         res.send(await fetchProject())
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.get('/MyProjects/:id', async (req, res, next) => { 
+    try {
+        res.send(await fetchMyProject(req.params.id))
     } catch (error) {
         next(error)
     }

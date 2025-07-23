@@ -7,7 +7,7 @@ const {
     fetchPlantsById
 } = require('../db/plants')
 
-app.post ('/', async(req, res, next) =>{
+app.post ('/', async(req, res, next) =>{ // add is admin to route 
     try {
         res.send(await createPlant(req.body))
     } catch (error) {

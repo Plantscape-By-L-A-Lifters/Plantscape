@@ -7,7 +7,7 @@ const {
     fetchLayoutsById
 } = require('../db/layouts')
 
-app.post('/', async (req, res, next) => {
+app.post('/', async (req, res, next) => {// logged in for everything
     try {
         res.send(await createLayout(req.body))
     } catch (error) {

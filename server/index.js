@@ -3,6 +3,12 @@ const {
     seed
 } = require('./db');
 
+try {
+    require('../env')
+} catch (error) {
+    console.log('make env file locally')
+}
+
 const express = require('express');
 const app = express();
 app.use(express.json())

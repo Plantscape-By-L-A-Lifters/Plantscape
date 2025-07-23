@@ -6,7 +6,12 @@ const {
     fetchUsers
 } = require('../db/user')
 
-app.get ('/', async (req, res, next )=> {
+const {
+    isAdmin,
+    isLoggedIn
+} = require('./middleware')
+
+app.get ('/', isLoggedIn, isAdmin, async (req, res, next )=> { // is admin
     try {
         res.send(await fetchUsers())
     } catch (error) {

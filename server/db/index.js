@@ -16,7 +16,9 @@ const { createPlantLayout } = require("./plant_layout");
 
 const { createFaveDesign } = require("./fave_design");
 
-const { createProject } = require("./Projects");
+const{
+    createProject
+} = require('./projects')
 
 const seed = async () => {
   const SQL = `
