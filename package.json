@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon Server/index.js",
+    "start:dev": " nodemon Server/index.js",
     "seed": "node server/db/index.js",
     "db:reset": "dropdb plantscape && createdb plantscape && npm run seed"
   },
@@ -18,7 +18,9 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "csv-parse": "^6.1.0",
+    "dot": "^1.1.3",
     "dotenv": "^17.2.0",
+    "env": "^0.0.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",

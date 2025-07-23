@@ -11,7 +11,7 @@ export const PlantCatalogProvider = ({ children }) => {
     const fetchPlants = async () => {
       try {
         const { data } = await axios.get("api/plants");
-        console.log("plants data", data);
+        //console.log("plants data", data);
         setplantCatalog(data);
       } catch (err) {
         console.error("Failed to fetch plants", err);

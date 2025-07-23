@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import './myprofile.css';
 
-export default function MyProfile({ user, projects = [] }) {
+export default function MyProfile({ user, projects }) {
   return (
     <div className="myprofile-container">
       <h1>Welcome {user?.username}</h1>
@@ -13,7 +13,7 @@ export default function MyProfile({ user, projects = [] }) {
       <h2>My Projects</h2>
       
       {/* Debug log */}
-      {console.log('Projects data:', projects)}
+      {/*console.log('Projects data:', projects)*/}
       
       {projects.length === 0 ? (
         <p>You have no projects yet.</p>

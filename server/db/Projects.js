@@ -28,7 +28,7 @@ const fetchMyProject = async (id) => {
     WHERE user_id = $1
     `
     const response = await client.query(SQL,[id])
-    return response.rows[0]
+    return response.rows
 }
 
 module.exports ={

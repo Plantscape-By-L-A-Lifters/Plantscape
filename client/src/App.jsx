@@ -28,9 +28,9 @@ const navigate = useNavigate()
     const getProjects = async () => {
       if (!user?.id) return;
       try {
-        console.log('Fetching projects for user ID:', user?.id);
+        //console.log('Fetching projects for user ID:', user?.id) used for debugging
         const {data} = await axios.get(`/api/projects/MyProjects/${user.id}`)
-        console.log(data)
+        //console.log(data) used for debugging 
         setProjects(data)
       } catch (error) {
         console.error(error)
@@ -51,6 +51,10 @@ const attemptLogin = async() =>{
     }
   }
 }
+
+useEffect(()=>{
+    attemptLogin()
+},[])
 
   const logout = () => {
     window.localStorage.removeItem('token')
