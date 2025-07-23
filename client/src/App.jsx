@@ -12,7 +12,6 @@ import MyProject from "./pages/MyProject";
 import Login from "./components/login.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
-import Login from "./components/login.jsx";
 
 import { GardenPlanProvider } from "./context/GardenPlanContext";
 
