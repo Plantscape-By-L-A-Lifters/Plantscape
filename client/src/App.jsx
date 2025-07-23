@@ -79,7 +79,7 @@ function App() {
           path="/profile"
           element={
             <GardenPlanProvider>
-              <MyProfile user={user} />
+              <MyProfile user={user} projects={projects} />
             </GardenPlanProvider>
           }
         />
