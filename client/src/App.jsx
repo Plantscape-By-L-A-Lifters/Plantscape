@@ -9,71 +9,116 @@ import StyleQuiz from "./pages/StyleQuiz";
 import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
-import Login from "./components/login.jsx"
+import Login from "./components/login.jsx";
+import GardenBedForm from "./pages/GardenBedForm";
+import MyGardenBed from "./pages/MyGardenBed";
+
+import { GardenPlanProvider } from "./context/GardenPlanContext";
+
 function App() {
+  const [user, setUser] = useState({});
+  const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
-const [user, setUser] = useState({})
-const [projects, setProjects] = useState([])
-const navigate = useNavigate()
-
-  const getHeaders = () =>{
+  const getHeaders = () => {
     return {
       headers: {
-        authorization: window.localStorage.getItem('token')
-      }
-    }
-  }
+        authorization: window.localStorage.getItem("token"),
+      },
+    };
+  };
 
-  useEffect (()=>{
+  useEffect(() => {
     const getProjects = async () => {
       if (!user?.id) return;
       try {
         //console.log('Fetching projects for user ID:', user?.id) used for debugging
-        const {data} = await axios.get(`/api/projects/MyProjects/${user.id}`)
-        //console.log(data) used for debugging 
-        setProjects(data)
+        const { data } = await axios.get(`/api/projects/MyProjects/${user.id}`);
+        //console.log(data) used for debugging
+        setProjects(data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     };
-    getProjects()
-  },[user.id]);
+    getProjects();
+  }, [user.id]);
 
-const attemptLogin = async() =>{
-  const token = window.localStorage.getItem('token')
-  if(token){
-    try {
-      const {data} = await axios.get('/api/authenticate/me', getHeaders())
-      setUser(data)
-    } catch (error) {
-      console.log(error)
-      window.localStorage.removeItem('token')
+  const attemptLogin = async () => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      try {
+        const { data } = await axios.get("/api/authenticate/me", getHeaders());
+        setUser(data);
+      } catch (error) {
+        console.log(error);
+        window.localStorage.removeItem("token");
+      }
     }
-  }
-}
+  };
 
-useEffect(()=>{
-    attemptLogin()
-},[])
+  useEffect(() => {
+    attemptLogin();
+  }, []);
 
   const logout = () => {
-    window.localStorage.removeItem('token')
-    setUser({})
-    navigate('/')
-  }
+    window.localStorage.removeItem("token");
+    setUser({});
+    navigate("/");
+  };
 
   return (
     <>
-      <Navbar user = {user} logout= {logout} />
+      <Navbar user={user} logout={logout} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
         <Route path="/quiz" element={<StyleQuiz />} />
-        <Route path="/profile" element={<MyProfile user = {user} projects={projects} />} />
-        <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/projects" element={<MyProject projects={projects} setProjects={setProjects}/>} /> //should actually map
-        through all projects
-        <Route path = "/login" element ={<Login attemptLogin = {attemptLogin}/>} />
+        <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
+        <Route
+          path="/profile"
+          element={
+            <GardenPlanProvider>
+              <MyProfile user={user} />
+            </GardenPlanProvider>
+          }
+        />
+        <Route
+          path="/newproject"
+          element={
+            <GardenPlanProvider>
+              <ProjectForm />
+            </GardenPlanProvider>
+          }
+        />
+        <Route
+          path="/myproject"
+          element={
+            <GardenPlanProvider>
+              <MyProject />
+            </GardenPlanProvider>
+          }
+        />
+        <Route
+          path="/projects"
+          element={<MyProject projects={projects} setProjects={setProjects} />}
+        />{" "}
+        //CCRUZ: Justin, lets coordinate on the project state duplicate
+        <Route
+          path="/newgardenbed"
+          element={
+            <GardenPlanProvider>
+              <GardenBedForm />
+            </GardenPlanProvider>
+          }
+        />
+        <Route
+          path="/mygardenbed"
+          element={
+            <GardenPlanProvider>
+              <MyGardenBed />
+            </GardenPlanProvider>
+          }
+        />
       </Routes>
     </>
   );
