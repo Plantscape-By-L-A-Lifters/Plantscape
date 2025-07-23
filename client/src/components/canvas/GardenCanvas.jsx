@@ -22,8 +22,8 @@ export default function GardenCanvas() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, scaledWidth, scaledHeight);
 
-    const cols = bedSize.length;
-    const rows = bedSize.depth;
+    const cols = bedSize.bedLength;
+    const rows = bedSize.bedDepth;
 
     renderGardenBed(ctx, cols, rows, placedPlants, bedSize);
   }, [bedSize, placedPlants]);
