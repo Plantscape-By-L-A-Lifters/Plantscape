@@ -13,7 +13,7 @@ import Login from "./components/login.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 
-import { GardenPlanProvider } from "./context/GardenPlanContext";
+import { GardenBedProvider } from "./context/GardenBedContext";
 
 function App() {
   const [user, setUser] = useState({});
@@ -77,25 +77,25 @@ function App() {
         <Route
           path="/profile"
           element={
-            <GardenPlanProvider>
+            <GardenBedProvider>
               <MyProfile user={user} projects={projects} />
-            </GardenPlanProvider>
+            </GardenBedProvider>
           }
         />
         <Route
           path="/newproject"
           element={
-            <GardenPlanProvider>
+            <GardenBedProvider>
               <ProjectForm />
-            </GardenPlanProvider>
+            </GardenBedProvider>
           }
         />
         <Route
           path="/myproject"
           element={
-            <GardenPlanProvider>
+            <GardenBedProvider>
               <MyProject />
-            </GardenPlanProvider>
+            </GardenBedProvider>
           }
         />
         <Route
@@ -106,17 +106,17 @@ function App() {
         <Route
           path="/newgardenbed"
           element={
-            <GardenPlanProvider>
+            <GardenBedProvider>
               <GardenBedForm />
-            </GardenPlanProvider>
+            </GardenBedProvider>
           }
         />
         <Route
           path="/mygardenbed"
           element={
-            <GardenPlanProvider>
+            <GardenBedProvider>
               <MyGardenBed />
-            </GardenPlanProvider>
+            </GardenBedProvider>
           }
         />
       </Routes>

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { GardenPlanContext } from "../context/GardenPlanContext";
+import { GardenBedContext } from "../context/GardenBedContext";
 import GardenCanvas from "../components/canvas/GardenCanvas";
 import { Link } from "react-router-dom";
 
 const Results = () => {
-  const {} = useContext(GardenPlanContext);
+  const {} = useContext(GardenBedContext);
   return (
     <div>
       <h2>My Project</h2>

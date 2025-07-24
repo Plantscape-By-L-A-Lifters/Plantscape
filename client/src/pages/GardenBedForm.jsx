@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
-import { GardenPlanContext } from "../context/GardenPlanContext";
+import { GardenBedContext } from "../context/GardenBedContext";
+import { TemplateSelector } from "../components/TemplateSelector";
 
 export default function GardenBedForm() {
   //local use state for Form
@@ -12,6 +13,7 @@ export default function GardenBedForm() {
   return (
     <form>
       <h1>user input here</h1>
+      <TemplateSelector />
     </form>
   );
 }

@@ -1,11 +1,11 @@
 import { useRef, useEffect, useContext } from "react";
-import { GardenPlanContext } from "../../context/GardenPlanContext";
+import { GardenBedContext } from "../../context/GardenBedContext";
 import { renderGardenBed } from "../../utils/renderGardenBed";
 import { getScale } from "../../utils/getScale";
 
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
-  const { bedSize, placedPlants } = useContext(GardenPlanContext);
+  const { bedSize, placedPlants } = useContext(GardenBedContext);
 
   useEffect(() => {
     console.log("Placed plants", placedPlants);
