@@ -8,6 +8,11 @@
 
 [https://docs.google.com/document/d/1uPmO3TS9sah1OT0lKNjBTRXbJmEoNXKCCL-alDLU8r4/edit?tab=t.ikk4qkg9qo7j]
 
+## Project Back-End Organization
+
+![backend org](image.png)
+[https://drawsql.app/teams/plantscape/diagrams/plantscape]
+
 ## Project Spreadsheet:
 
 [https://docs.google.com/spreadsheets/d/1BbEUECMONUHTOjlcwMbj-OUJaEa2LdfhG1ccO3f1cRI/edit?usp=sharing]

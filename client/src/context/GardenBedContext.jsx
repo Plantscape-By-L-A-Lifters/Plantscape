@@ -9,8 +9,8 @@ export const GardenBedProvider = ({ children }) => {
   const [activeBed, setActiveBed] = useState(null);
 
   // For convenience, expose these separately from activeBed
-  const bedSize = activeBed?.bedSize || { bedLength: 0, bedDepth: 0 };
-  const placedPlants = activeBed?.placedPlants || [];
+  const bedSize = activeBed?.bedSize;
+  const placedPlants = activeBed?.placedPlants;
 
   const createBedFromTemplate = (template) => {
     const newBed = {
