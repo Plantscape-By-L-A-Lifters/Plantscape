@@ -1,10 +1,14 @@
 import { getScale } from "./getScale";
 
-export function animatePlants(ctx, cols, rows, placedPlants, bedSize) {
-  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
-  const verticalSpacing = scaledWidth / cols;
-  const horizontalSpacing = scaledHeight / rows;
+export function animatePlants(ctx, activeBed) {
+  if (!activeBed || !activeBed.bedSize || !activeBed.placedPlants) return;
 
+  const { bedLength, bedDepth } = activeBed.bedSize;
+  const { scale, scaledWidth, scaledHeight } = getScale(activeBed.bedSize);
+  const verticalSpacing = scaledWidth / bedLength;
+  const horizontalSpacing = scaledHeight / bedDepth;
+
+  const placedPlants = activeBed.placedPlants;
   let currentPlantIndex = 0;
 
   function drawAnimatedCircle(

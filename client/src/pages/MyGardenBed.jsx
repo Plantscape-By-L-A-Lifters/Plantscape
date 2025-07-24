@@ -2,19 +2,20 @@ import { useContext, useEffect } from "react";
 import { GardenBedContext } from "../context/GardenBedContext";
 import GardenCanvas from "../components/canvas/GardenCanvas";
 
-const Results = () => {
-  const { exampleBeds, setPlacedPlants, setBedSize } =
-    useContext(GardenBedContext);
+const MyGardenBed = () => {
+  const { templateBeds, setActiveBed } = useContext(GardenBedContext);
 
   useEffect(() => {
-    // Just for testing
+    // Just for testing: load the first template bed as the selected bed
     try {
-      setBedSize({ bedLength: 12, bedDepth: 6 });
-      setPlacedPlants(...exampleBeds[0]);
+      const testBed = templateBeds[0];
+      if (testBed) {
+        setActiveBed(testBed);
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Failed to set selected bed:", error);
     }
-  }, []);
+  }, [templateBeds, setActiveBed]);
 
   return (
     <div>
@@ -24,4 +25,4 @@ const Results = () => {
   );
 };
 
-export default Results;
+export default MyGardenBed;

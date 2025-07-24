@@ -1,12 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { gardenBedTemplates } from "../data/gardenBedTemplates";
-import { sampleGardenBeds } from "../data/sampleGardenBeds";
 
 export const GardenBedContext = createContext();
 
 export const GardenBedProvider = ({ children }) => {
   const [gardenBeds, setGardenBeds] = useState([]);
-  const [exampleBeds, setExampleBeds] = useState(gardenBedTemplates);
+  const [templateBeds, setTemplateBeds] = useState(gardenBedTemplates);
   const [activeBed, setActiveBed] = useState(null);
 
   // For convenience, expose these separately from activeBed
@@ -25,8 +24,8 @@ export const GardenBedProvider = ({ children }) => {
 
   useEffect(() => {
     //TODO:replace with API call
-    setGardenBeds(sampleGardenBeds);
-    setActiveBed(sampleGardenBeds[0]); // default selected
+    setGardenBeds(templateBeds);
+    setActiveBed(templateBeds[0]); // default selected
   }, []);
 
   return (
@@ -34,7 +33,7 @@ export const GardenBedProvider = ({ children }) => {
       value={{
         gardenBeds,
         setGardenBeds,
-        exampleBeds,
+        templateBeds,
         createBedFromTemplate,
         activeBed,
         setActiveBed,
