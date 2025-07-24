@@ -1,10 +1,19 @@
-// src/context/GardenPlanContext.jsx
 import { createContext, useContext, useState } from "react";
 
-export const GardenPlanContext = createContext(null);
-GardenPlanContext.displayName = "GardenPlanContext";
+export const GardenBedContext = createContext(null);
+GardenBedContext.displayName = "GardenBedContext";
 
-export const GardenPlanProvider = ({ children }) => {
+export const GardenBedProvider = ({ children }) => {
+  // const [currentProject, setCurrentProject] = useState(
+  //   {id: 1,
+  //   name: "My Backyard",
+  //   description: "",
+  //   created_at,
+  //   user_id}
+  // );
+  // const [ projectBeds, setProjectBeds] = useState([]);
+  // const [ selectedBed, setSelectedBed] = useState(null);
+  // const [{id, name, bedLength, bedDepth, project_id]
   const [bedSize, setBedSize] = useState({ bedLength: 12, bedDepth: 6 });
 
   const [placedPlants, setPlacedPlants] = useState([
@@ -43,7 +52,7 @@ export const GardenPlanProvider = ({ children }) => {
   // const [plantRecommendations, setPlantRecommendations] = useState([]);
 
   return (
-    <GardenPlanContext.Provider
+    <GardenBedContext.Provider
       value={{
         bedSize,
         setBedSize,
@@ -52,7 +61,7 @@ export const GardenPlanProvider = ({ children }) => {
       }}
     >
       {children}
-    </GardenPlanContext.Provider>
+    </GardenBedContext.Provider>
   );
 };
 
@@ -76,3 +85,8 @@ export const GardenPlanProvider = ({ children }) => {
 // color: color.hexCode;
 // accent_color: color.hexcode
 // },
+
+// to use in components:
+// import { useGardenBedContext } from "../context/GardenBedContext";
+
+// const { gardenBeds, selectedBed } = useGardenBedContext();

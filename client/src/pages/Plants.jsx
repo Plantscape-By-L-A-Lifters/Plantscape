@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
-import { getImageUrl } from "../utils/getImageUrl";
 import "./plants.css";
 
 export default function Plants() {

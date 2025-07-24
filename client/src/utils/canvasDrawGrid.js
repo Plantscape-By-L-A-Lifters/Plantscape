@@ -1,10 +1,13 @@
 import { getScale } from "./getScale";
 
-export function drawGrid(ctx, cols, rows, bedSize) {
-  const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
+export function drawGrid(ctx, activeBed) {
+  if (!activeBed || !activeBed.bedSize) return;
 
-  const verticalSpacing = scaledWidth / cols;
-  const horizontalSpacing = scaledHeight / rows;
+  const { bedLength, bedDepth } = activeBed.bedSize;
+  const { scale, scaledWidth, scaledHeight } = getScale(activeBed.bedSize);
+
+  const verticalSpacing = scaledWidth / bedLength;
+  const horizontalSpacing = scaledHeight / bedDepth;
 
   ctx.strokeStyle = "gray";
   ctx.lineWidth = 1;
