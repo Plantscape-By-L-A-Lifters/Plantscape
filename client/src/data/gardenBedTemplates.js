@@ -2,8 +2,7 @@ export const gardenBedTemplates = [
   {
     id: "template-1",
     name: "Classically Arranged",
-    bedLength: 12,
-    bedDepth: 6,
+    bedSize: { bedLength: 12, bedDepth: 6 },
     placedPlants: [
       {
         id: 1,
@@ -212,8 +211,7 @@ export const gardenBedTemplates = [
   {
     id: "template-2",
     name: "copy of Classically Arranged",
-    bedLength: 12,
-    bedDepth: 6,
+    bedSize: { bedLength: 12, bedDepth: 6 },
     placedPlants: [
       {
         id: 1,

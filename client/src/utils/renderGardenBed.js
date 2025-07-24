@@ -3,10 +3,11 @@ import { animatePlants } from "./canvasAnimatePlants";
 import { getScale } from "../utils/getScale";
 
 export function renderGardenBed(ctx, activeBed) {
-  if (!activeBed || !activeBed.bedSize || !activeBed.placedPlants) return;
+  if (!activeBed?.bedSize || !activeBed?.placedPlants) return;
 
-  const { bedSize, placedPlants } = selectedBed;
+  const { bedSize, placedPlants } = activeBed;
   const { bedLength, bedDepth } = bedSize;
+  console.log("getScale received bedSize:", bedSize);
   const { scaledWidth, scaledHeight } = getScale(bedSize);
 
   console.log("Drawing garden bed:", {
@@ -15,10 +16,6 @@ export function renderGardenBed(ctx, activeBed) {
     placedPlants,
   });
 
-  ctx.clearRect(0, 0, scaledWidth, scaledHeight);
-  ctx.fillStyle = "white";
-  ctx.fillRect(0, 0, scaledWidth, scaledHeight);
-
   drawGrid(ctx, bedLength, bedDepth, bedSize);
-  animatePlants(ctx, activeBed); // Pass full selectedBed to animatePlants
+  animatePlants(ctx, bedLength, bedDepth, placedPlants, bedSize); // Pass full activeBed to animatePlants
 }
