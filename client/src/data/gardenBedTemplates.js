@@ -17,7 +17,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 2,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -28,7 +27,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 3,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -39,7 +37,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 4,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -50,7 +47,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 5,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -61,8 +57,7 @@ export const gardenBedTemplates = [
       },
       //next row loops through next tallest plant
       {
-        id: 7,
-
+        id: 6,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -72,8 +67,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 8,
-
+        id: 7,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -83,8 +77,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 9,
-
+        id: 8,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -94,8 +87,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 91,
-
+        id: 9,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -106,8 +98,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 10,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -117,9 +107,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 10,
-        plant_id: 135,
-        bed_id: 201,
+        id: 11,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -129,9 +117,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 11,
-        plant_id: 135,
-        bed_id: 201,
+        id: 12,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -142,8 +128,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -154,8 +138,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 13,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -166,8 +148,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 14,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -178,8 +158,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 15,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -190,8 +168,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 16,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -201,9 +177,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 17,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -213,9 +187,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 18,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -225,9 +197,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 19,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -241,7 +211,7 @@ export const gardenBedTemplates = [
   },
   {
     id: "template-2",
-    name: "Copy of Classically Arranged",
+    name: "copy of Classically Arranged",
     bedLength: 12,
     bedDepth: 6,
     placedPlants: [
@@ -257,7 +227,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 2,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -268,7 +237,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 3,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -279,7 +247,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 4,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -290,7 +257,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 5,
-
         name: "Boxwood",
         diameter: 2,
         height: 5,
@@ -301,8 +267,7 @@ export const gardenBedTemplates = [
       },
       //next row loops through next tallest plant
       {
-        id: 7,
-
+        id: 6,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -312,8 +277,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 8,
-
+        id: 7,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -323,8 +287,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 9,
-
+        id: 8,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -334,8 +297,7 @@ export const gardenBedTemplates = [
         accent_color: "",
       },
       {
-        id: 91,
-
+        id: 9,
         name: "Spreading Japanese Plum Yew",
         diameter: 3,
         height: 3,
@@ -346,8 +308,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 10,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -357,9 +317,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 10,
-        plant_id: 135,
-        bed_id: 201,
+        id: 11,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -369,9 +327,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 11,
-        plant_id: 135,
-        bed_id: 201,
+        id: 12,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -382,8 +338,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -394,8 +348,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 13,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -406,8 +358,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 14,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -418,8 +368,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 15,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -430,8 +378,6 @@ export const gardenBedTemplates = [
       },
       {
         id: 16,
-        plant_id: 135,
-        bed_id: 201,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -441,9 +387,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 17,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -453,9 +397,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 18,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
@@ -465,9 +407,7 @@ export const gardenBedTemplates = [
         color: "#683A45",
       },
       {
-        id: 16,
-        plant_id: 135,
-        bed_id: 201,
+        id: 19,
         name: "Japanese Painted Fern",
         diameter: 1,
         height: 1,
