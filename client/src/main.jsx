@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { PlantCatalogProvider } from "./context/PlantCatalogContext.jsx";
 import { DesignStyleProvider } from "./context/DesignStyleContext.jsx";
 import { ProjectProvider } from "./context/ProjectContext.jsx";
+import { GardenBedProvider } from "./context/GardenBedContext.jsx";
 import "./assets/main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <DesignStyleProvider>
         <PlantCatalogProvider>
           <ProjectProvider>
-            <App />
+            <GardenBedProvider>
+              <App />
+            </GardenBedProvider>
           </ProjectProvider>
         </PlantCatalogProvider>
       </DesignStyleProvider>

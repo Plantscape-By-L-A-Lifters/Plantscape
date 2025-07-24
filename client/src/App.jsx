@@ -76,49 +76,17 @@ function App() {
         <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
         <Route
           path="/profile"
-          element={
-            <GardenBedProvider>
-              <MyProfile user={user} projects={projects} />
-            </GardenBedProvider>
-          }
+          element={<MyProfile user={user} projects={projects} />}
         />
-        <Route
-          path="/newproject"
-          element={
-            <GardenBedProvider>
-              <ProjectForm />
-            </GardenBedProvider>
-          }
-        />
-        <Route
-          path="/myproject"
-          element={
-            <GardenBedProvider>
-              <MyProject />
-            </GardenBedProvider>
-          }
-        />
+        <Route path="/newproject" element={<ProjectForm />} />
+        <Route path="/myproject" element={<MyProject />} />
         <Route
           path="/projects"
           element={<MyProject projects={projects} setProjects={setProjects} />}
         />{" "}
         //CCRUZ: Justin, lets coordinate on the project state duplicate
-        <Route
-          path="/newgardenbed"
-          element={
-            <GardenBedProvider>
-              <GardenBedForm />
-            </GardenBedProvider>
-          }
-        />
-        <Route
-          path="/mygardenbed"
-          element={
-            <GardenBedProvider>
-              <MyGardenBed />
-            </GardenBedProvider>
-          }
-        />
+        <Route path="/newgardenbed" element={<GardenBedForm />} />
+        <Route path="/mygardenbed" element={<MyGardenBed />} />
       </Routes>
     </>
   );
