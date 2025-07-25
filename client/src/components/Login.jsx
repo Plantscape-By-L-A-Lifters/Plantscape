@@ -17,7 +17,7 @@ const login = async (e) =>{
         username,
         password
     }
-   
+
     try {
         setError('')
         const { data } = await axios.post('/api/authenticate/login', user)
@@ -34,6 +34,9 @@ const login = async (e) =>{
         }
     }
 }
+const toRegister = () =>{
+navigate('/register')
+}
 
     return (
         <div>
@@ -49,8 +52,10 @@ const login = async (e) =>{
                     <input type="password" name = "password"/>
                 </label>
                 <br />
-                <button type="submit">Login</button>
+                <button type="submit">Login</button> <h3>or </h3>
             </form>
+            <button onClick={toRegister}>Register</button>
+              
         </div>
     )
 }
