@@ -74,11 +74,52 @@ useEffect(()=>{
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
         <Route path="/quiz" element={<StyleQuiz />} />
-        <Route path="/profile" element={<MyProfile user = {user} projects={projects} />} />
-        <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/projects" element={<MyProject projects={projects} setProjects={setProjects}/>} /> //should actually map
-        through all projects
-        <Route path = "/login" element ={<Login attemptLogin = {attemptLogin}/>} />
+        <   <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
+        <Route
+          path="/profile"
+          element={
+            <GardenBedProvider>
+              <MyProfile user={user} projects={projects} />
+            </GardenBedProvider>
+          }
+        />
+        <Route
+          path="/newproject"
+          element={
+            <GardenBedProvider>
+              <ProjectForm />
+            </GardenBedProvider>
+          }
+        />
+        <Route
+          path="/myproject"
+          element={
+            <GardenBedProvider>
+              <MyProject />
+            </GardenBedProvider>
+          }
+        />
+        <Route
+          path="/projects"
+          element={<MyProject projects={projects} setProjects={setProjects} />}
+        />{" "}
+        //CCRUZ: Justin, lets coordinate on the project state duplicate
+        <Route
+          path="/newgardenbed"
+          element={
+            <GardenBedProvider>
+              <GardenBedForm />
+            </GardenBedProvider>
+          }
+        />
+        <Route
+          path="/mygardenbed"
+          element={
+            <GardenBedProvider>
+              <MyGardenBed />
+            </GardenBedProvider>
+          }
+        />
         <Route path="/register" element={<Register/>}/>
       </Routes>
     </>
