@@ -1,19 +1,46 @@
 import { useRef, useEffect, useContext } from "react";
-import { GardenPlanContext } from "../../context/GardenPlanContext";
+import { GardenBedContext } from "../../context/GardenBedContext";
 import { renderGardenBed } from "../../utils/renderGardenBed";
 import { getScale } from "../../utils/getScale";
 
 export default function GardenCanvas() {
   const canvasRef = useRef(null);
-  const { bedSize, placedPlants } = useContext(GardenPlanContext);
+  const { activeBed, placedPlants, bedSize } = useContext(GardenBedContext);
 
   useEffect(() => {
-    console.log("Placed plants", placedPlants);
-    if (!bedSize || !placedPlants) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    if (!activeBed?.bedSize || !activeBed?.placedPlants) return;
+    // console.log("GardenCanvas useEffect fired");
+    // console.log("activeBed:", activeBed);
 
-    const { scale, scaledWidth, scaledHeight } = getScale(bedSize);
+    // if (!activeBed) {
+    //   console.log("Missing activeBed");
+    //   return;
+    // }
+
+    // if (!bedSize) {
+    //   console.log("Missing bedSize");
+    //   return;
+    // }
+
+    // if (!placedPlants) {
+    //   console.log("Missing placedPlants");
+    //   return;
+    // }
+
+    const canvas = canvasRef.current;
+    if (!canvas) {
+      console.error("Canvas element not found");
+      return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      console.error("2D context not available on canvas");
+      return;
+    }
+    // console.log("getScale received bedSize:", bedSize);
+    const { scaledWidth, scaledHeight } = getScale(bedSize);
+    // console.log("Scaled dimensions:", { scaledWidth, scaledHeight });
 
     canvas.width = scaledWidth;
     canvas.height = scaledHeight;
@@ -22,14 +49,55 @@ export default function GardenCanvas() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, scaledWidth, scaledHeight);
 
-    const cols = bedSize.bedLength;
-    const rows = bedSize.bedDepth;
+    console.log("Calling renderGardenBed");
+    renderGardenBed(ctx, activeBed);
+  }, [activeBed]);
 
-    renderGardenBed(ctx, cols, rows, placedPlants, bedSize);
-  }, [bedSize, placedPlants]);
-
-  return <canvas ref={canvasRef} style={{ marginTop: "1rem" }} />;
+  return !activeBed ? (
+    <p>Loading Garden...</p>
+  ) : (
+    <canvas
+      ref={canvasRef}
+      style={{ marginTop: "1rem", border: "1px solid #ccc", display: "block" }}
+    />
+  );
 }
+
+// import { useRef, useEffect, useContext } from "react";
+// import { GardenBedContext } from "../../context/GardenBedContext";
+// import { renderGardenBed } from "../../utils/renderGardenBed";
+// import { getScale } from "../../utils/getScale";
+
+// export default function GardenCanvas() {
+//   const canvasRef = useRef(null);
+//   const { activeBed } = useContext(GardenBedContext);
+
+//   useEffect(() => {
+//     console.log("GardenCanvas useEffect fired");
+//     console.log("activeBed:", activeBed);
+//     if (!activeBed?.bedSize || !activeBed?.placedPlants) return;
+
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext("2d");
+
+//     const { scaledWidth, scaledHeight } = getScale(activeBed.bedSize);
+
+//     canvas.width = scaledWidth;
+//     canvas.height = scaledHeight;
+
+//     ctx.clearRect(0, 0, scaledWidth, scaledHeight);
+//     ctx.fillStyle = "white";
+//     ctx.fillRect(0, 0, scaledWidth, scaledHeight);
+
+//     renderGardenBed(ctx, activeBed);
+//   }, [activeBed]);
+
+//   return !activeBed ? (
+//     <p>Loading Garden...</p>
+//   ) : (
+//     <canvas ref={canvasRef} style={{ marginTop: "1rem" }} />
+//   );
+// }
 
 //future algorithm considerations
 //  givens:
