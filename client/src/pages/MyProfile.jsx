@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "./myprofile.css";
+import "./MyProfile.css";
 
 export default function MyProfile({ user, projects }) {
   return (
