@@ -5,7 +5,7 @@ const {
     createProject,
     fetchProject,
     fetchMyProject
-}= require('../db/projects')
+}= require('../db/Projects')
 
 const { 
     isLoggedIn
