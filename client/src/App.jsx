@@ -80,7 +80,7 @@ function App() {
           path="/profile"
           element={
             <GardenBedProvider>
-              <MyProfile user={user} projects={projects} />
+              <MyProfile user={user} projects={projects}/>
             </GardenBedProvider>
           }
         />
