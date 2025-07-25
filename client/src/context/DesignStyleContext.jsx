@@ -4,7 +4,7 @@ export const DesignStyleContext = createContext();
 
 //TODO
 // useEffect(() => {
-//   const fetchProjects = async () => {
+//   const fetchStyles = async () => {
 //     try {
 //       const { data } = await axios.get("/api/projects");
 //       setProjects(data);
