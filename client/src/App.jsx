@@ -10,6 +10,7 @@ import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
 import Login from "./components/login.jsx"
+import Register from "./components/register.jsx";
 function App() {
 
 const [user, setUser] = useState({})
@@ -74,6 +75,7 @@ useEffect(()=>{
         <Route path="/projects" element={<MyProject projects={projects} setProjects={setProjects}/>} /> //should actually map
         through all projects
         <Route path = "/login" element ={<Login attemptLogin = {attemptLogin}/>} />
+        <Route path="/register" element={<Register/>}/>
       </Routes>
     </>
   );
