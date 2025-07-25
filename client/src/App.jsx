@@ -74,7 +74,7 @@ useEffect(()=>{
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
         <Route path="/quiz" element={<StyleQuiz />} />
-        <   <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
+        <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
         <Route
           path="/profile"
           element={
