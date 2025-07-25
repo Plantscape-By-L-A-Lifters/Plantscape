@@ -1,4 +1,4 @@
-// generatePlantDataSeed.js
+require("dotenv").config(); // MUST be at the very top!
 const fs = require("fs"); // For synchronous writeFileSync
 const fsPromises = require("fs").promises; // For promise-based readFile
 const { v4: uuidv4 } = require("uuid");
@@ -18,8 +18,6 @@ async function readCsvFile(filePath) {
 // --- CSV File Paths ---
 const PLANTS_CSV_PATH = "./csv/plantscape - Plants.csv";
 const STYLES_CSV_PATH = "./csv/plantscape - Styles.csv";
-
-// defaultStylesFromContext has been completely removed as requested.
 
 // --- Functions for CSV parsing ---
 
@@ -66,12 +64,17 @@ function parseCsvLine(line) {
   return result;
 }
 
+// Helper to generate a random float within a range (NO LONGER USED, BUT KEPT FOR REFERENCE)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 // --- Main Seed Generation Function ---
 
 async function generateSeedFile() {
   let sqlStatements = `-- SQL SEED File generated on ${new Date().toISOString()}\n\n`;
 
-  // --- 1. Drop Tables (from index.js) ---
+  // --- 1. Drop Tables ---
   sqlStatements += `
 DROP TABLE IF EXISTS projects CASCADE;
 DROP TABLE IF EXISTS plant_layout;
@@ -85,7 +88,7 @@ DROP TABLE IF EXISTS users;
 
 `;
 
-  // --- 2. Create Tables (with NEW designs table schema) ---
+  // --- 2. Create Tables (plant_layout table schema updated with x, y, diameter, height) ---
   sqlStatements += `
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -99,9 +102,9 @@ CREATE TABLE users(
 CREATE TABLE designs(
     id UUID PRIMARY KEY,
     design_style_name VARCHAR(50) UNIQUE NOT NULL,
-    design_attributes VARCHAR(255), -- Now for short description
-    design_description TEXT,        -- New: for long description
-    design_tags TEXT                -- New: for tags
+    design_attributes VARCHAR(255),    -- short description
+    design_description TEXT,           -- long description
+    design_tags TEXT                   -- tags
 );
 
 CREATE TABLE IF NOT EXISTS plants (
@@ -133,7 +136,7 @@ CREATE TABLE plant_Design_Types(
     id UUID PRIMARY KEY,
     plant_id UUID REFERENCES plants(id),
     design_id UUID REFERENCES designs(id),
-    UNIQUE (plant_id, design_id) -- Added unique constraint
+    UNIQUE (plant_id, design_id)
 );
 
 
@@ -146,7 +149,8 @@ CREATE TABLE projects(
 CREATE TABLE layouts(
     id UUID PRIMARY KEY,
     layout_name varchar(100) NOT NULL,
-    bedding_size INTEGER NOT NULL,
+    bed_length INTEGER NOT NULL,
+    bed_depth INTEGER NOT NULL,
     design_type UUID REFERENCES designs(id),
     projects_id UUID REFERENCES projects(id)
 );
@@ -155,7 +159,10 @@ CREATE TABLE plant_layout(
     id UUID PRIMARY KEY,
     plant_id UUID REFERENCES plants(id),
     layout_id UUID REFERENCES layouts(id),
-    placement FLOAT
+    x_coord NUMERIC(10, 2) NOT NULL,
+    y_coord NUMERIC(10, 2) NOT NULL,
+    diameter NUMERIC(5, 2) NOT NULL,
+    height NUMERIC(5, 2) NOT NULL
 );
 
 CREATE TABLE fave_design(
@@ -174,15 +181,50 @@ CREATE TABLE fave_design(
   const stylesData = parseCsv(stylesCsvContent);
 
   // Maps to store generated UUIDs for relationships
-  const designStylesMap = new Map(); // Maps design style name to its ID
-  const plantMap = new Map(); // Maps plant name to its ID
-  const userMap = new Map(); // Maps username to its ID
-  const projectMap = new Map(); // Maps project name to its ID
-  const layoutMap = new Map(); // Maps layout name to its ID
+  const designStylesMap = new Map();
+  const plantMap = new Map();
+  const userMap = new Map();
+  const projectMap = new Map();
+  const layoutMap = new Map();
+
+  // Populate plantMap with full plant data for easy lookup later
+  plantsData.forEach((plant) => {
+    plantMap.set(plant.Name.toLowerCase(), {
+      id: uuidv4(), // Generate ID here for insertion
+      name: plant.Name.toLowerCase(),
+      other_common_names: plant["Other Common Names"]
+        ? plant["Other Common Names"].toLowerCase()
+        : null,
+      technical_name: plant["Technical Name"]
+        ? plant["Technical Name"].toLowerCase()
+        : null,
+      growth_form: plant["growth form"]
+        ? plant["growth form"].toLowerCase()
+        : null,
+      is_toxic: plant.toxic.toLowerCase() === "toxic" ? "TRUE" : "FALSE",
+      sun_requirements: plant["Sun Requirements"]
+        ? plant["Sun Requirements"].toLowerCase()
+        : null,
+      height_min_ft: parseFloat(plant["Height Min (ft)"]) || 0.1, // Ensure a default min if null/0
+      height_max_ft: parseFloat(plant["Height Max (ft)"]) || 1.0, // Ensure a default max if null/0
+      width_min_ft: parseFloat(plant["Width Min (ft)"]) || 0.1, // Ensure a default min if null/0
+      width_max_ft: parseFloat(plant["Width Max (ft)"]) || 1.0, // Ensure a default max if null/0
+      seasonal_interest: plant["Seasonal Interest"]
+        ? plant["Seasonal Interest"].toLowerCase()
+        : null,
+      primary_color: plant["primary color"]
+        ? plant["primary color"].toLowerCase()
+        : null,
+      accent_color: plant["accent color"]
+        ? plant["accent color"].toLowerCase()
+        : null,
+      image_url: plant["IMAGE URL"] ? plant["IMAGE URL"].toLowerCase() : null,
+    });
+  });
 
   // --- 4. INSERT Statements ---
 
-  // Users (from index.js)
+  // Users
   sqlStatements += `\n-- Users Inserts\n`;
   const users = [
     { username: "Justin", password: "0710", is_admin: true },
@@ -192,7 +234,7 @@ CREATE TABLE fave_design(
   ];
   for (const user of users) {
     const id = uuidv4();
-    userMap.set(user.username.toLowerCase(), id); // Store lowercase username -> ID
+    userMap.set(user.username.toLowerCase(), id);
     sqlStatements += `INSERT INTO users (id, username, password, is_admin) VALUES ('${id}', '${
       user.username
     }', '${user.password}', ${
@@ -201,34 +243,33 @@ CREATE TABLE fave_design(
   }
   sqlStatements += `\n`;
 
-  // Designs (ONLY from Styles.csv)
+  // Designs (from Styles.csv)
   sqlStatements += `-- Designs Inserts\n`;
   const allDesignNames = new Set();
-  const tempDesignInserts = []; // Collect unique designs first
+  const tempDesignInserts = [];
 
-  // Process styles from Styles.csv (new columns: name, short description, long description, tags)
   stylesData.forEach((style) => {
-    const name = style.name.trim().toLowerCase(); // Use 'name' column
+    const name = style.name.trim().toLowerCase();
     if (name && !allDesignNames.has(name)) {
       allDesignNames.add(name);
       const id = uuidv4();
       designStylesMap.set(name, id);
-      // Map to new schema
+
       const shortDescription = (style["short description"] || "")
         .substring(0, 255)
-        .replace(/'/g, "''"); // Max 255 chars for VARCHAR
+        .replace(/'/g, "''");
       const longDescription = (style["long description"] || "").replace(
         /'/g,
         "''"
-      ); // TEXT type, so no length limit
-      const tags = (style["tags"] || "").toLowerCase().replace(/'/g, "''"); // Lowercase tags
+      );
+      const tags = (style["tags"] || "").toLowerCase().replace(/'/g, "''");
 
       tempDesignInserts.push({
         id,
         design_style_name: name,
-        design_attributes: shortDescription || null, // short description
-        design_description: longDescription || null, // long description
-        design_tags: tags || null, // tags
+        design_attributes: shortDescription || null,
+        design_description: longDescription || null,
+        design_tags: tags || null,
       });
     }
   });
@@ -250,88 +291,82 @@ CREATE TABLE fave_design(
     sqlStatements += `) ON CONFLICT (id) DO NOTHING;\n\n`;
   });
 
-  // Plants (from Plants.csv) - No changes needed here based on this request
+  // Plants (insert plants from the map)
   sqlStatements += `-- Plants Inserts\n`;
-  plantsData.forEach((plant) => {
-    const plantId = uuidv4();
-    plantMap.set(plant.Name.toLowerCase(), plantId); // Store plant name -> ID
-    const plantName = plant.Name.toLowerCase();
-    const otherCommonNames = plant["Other Common Names"]
-      ? plant["Other Common Names"].toLowerCase()
-      : null;
-    const technicalName = plant["Technical Name"]
-      ? plant["Technical Name"].toLowerCase()
-      : null;
-    const growthForm = plant["growth form"]
-      ? plant["growth form"].toLowerCase()
-      : null;
-    const isToxic = plant.toxic.toLowerCase() === "toxic" ? "TRUE" : "FALSE";
-    const sunRequirements = plant["Sun Requirements"]
-      ? plant["Sun Requirements"].toLowerCase()
-      : null;
-    const seasonalInterest = plant["Seasonal Interest"]
-      ? plant["Seasonal Interest"].toLowerCase()
-      : null;
-    const primaryColor = plant["primary color"]
-      ? plant["primary color"].toLowerCase()
-      : null;
-    const accentColor = plant["accent color"]
-      ? plant["accent color"].toLowerCase()
-      : null;
-    const imageUrl = plant["IMAGE URL"]
-      ? plant["IMAGE URL"].toLowerCase()
-      : null;
-
-    const heightMin = parseFloat(plant["Height Min (ft)"]) || null;
-    const heightMax = parseFloat(plant["Height Max (ft)"]) || null;
-    const widthMin = parseFloat(plant["Width Min (ft)"]) || null;
-    const widthMax = parseFloat(plant["Width Max (ft)"]) || null;
-
+  Array.from(plantMap.values()).forEach((plant) => {
     sqlStatements += `INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (\n`;
-    sqlStatements += `  '${plantId}',\n`;
-    sqlStatements += `  '${plantName.replace(/'/g, "''")}',\n`;
+    sqlStatements += `  '${plant.id}',\n`;
+    sqlStatements += `  '${plant.name.replace(/'/g, "''")}',\n`;
     sqlStatements += `  ${
-      otherCommonNames ? `'${otherCommonNames.replace(/'/g, "''")}'` : "NULL"
+      plant.other_common_names
+        ? `'${plant.other_common_names.replace(/'/g, "''")}'`
+        : "NULL"
     },\n`;
     sqlStatements += `  ${
-      technicalName ? `'${technicalName.replace(/'/g, "''")}'` : "NULL"
+      plant.technical_name
+        ? `'${plant.technical_name.replace(/'/g, "''")}'`
+        : "NULL"
     },\n`;
     sqlStatements += `  ${
-      growthForm ? `'${growthForm.replace(/'/g, "''")}'` : "NULL"
+      plant.growth_form ? `'${plant.growth_form.replace(/'/g, "''")}'` : "NULL"
     },\n`;
-    sqlStatements += `  ${isToxic},\n`;
+    sqlStatements += `  ${plant.is_toxic},\n`;
     sqlStatements += `  ${
-      sunRequirements ? `'${sunRequirements.replace(/'/g, "''")}'` : "NULL"
-    },\n`;
-    sqlStatements += `  ${heightMin !== null ? heightMin : "NULL"},\n`;
-    sqlStatements += `  ${heightMax !== null ? heightMax : "NULL"},\n`;
-    sqlStatements += `  ${widthMin !== null ? widthMin : "NULL"},\n`;
-    sqlStatements += `  ${widthMax !== null ? widthMax : "NULL"},\n`;
-    sqlStatements += `  ${
-      seasonalInterest ? `'${seasonalInterest.replace(/'/g, "''")}'` : "NULL"
+      plant.sun_requirements
+        ? `'${plant.sun_requirements.replace(/'/g, "''")}'`
+        : "NULL"
     },\n`;
     sqlStatements += `  ${
-      primaryColor ? `'${primaryColor.replace(/'/g, "''")}'` : "NULL"
+      plant.height_min_ft !== null ? plant.height_min_ft : "NULL"
     },\n`;
     sqlStatements += `  ${
-      accentColor ? `'${accentColor.replace(/'/g, "''")}'` : "NULL"
+      plant.height_max_ft !== null ? plant.height_max_ft : "NULL"
     },\n`;
     sqlStatements += `  ${
-      imageUrl ? `'${imageUrl.replace(/'/g, "''")}'` : "NULL"
+      plant.width_min_ft !== null ? plant.width_min_ft : "NULL"
+    },\n`;
+    sqlStatements += `  ${
+      plant.width_max_ft !== null ? plant.width_max_ft : "NULL"
+    },\n`;
+    sqlStatements += `  ${
+      plant.seasonal_interest
+        ? `'${plant.seasonal_interest.replace(/'/g, "''")}'`
+        : "NULL"
+    },\n`;
+    sqlStatements += `  ${
+      plant.primary_color
+        ? `'${plant.primary_color.replace(/'/g, "''")}'`
+        : "NULL"
+    },\n`;
+    sqlStatements += `  ${
+      plant.accent_color
+        ? `'${plant.accent_color.replace(/'/g, "''")}'`
+        : "NULL"
+    },\n`;
+    sqlStatements += `  ${
+      plant.image_url ? `'${plant.image_url.replace(/'/g, "''")}'` : "NULL"
     }\n`;
     sqlStatements += `) ON CONFLICT (id) DO NOTHING;\n\n`;
   });
 
-  // plant_Design_Types (from Plants.csv's "Adaptable Styles")
+  // plant_Design_Types
   sqlStatements += `-- plant_Design_Types Inserts\n`;
   plantsData.forEach((plant) => {
-    const plantId = plantMap.get(plant.Name.toLowerCase()); // Get ID from map
+    // Using original plantsData for adaptable styles
+    const plantObj = plantMap.get(plant.Name.toLowerCase()); // Get the plant object with ID
+    if (!plantObj) {
+      console.warn(
+        `Warning: Plant "${plant.Name}" not found in map for plant_Design_Types.`
+      );
+      return;
+    }
+    const plantId = plantObj.id;
     const adaptableStyles = plant["Adaptable Styles"]
       .split(",")
       .map((s) => s.trim().toLowerCase())
       .filter(Boolean);
     adaptableStyles.forEach((styleName) => {
-      const designId = designStylesMap.get(styleName); // Get ID from map
+      const designId = designStylesMap.get(styleName);
       if (plantId && designId) {
         sqlStatements += `INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('${uuidv4()}', '${plantId}', '${designId}') ON CONFLICT (plant_id, design_id) DO NOTHING;\n`;
       } else {
@@ -343,12 +378,12 @@ CREATE TABLE fave_design(
     sqlStatements += `\n`;
   });
 
-  // Projects (from index.js, adjust names if needed to match frontend)
+  // Projects
   sqlStatements += `-- Projects Inserts\n`;
   const projects = [{ name: "BackyardForest", user: "Justin" }];
   for (const project of projects) {
     const projectId = uuidv4();
-    projectMap.set(project.name.toLowerCase(), projectId); // Store project name -> ID
+    projectMap.set(project.name.toLowerCase(), projectId);
     const userId = userMap.get(project.user.toLowerCase());
     if (userId) {
       sqlStatements += `INSERT INTO projects (id, project_name, user_id) VALUES ('${projectId}', '${project.name}', '${userId}') ON CONFLICT (id) DO NOTHING;\n`;
@@ -360,38 +395,42 @@ CREATE TABLE fave_design(
   }
   sqlStatements += `\n`;
 
-  // Layouts (from index.js)
+  // Layouts
   sqlStatements += `-- Layouts Inserts\n`;
   const layouts = [
     {
       name: "newBeginnings",
-      bedding_size: 10,
+      bed_length: 10,
+      bed_depth: 10,
       design_style: "cottage",
       project: "BackyardForest",
     },
     {
       name: "FernForest",
-      bedding_size: 450,
-      design_style: "modern",
+      bed_length: 12,
+      bed_depth: 6,
+      design_style: "modern minimalism",
       project: "BackyardForest",
     },
     {
       name: "AbsoluteSucculent",
-      bedding_size: 210,
+      bed_length: 15,
+      bed_depth: 10,
       design_style: "naturalistic",
       project: "BackyardForest",
     },
   ];
   for (const layout of layouts) {
     const layoutId = uuidv4();
-    layoutMap.set(layout.name.toLowerCase(), layoutId); // Store layout name -> ID
+    layoutMap.set(layout.name.toLowerCase(), layoutId);
     const designId = designStylesMap.get(layout.design_style.toLowerCase());
     const projectId = projectMap.get(layout.project.toLowerCase());
     if (designId && projectId) {
-      sqlStatements += `INSERT INTO layouts (id, layout_name, bedding_size, design_type, projects_id) VALUES (\n`;
+      sqlStatements += `INSERT INTO layouts (id, layout_name, bed_length, bed_depth, design_type, projects_id) VALUES (\n`;
       sqlStatements += `  '${layoutId}',\n`;
       sqlStatements += `  '${layout.name}',\n`;
-      sqlStatements += `  ${layout.bedding_size},\n`;
+      sqlStatements += `  ${layout.bed_length},\n`;
+      sqlStatements += `  ${layout.bed_depth},\n`;
       sqlStatements += `  '${designId}',\n`;
       sqlStatements += `  '${projectId}'\n`;
       sqlStatements += `) ON CONFLICT (id) DO NOTHING;\n\n`;
@@ -403,19 +442,21 @@ CREATE TABLE fave_design(
   }
   sqlStatements += `\n`;
 
-  // Favorite Plants (from index.js)
+  // Favorite Plants
   sqlStatements += `-- Favorite Plants Inserts\n`;
   const favoritePlants = [
     { user: "Justin", plant: "japanese painted fern" },
-    { user: "Ellie", plant: "spreading japanese plum yew" },
+    { user: "Ellie", plant: "spreading plum yew" }, // Changed from "spreading japanese plum yew"
     { user: "Callen", plant: "boxwood" },
-    { user: "Chelsea", plant: "spreading japanese plum yew" },
+    { user: "Chelsea", plant: "spreading plum yew" }, // Changed from "spreading japanese plum yew"
   ];
   for (const fav of favoritePlants) {
     const userId = userMap.get(fav.user.toLowerCase());
-    const plantId = plantMap.get(fav.plant.toLowerCase());
-    if (userId && plantId) {
-      sqlStatements += `INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('${uuidv4()}', '${userId}', '${plantId}') ON CONFLICT (user_id, plant_id) DO NOTHING;\n`;
+    const plantObj = plantMap.get(fav.plant.toLowerCase());
+    if (userId && plantObj) {
+      sqlStatements += `INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('${uuidv4()}', '${userId}', '${
+        plantObj.id
+      }') ON CONFLICT (user_id, plant_id) DO NOTHING;\n`;
     } else {
       console.warn(
         `Warning: Could not create favorite plant for user "${fav.user}" and plant "${fav.plant}".`
@@ -424,24 +465,39 @@ CREATE TABLE fave_design(
   }
   sqlStatements += `\n`;
 
-  // Plant Layout (from index.js)
+  // Plant Layout (UPDATED: now with x_coord, y_coord, diameter, height using min values)
   sqlStatements += `-- Plant Layout Inserts\n`;
   const plantLayouts = [
-    { plant: "japanese painted fern", layout: "newbeginnigs", placement: 78 },
-    {
-      plant: "spreading japanese plum yew",
-      layout: "fernforest",
-      placement: 567,
-    },
-    { plant: "boxwood", layout: "absolutesucculent", placement: 123 },
+    { plant: "japanese painted fern", layout: "newbeginnings", x: 2, y: 3 },
+    { plant: "spreading plum yew", layout: "fernforest", x: 15, y: 7 }, // Changed from "spreading japanese plum yew"
+    { plant: "boxwood", layout: "absolutesucculent", x: 10, y: 5 },
   ];
   for (const pl of plantLayouts) {
-    const plantId = plantMap.get(pl.plant.toLowerCase());
+    const plantObj = plantMap.get(pl.plant.toLowerCase());
     const layoutId = layoutMap.get(pl.layout.toLowerCase());
-    if (plantId && layoutId) {
-      sqlStatements += `INSERT INTO plant_layout (id, plant_id, layout_id, placement) VALUES ('${uuidv4()}', '${plantId}', '${layoutId}', ${
-        pl.placement
-      }) ON CONFLICT (id) DO NOTHING;\n`;
+
+    if (plantObj && layoutId) {
+      // Using min values for diameter and height, defaulting to 0.1 if null/undefined
+      const diameter = (
+        plantObj.width_min_ft !== null && plantObj.width_min_ft !== undefined
+          ? plantObj.width_min_ft
+          : 0.1
+      ).toFixed(2);
+      const height = (
+        plantObj.height_min_ft !== null && plantObj.height_min_ft !== undefined
+          ? plantObj.height_min_ft
+          : 0.1
+      ).toFixed(2);
+
+      sqlStatements += `INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, height) VALUES (\n`;
+      sqlStatements += `  '${uuidv4()}',\n`;
+      sqlStatements += `  '${plantObj.id}',\n`;
+      sqlStatements += `  '${layoutId}',\n`;
+      sqlStatements += `  ${pl.x},\n`;
+      sqlStatements += `  ${pl.y},\n`;
+      sqlStatements += `  ${diameter},\n`;
+      sqlStatements += `  ${height}\n`;
+      sqlStatements += `) ON CONFLICT (id) DO NOTHING;\n\n`;
     } else {
       console.warn(
         `Warning: Could not create plant_layout for plant "${pl.plant}" and layout "${pl.layout}".`
@@ -450,10 +506,10 @@ CREATE TABLE fave_design(
   }
   sqlStatements += `\n`;
 
-  // Fave Designs (from index.js)
+  // Fave Designs
   sqlStatements += `-- Fave Designs Inserts\n`;
   const faveDesigns = [
-    { user: "Ellie", design_style: "modern" },
+    { user: "Ellie", design_style: "modern minimalism" },
     { user: "Callen", design_style: "naturalistic" },
     { user: "Chelsea", design_style: "cottage" },
   ];
