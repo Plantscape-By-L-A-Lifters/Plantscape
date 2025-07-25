@@ -10,7 +10,7 @@ import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
 
-import Login from "./components/login.jsx"
+import Login from "./components/Login.jsx"
 import Register from "./components/register.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
