@@ -2,28 +2,21 @@ import { createContext, useState, useEffect } from "react";
 
 export const DesignStyleContext = createContext();
 
-const defaultStyles = [
-  {
-    id: 1,
-    name: "Classical",
-    gridMinCols: 4,
-    // gridEven: true,
-    spacingFactor: 1.2,
-  },
-  {
-    id: 2,
-    name: "Modern",
-    gridMinCols: 3,
-    // gridOdd: true,
-    spacingFactor: 1.4,
-  },
-  {
-    id: 3,
-    name: "Cottage",
-    gridMinCols: 3,
-    spacingFactor: 1.0,
-  },
-];
+//TODO
+// useEffect(() => {
+//   const fetchProjects = async () => {
+//     try {
+//       const { data } = await axios.get("/api/projects");
+//       setProjects(data);
+//       if (data.length > 0 && !activeProjectId) {
+//         setActiveProjectId(data[0].id); // Default to first project
+//       }
+//     } catch (err) {
+//       console.error("Failed to fetch projects", err);
+//     }
+//   };
+//   fetchProjects();
+// }, []);
 
 export const DesignStyleProvider = ({ children }) => {
   const [styles, setStyles] = useState(defaultStyles);

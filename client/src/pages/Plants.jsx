@@ -11,45 +11,21 @@ export default function Plants() {
         <h1>Creating Your Dream Garden </h1>
         <p>Select A Plant!</p>
         <br></br>
-        <div>
+        <ul>
           {plantCatalog.length > 0 ? (
             plantCatalog.map((plant) => {
-              // console.log("each plant", plant.name, plant.id);
+              console.log("each plant", plant.plant_name, plant.image_url);
               return (
-                <div key={plant.id} className="plantContainer">
-                  <h3>{plant.plant_name || "Unnamed Plant"}</h3>
-                </div>
+                <li key={plant.id}>
+                  {plant.plant_name || "Unnamed Plant"}
+                  <img src={plant.image_url} alt={plant.plant_name} />
+                </li>
               );
             })
           ) : (
             <p>No plant found</p>
           )}
-        </div>
-        {/* CCRUZ: THIS WAS MY ATTEMPT AT GETTING THE IMAGES TO MAP, BUT THE FILE NAMING WASN'T STANDARDIZED SO IT DIDN'T WORK.
-        Keeping it as an example for future use - DELETE WHEN READY.
-        <div className="plant-list">
-          {plantCatalog.map((plant) => {
-            const imgUrl = getImageUrl(plant.plant_name, {
-              cloudName: "dprixcop0", // or your actual Cloudinary cloud name
-            });
-
-            return (
-              <div key={plant.id} className="plant-card">
-                <img
-                  src={imgUrl}
-                  alt={plant.plant_name}
-                  style={{
-                    width: "150px",
-                    height: "150px",
-                    objectFit: "cover",
-                  }}
-                />
-                <h3>{plant.plant_name}</h3>
-                <p>{plant.plant_type}</p>
-              </div>
-            );
-          })}
-        </div> */}
+        </ul>
         <div>
           <ul>
             <li>

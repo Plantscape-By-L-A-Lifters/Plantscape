@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap");
+
+li {
+  list-style-type: none;
+}
 
 .plants-container {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   max-width: 900px;
   margin: 3rem auto;
   padding: 1rem 2rem;
@@ -97,5 +101,3 @@
   border-top: 1px solid #ccc;
   margin-top: 3rem;
 }
-
-

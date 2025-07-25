@@ -1,3 +1,4 @@
+const fs = require("fs").promises; // Add this import for reading seed.sql
 const client = require("./client");
 const { v4: uuidv4 } = require("uuid");
 const { createUser } = require("./user");
@@ -16,12 +17,10 @@ const { createPlantLayout } = require("./plant_layout");
 
 const { createFaveDesign } = require("./fave_design");
 
-const{
-    createProject
-} = require('./projects')
+const { createProject } = require("./projects");
 
 const seed = async () => {
-  const SQL = `
+  const SQL_SCHEMA = `
     DROP TABLE IF EXISTS projects CASCADE;
     DROP TABLE IF EXISTS plant_layout;
     DROP TABLE IF EXISTS layouts;
@@ -41,17 +40,27 @@ const seed = async () => {
     
     CREATE TABLE designs(
     id UUID PRIMARY KEY,
-    design_style_name VARCHAR(50),
-    design_attributes VARCHAR(50)
+    design_style_name VARCHAR(50) UNIQUE NOT NULL,
+    design_attributes VARCHAR(255)
     );
 
-    CREATE TABLE plants(
+CREATE TABLE IF NOT EXISTS plants (
     id UUID PRIMARY KEY,
-    plant_name VARCHAR(100) NOT NULL,
-    plant_type VARCHAR (50) NOT NULL,
-    toxic BOOLEAN DEFAULT false NOT NULL,
-    size INTEGER NOT NULL 
-    );
+    plant_name VARCHAR(255) UNIQUE NOT NULL, 
+    other_common_names TEXT,               
+    technical_name VARCHAR(255),           
+    growth_form VARCHAR(50),               
+    is_toxic BOOLEAN DEFAULT false NOT NULL,
+    sun_requirements TEXT,                 
+    height_min_ft NUMERIC(5, 2),           
+    height_max_ft NUMERIC(5, 2),           
+    width_min_ft NUMERIC(5, 2),            
+    width_max_ft NUMERIC(5, 2),            
+    seasonal_interest TEXT,                
+    primary_color VARCHAR(50),             
+    accent_color VARCHAR(50),              
+    image_url TEXT                         
+);
 
     CREATE TABLE favorite_plants(
     id UUID PRIMARY KEY,
@@ -94,7 +103,27 @@ const seed = async () => {
     design_id UUID REFERENCES designs(id)
     );
     `;
-  await client.query(SQL);
+
+  await client.query(SQL_SCHEMA);
+  console.log("Tables (re)created based on index.js schema.");
+
+  // --- Start of new seeding from seed.sql ---
+  try {
+    const seedSqlContent = await fs.readFile("./seed.sql", "utf8");
+    await client.query(seedSqlContent);
+    console.log("Data inserted from seed.sql successfully!");
+  } catch (error) {
+    // Handle specific error for unique violation if seed.sql is run multiple times
+    if (error.code === "23505") {
+      console.warn(
+        "Seed data already exists (unique constraint violation). Skipping duplicate inserts from seed.sql."
+      );
+    } else {
+      console.error("Error executing seed.sql:", error);
+      throw error; // Re-throw to indicate a critical seeding failure
+    }
+  }
+  // --- End of new seeding from seed.sql ---
 
   const [Justin, Chelsea, Callen, Ellie] = await Promise.all([
     createUser({
@@ -123,47 +152,77 @@ const seed = async () => {
     }),
   ]);
 
-  const [Cottage, Modern, Wild] = await Promise.all([
-    createDesign({
-      id: uuidv4(),
-      design_style_name: "Cottage",
-      design_attributes: "Summer",
-    }),
-    createDesign({
-      id: uuidv4(),
-      design_style_name: "Modern",
-      design_attributes: "Spring",
-    }),
-    createDesign({
-      id: uuidv4(),
-      design_style_name: "Wild",
-      design_attributes: "Fall",
-    }),
-  ]);
+  // const [Cottage, Modern, Wild] = await Promise.all([
+  //   createDesign({
+  //     id: uuidv4(),
+  //     design_style_name: "Cottage",
+  //     design_attributes: "Summer",
+  //   }),
+  //   createDesign({
+  //     id: uuidv4(),
+  //     design_style_name: "Modern",
+  //     design_attributes: "Spring",
+  //   }),
+  //   createDesign({
+  //     id: uuidv4(),
+  //     design_style_name: "Wild",
+  //     design_attributes: "Fall",
+  //   }),
+  // ]);
 
-  const [Boxwood, SJPYew, JPFern] = await Promise.all([
-    createPlant({
-      id: uuidv4(),
-      plant_name: "Boxwood",
-      plant_type: "Shrub",
-      toxic: false,
-      size: 2,
-    }),
-    createPlant({
-      id: uuidv4(),
-      plant_name: "Spreading Japanese Plum Yew",
-      plant_type: "Shrub",
-      toxic: true,
-      size: 3,
-    }),
-    createPlant({
-      id: uuidv4(),
-      plant_name: "Japanese Painted Fern",
-      plant_type: "Herbaceous",
-      toxic: true,
-      size: 1,
-    }),
-  ]);
+  // const [Boxwood, SJPYew, JPFern] = await Promise.all([
+  //   createPlant({
+  //     plant_name: "boxwood",
+  //     other_common_names: null,
+  //     technical_name: "buxus spp.",
+  //     growth_form: "shrub",
+  //     is_toxic: false,
+  //     sun_requirements: "full-sun, part-shade",
+  //     height_min_ft: 2.0,
+  //     height_max_ft: 15.0,
+  //     width_min_ft: 2.0,
+  //     width_max_ft: 4.0,
+  //     seasonal_interest: null,
+  //     primary_color: "grass_green",
+  //     accent_color: null,
+  //     image_url:
+  //       "https://res.cloudinary.com/dprixcop0/image/upload/v1753128204/boxwood_gqpns0.webp",
+  //   }),
+  //   createPlant({
+  //     plant_name: "spreading japanese plum yew",
+  //     other_common_names: null,
+  //     technical_name: "taxus baccata",
+  //     growth_form: "large shrub, small tree",
+  //     is_toxic: true,
+  //     sun_requirements: "part-shade, full-shade",
+  //     height_min_ft: 3.0,
+  //     height_max_ft: 10.0,
+  //     width_min_ft: 3.0,
+  //     width_max_ft: 10.0,
+  //     seasonal_interest: null,
+  //     primary_color: "lime_green",
+  //     accent_color: "plum",
+  //     image_url:
+  //       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282058/spreading-japanese-plum-yew_elpkcr.webp",
+  //   }),
+  //   createPlant({
+  //     plant_name: "japanese painted fern",
+  //     other_common_names: null,
+  //     technical_name: "athyrium niponicum var. pictum",
+  //     growth_form: "herbaceous",
+  //     is_toxic: true,
+  //     sun_requirements: "part-shade, full-shade",
+  //     height_min_ft: 1.0,
+  //     height_max_ft: 1.5,
+  //     width_min_ft: 1.0,
+  //     width_max_ft: 1.5,
+  //     seasonal_interest: "spring,summer",
+  //     primary_color: "purple_brown",
+  //     accent_color: "pale_green",
+  //     image_url:
+  //       "https://res.cloudinary.com/dprixcop0/image/upload/v1753127972/japanese-painted-fern_tioauz.jpg",
+  //   }),
+  // ]);
 
   await Promise.all([
     createFavoritePlant({
