@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": " nodemon Server/index.js",
+    "start:dev": " nodemon server/index.js",
     "seed": "node server/db/index.js",
     "db:reset": "dropdb plantscape && createdb plantscape && npm run seed"
   },
