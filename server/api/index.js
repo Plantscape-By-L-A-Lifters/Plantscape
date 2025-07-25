@@ -9,7 +9,7 @@ app.use('/design', require('./design'))
 app.use('/plantDesign', require('./plant_Design_Type'))
 app.use('/plantLayout', require('./plant_layout'))
 app.use('/faveDesign', require('./fave_design'))
-app.use('/projects', require('./projects'))
+app.use('/projects', require('./Projects'))
 app.use('/authenticate', require('./authenticate'))
 
 module.exports = app;
