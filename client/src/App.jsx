@@ -11,7 +11,7 @@ import ProjectForm from "./pages/ProjectForm";
 import MyProject from "./pages/MyProject";
 
 import Login from "./components/Login.jsx"
-import Register from "./components/register.jsx";
+import Register from "./components/Register.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 
