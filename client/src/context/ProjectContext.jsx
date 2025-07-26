@@ -13,40 +13,48 @@ export const ProjectContext = createContext();
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]); // State for all projects for the user (list view)
   const [activeProjectId, setActiveProjectId] = useState(null); // ID of the currently selected project (e.g., in a list)
-  const [currentEditingProject, setCurrentEditingProject] = useState(null); // State for the detailed project being edited/viewed
+  const [currentEditingProject, setCurrentEditingProject] = useState(null);
+  const [loadingProjects, setLoadingProjects] = useState(true); // State for the detailed project being edited/viewed
 
   const { user, getHeaders } = useContext(UserContext);
 
   // --- Function to fetch ALL projects for the current user ---
   // Memoize fetchProjects with useCallback to avoid an infinite loop of re-renders
+
+  // --- Function to fetch ALL projects for the current user ---
   const fetchProjects = useCallback(async () => {
-    // Only fetch if a user ID exists and we have headers (meaning a token is likely present)
-    // getHeaders().headers?.authorization checks if the authorization header exists
     if (!user?.id || !getHeaders().headers?.authorization) {
-      setProjects([]); // Clear projects if no user is logged in or no token
-      setActiveProjectId(null); // Also clear active project
-      setCurrentEditingProject(null); // Clear editing project
+      setProjects([]);
+      setActiveProjectId(null);
+      setCurrentEditingProject(null);
+      setLoadingProjects(false); // Ensure loading is false if not fetching
       return;
     }
+
+    setLoadingProjects(true); // Set loading to true before fetching
     try {
-      // Use getHeaders for authenticated API call
-      const { data } = await axios.get(
-        `/api/projects/MyProjects/`,
-        getHeaders()
+      const response = await axios.get(
+        // Capture full response to check status
+        `/api/projects/MyProjects`,
+        getHeaders() // Call getHeaders directly
       );
-      setProjects(data);
-      // Set default active project if none is selected and projects exist
-      if (data.length > 0 && !activeProjectId) {
-        setActiveProjectId(data[0].id); // Default to first project
+
+      // Only update projects state if new data is actually received (status 200)
+      if (response.status === 200) {
+        setProjects(response.data);
+      } else if (response.status === 304) {
+        // If 304, the projects state should already contain the correct data from a previous 200 fetch.
+        // No need to call setProjects, as response.data would be empty.
       }
     } catch (err) {
-      console.error("Failed to fetch projects:", err);
-      setProjects([]); // Clear projects on error
-      setActiveProjectId(null); // Clear active project on error
-      setCurrentEditingProject(null); // Clear editing project on error
+      console.error("Failed to fetch projects:", err); // Keep error logs
+      setProjects([]); // Ensure projects is an empty array on error
+      setActiveProjectId(null);
+      setCurrentEditingProject(null);
+    } finally {
+      setLoadingProjects(false); // Always set loading to false after fetch attempt
     }
-  }, [user?.id, getHeaders, activeProjectId]); // Dependencies for fetchProjects useCallback to update;
-
+  }, [user?.id, getHeaders]); // Dependencies for useCallback
   const fetchProject = useCallback(
     async (projectId) => {
       if (!projectId || !getHeaders().headers?.authorization) {
@@ -118,15 +126,10 @@ export const ProjectProvider = ({ children }) => {
         fetchProject, // New function to fetch a single project by ID
         addProject,
         fetchProjects, // Function to re-fetch all projects for the user
+        loadingProjects,
       }}
     >
       {children}
     </ProjectContext.Provider>
   );
 };
-
-//How to use it in Components:
-// import { useContext } from "react";
-// import { ProjectContext } from "../context/ProjectContext";
-
-// const { projects, activeProject, setActiveProjectId } = useContext(ProjectContext);

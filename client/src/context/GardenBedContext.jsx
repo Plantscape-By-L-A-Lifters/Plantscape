@@ -51,11 +51,6 @@ export const GardenBedProvider = ({ children }) => {
       console.log(
         `Fetched ${data.length} garden beds for project ${projectIdToFetch}`
       );
-
-      // If no bed is actively selected and beds are fetched, you might want to default to the first one
-      if (data.length > 0 && !currentEditingGardenBed) {
-        setCurrentEditingGardenBed(data[0]); // If no bed is currently selected, auto-select the first bed
-      }
     } catch (error) {
       console.error(
         `Failed to fetch garden beds for project ${projectIdToFetch}:`,
@@ -169,11 +164,6 @@ export const GardenBedProvider = ({ children }) => {
     },
     [user?.id, getHeaders, currentEditingGardenBed, fetchSingleGardenBed]
   );
-
-  // Effect to fetch garden beds when the active project or user changes
-  useEffect(() => {
-    fetchGardenBedsForProject();
-  }, [fetchGardenBedsForProject]); // Dependencies: current project ID, user ID, getHeaders
 
   return (
     <GardenBedContext.Provider

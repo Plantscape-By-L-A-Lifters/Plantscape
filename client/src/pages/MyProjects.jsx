@@ -8,8 +8,9 @@ const MyProjects = () => {
   const {
     projects,
     fetchProjects, // Function to re-fetch all projects
-    // You might add a loading state here if ProjectContext had one for its initial fetchProjects
-    // e.g., loadingProjects: from ProjectContext
+    activeProjectId, // Get activeProjectId
+    setActiveProjectId, // Get setActiveProjectId
+    loadingProjects,
   } = useContext(ProjectContext);
 
   // Although ProjectContext's useEffect already calls fetchProjects on user.id change,
@@ -22,14 +23,18 @@ const MyProjects = () => {
     }
   }, [user?.id, fetchProjects, projects.length]); // Add projects.length to re-evaluate if projects become empty
 
+  useEffect(() => {
+    if (projects.length > 0 && !activeProjectId) {
+      setActiveProjectId(projects[0].id); // Set the first project as active
+    }
+  }, [projects, activeProjectId, setActiveProjectId]); // Dependencies: projects array, current activeProjectId, and its setter
+
   if (!user.id) {
     return <div>Please log in to view your projects.</div>;
   }
-
-  // You might want a loading state here from ProjectContext if you add one
-  // if (loadingProjects) {
-  //   return <div>Loading your projects...</div>;
-  // }
+  if (loadingProjects) {
+    return <div>Loading your projects...</div>;
+  }
 
   return (
     <div>

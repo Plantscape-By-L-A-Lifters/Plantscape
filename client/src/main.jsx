@@ -13,8 +13,8 @@ import "./assets/main.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <DesignStyleProvider>
-        <PlantCatalogProvider>
+      <PlantCatalogProvider>
+        <DesignStyleProvider>
           <UserProvider>
             <ProjectProvider>
               <GardenBedProvider>
@@ -22,8 +22,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </GardenBedProvider>
             </ProjectProvider>
           </UserProvider>
-        </PlantCatalogProvider>
-      </DesignStyleProvider>
+        </DesignStyleProvider>
+      </PlantCatalogProvider>
     </Router>
   </React.StrictMode>
 );

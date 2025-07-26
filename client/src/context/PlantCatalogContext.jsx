@@ -14,7 +14,7 @@ export const PlantCatalogProvider = ({ children }) => {
       // Corrected API path with leading slash
       const { data } = await axios.get("/api/plants");
       setPlantCatalog(data);
-      console.log("Fetched plants data:", data);
+      // console.log("Fetched plants data:", data);
     } catch (err) {
       console.error("Failed to fetch plants:", err);
       setPlantCatalog([]); // Clear catalog on error
