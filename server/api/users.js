@@ -11,7 +11,7 @@ const {
     isLoggedIn
 } = require('./middleware')
 
-app.get ('/', isLoggedIn, isAdmin, async (req, res, next )=> { // is admin
+app.get ('/', isLoggedIn, isAdmin, async (req, res, next )=> {
     try {
         res.send(await fetchUsers())
     } catch (error) {

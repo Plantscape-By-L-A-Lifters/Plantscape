@@ -64,9 +64,14 @@ function Login() {
         </label>
         <br />
         <button type="submit">Login</button>
+        <h3>or </h3>
       </form>
+      <button onClick={toRegister}>Register</button>
     </div>
   );
 }
+const toRegister = () => {
+  navigate("/register");
+};
 
 export default Login;

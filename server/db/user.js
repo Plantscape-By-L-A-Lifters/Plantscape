@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const uuidv4= v4
 
 const createUser = async (user) => {
-    if(!user.username.trim()|| !user.password.trim()){
+    if(!user.username.trim() || !user.password.trim()){
         throw Error('must have a username and password')
     }
     user.password = await bcrypt.hash(user.password,7);

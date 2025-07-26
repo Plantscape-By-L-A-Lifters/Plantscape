@@ -3,8 +3,20 @@ const { client, seed } = require("./db");
 
 const express = require("express");
 const app = express();
+<<<<<<< HEAD
 app.use(express.json());
 app.use("/api", require("./api"));
+=======
+app.use(express.json())
+app.use((req, res, next) => {
+ res.setHeader(
+ 'Content-Security-Policy',
+"default-src 'self'; img-src 'self' https:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' https:;"
+ );
+ next();
+});
+app.use('/api', require('./api'))
+>>>>>>> origin/main
 
 const init = async () => {
   const PORT = process.env.PORT || 3000;

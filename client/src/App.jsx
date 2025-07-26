@@ -10,7 +10,9 @@ import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProjects from "./pages/MyProjects.jsx";
 import MyProject from "./pages/MyProject";
-import Login from "./components/login.jsx";
+
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 import MyGardenBeds from "./pages/MyGardenBeds.jsx";
@@ -76,14 +78,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/newproject" element={<ProjectForm />} />
-
         <Route path="/myprojects" element={<MyProjects />} />
         <Route path="/myproject/:projectId" element={<MyProject />} />
-
         <Route path="/newgardenbed" element={<GardenBedForm />} />
-
         <Route path="/mygardenbeds" element={<MyGardenBeds />} />
         <Route path="/mygardenbed/:layoutId" element={<MyGardenBed />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

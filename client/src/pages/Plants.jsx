@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
-import "./plants.css";
+import "./Plants.css";
 
 export default function Plants() {
   const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);

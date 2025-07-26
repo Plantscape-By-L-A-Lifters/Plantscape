@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": " nodemon Server/index.js",
+    "start:dev": " nodemon server/index.js",
     "seed": "node server/db/index.js",
     "db:reset": "dropdb plantscape && createdb plantscape && npm run seed"
   },
@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.16.0",
+    "react-toastify": "^11.0.5",
     "uuid": "^11.1.0"
   }
 }

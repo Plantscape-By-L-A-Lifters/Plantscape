@@ -2,10 +2,17 @@ const express = require("express");
 const app = express.Router();
 
 const {
+<<<<<<< HEAD
   createProject,
   fetchMyProjects,
   fetchSingleProjectById,
 } = require("../db/projects");
+=======
+    createProject,
+    fetchProject,
+    fetchMyProject
+}= require('../db/Projects')
+>>>>>>> origin/main
 
 const { isLoggedIn } = require("./middleware");
 
