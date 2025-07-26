@@ -1,14 +1,24 @@
-// server/db/index.js
-const fs = require("fs").promises;
-const client = require("./client"); // Ensure this correctly imports your database client
+require("dotenv").config(); // THIS MUST BE THE VERY FIRST LINE HERE!
 
-const seed = async () => {
+const fs = require("fs").promises;
+const client = require("./client"); // Import the actual client instance
+const path = require("path");
+
+// Renamed to _seed internally to clearly show it's the core logic
+// It takes a parameter to decide if it should manage its own connection
+const _seed = async (shouldConnectAndDisconnect = true) => {
   try {
     console.log("Starting database seeding from seed.sql...");
-    await client.connect(); // Connect to the database
-    console.log("Connected to the database.");
+    // This console.log will now show the correct DATABASE_URL
+    console.log("DATABASE_URL being used:", process.env.DATABASE_URL);
 
-    const seedSqlContent = await fs.readFile("./seed.sql", "utf8");
+    if (shouldConnectAndDisconnect) {
+      await client.connect(); // Only connect if this is a standalone run
+      console.log("Connected to the database.");
+    }
+
+    const seedSqlPath = path.join(__dirname, "seed", "seed.sql");
+    const seedSqlContent = await fs.readFile(seedSqlPath, "utf8");
     await client.query(seedSqlContent);
     console.log("Data inserted from seed.sql successfully!");
   } catch (error) {
@@ -18,16 +28,28 @@ const seed = async () => {
       );
     } else {
       console.error("Error executing seed.sql:", error);
-      throw error; // Re-throw to indicate a critical seeding failure
+      throw error;
     }
   } finally {
-    await client.end(); // Disconnect from the database
-    console.log("Database seeding process complete and client disconnected.");
+    if (shouldConnectAndDisconnect) {
+      await client.end(); // Only disconnect if this was a standalone run
+      console.log("Database seeding process complete and client disconnected.");
+    }
   }
 };
 
-// This immediately invokes the seed function when the script is run
-seed().catch((err) => {
-  console.error("Fatal error during seeding:", err);
-  process.exit(1); // Exit with an error code
-});
+// Export client and the _seed function (renamed for clarity)
+module.exports = {
+  client,
+  seed: _seed, // Export it as 'seed'
+};
+
+// This block ensures _seed is called with `true` (connect/disconnect)
+// ONLY when this file is run directly (e.g., via `npm run seed`)
+if (require.main === module) {
+  _seed(true) // Run with connect/disconnect
+    .catch((err) => {
+      console.error("Fatal error during standalone seeding:", err);
+      process.exit(1);
+    });
+}

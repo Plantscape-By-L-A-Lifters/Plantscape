@@ -1,4 +1,5 @@
 require("dotenv").config(); // MUST be at the very top!
+const path = require("path");
 const fs = require("fs"); // For synchronous writeFileSync
 const fsPromises = require("fs").promises; // For promise-based readFile
 const { v4: uuidv4 } = require("uuid");
@@ -16,8 +17,8 @@ async function readCsvFile(filePath) {
 }
 
 // --- CSV File Paths ---
-const PLANTS_CSV_PATH = "./csv/plantscape - Plants.csv";
-const STYLES_CSV_PATH = "./csv/plantscape - Styles.csv";
+const PLANTS_CSV_PATH = path.join(__dirname, "csv", "plantscape - Plants.csv");
+const STYLES_CSV_PATH = path.join(__dirname, "csv", "plantscape - Styles.csv");
 
 // --- Functions for CSV parsing ---
 
@@ -527,8 +528,8 @@ CREATE TABLE fave_design(
   sqlStatements += `\n`;
 
   // Write the complete SQL SEED file
-  fs.writeFileSync("seed.sql", sqlStatements);
-  console.log('COMPLETE SQL SEED file "seed.sql" generated successfully!');
+  fs.writeFileSync(path.join(__dirname, "seed.sql"), sqlStatements);
+  console.log("seed.sql generated successfully in server/db/seed/!");
 }
 
 // Call the main function to generate the seed file
