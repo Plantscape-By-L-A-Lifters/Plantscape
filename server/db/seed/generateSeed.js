@@ -3,6 +3,9 @@ const path = require("path");
 const fs = require("fs"); // For synchronous writeFileSync
 const fsPromises = require("fs").promises; // For promise-based readFile
 const { v4: uuidv4 } = require("uuid");
+const bcrypt = require("bcrypt");
+
+const SALT_ROUNDS = 7;
 
 // Helper function to read a CSV file
 async function readCsvFile(filePath) {
@@ -236,9 +239,10 @@ CREATE TABLE fave_design(
   for (const user of users) {
     const id = uuidv4();
     userMap.set(user.username.toLowerCase(), id);
+    const hashedPassword = await bcrypt.hash(user.password, SALT_ROUNDS);
     sqlStatements += `INSERT INTO users (id, username, password, is_admin) VALUES ('${id}', '${
       user.username
-    }', '${user.password}', ${
+    }', '${hashedPassword}', ${
       user.is_admin ? "TRUE" : "FALSE"
     }) ON CONFLICT (id) DO NOTHING;\n`;
   }

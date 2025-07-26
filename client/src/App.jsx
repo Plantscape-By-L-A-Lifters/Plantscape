@@ -13,58 +13,56 @@ import Login from "./components/login.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 
-import { GardenBedProvider } from "./context/GardenBedContext";
-
 function App() {
-  const [user, setUser] = useState({});
-  const [projects, setProjects] = useState([]);
-  const navigate = useNavigate();
+  // const [user, setUser] = useState({});
+  // const [projects, setProjects] = useState([]);
+  // const navigate = useNavigate();
 
-  const getHeaders = () => {
-    return {
-      headers: {
-        authorization: window.localStorage.getItem("token"),
-      },
-    };
-  };
+  // const getHeaders = () => {
+  //   return {
+  //     headers: {
+  //       authorization: window.localStorage.getItem("token"),
+  //     },
+  //   };
+  // };
 
-  useEffect(() => {
-    const getProjects = async () => {
-      if (!user?.id) return;
-      try {
-        //console.log('Fetching projects for user ID:', user?.id) used for debugging
-        const { data } = await axios.get(`/api/projects/MyProjects/${user.id}`);
-        //console.log(data) used for debugging
-        setProjects(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProjects();
-  }, [user.id]);
+  // useEffect(() => {
+  //   const getProjects = async () => {
+  //     if (!user?.id) return;
+  //     try {
+  //       //console.log('Fetching projects for user ID:', user?.id) used for debugging
+  //       const { data } = await axios.get(`/api/projects/MyProjects/${user.id}`);
+  //       //console.log(data) used for debugging
+  //       setProjects(data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   getProjects();
+  // }, [user.id]);
 
-  const attemptLogin = async () => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      try {
-        const { data } = await axios.get("/api/authenticate/me", getHeaders());
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-        window.localStorage.removeItem("token");
-      }
-    }
-  };
+  // const attemptLogin = async () => {
+  //   const token = window.localStorage.getItem("token");
+  //   if (token) {
+  //     try {
+  //       const { data } = await axios.get("/api/authenticate/me", getHeaders());
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //       window.localStorage.removeItem("token");
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    attemptLogin();
-  }, []);
+  // useEffect(() => {
+  //   attemptLogin();
+  // }, []);
 
-  const logout = () => {
-    window.localStorage.removeItem("token");
-    setUser({});
-    navigate("/");
-  };
+  // const logout = () => {
+  //   window.localStorage.removeItem("token");
+  //   setUser({});
+  //   navigate("/");
+  // };
 
   return (
     <>
@@ -73,11 +71,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
         <Route path="/quiz" element={<StyleQuiz />} />
-        <Route path="/login" element={<Login attemptLogin={attemptLogin} />} />
-        <Route
-          path="/profile"
-          element={<MyProfile user={user} projects={projects} />}
-        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<MyProfile />} />
         <Route path="/newproject" element={<ProjectForm />} />
         <Route path="/myproject" element={<MyProject />} />
         <Route

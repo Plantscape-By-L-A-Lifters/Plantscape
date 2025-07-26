@@ -27,40 +27,6 @@ export default function Plants() {
           )}
         </ul>
         <div>
-          <ul>
-            <li>
-              Cedar sedge
-              <img src="/cedar-sedge.jpg" alt="cedar_sedge" />
-            </li>
-            <li>
-              Corn flowers
-              <img src="/corn_flowers.jpeg" alt="corn_flowers" />
-            </li>
-            <li>
-              Elephant Ears
-              <img src="/Elephant-Ear.jpeg" alt="Elephant-Ear" />
-            </li>
-            <li>
-              Lavender
-              <img src="/lavender.jpeg" alt="lavender" />
-            </li>
-            <li>
-              Foam flowers
-              <img src="/foam flower.jpeg" alt="foamflower" />
-            </li>
-            <li>
-              Halone grass
-              <img src="/hakone_grass.jpeg" alt="hakone_grass" />
-            </li>
-            <li>
-              Lamb's Ears
-              <img src="/lamb's ear.jpeg" alt="lamb's ear" />
-            </li>
-            <li>
-              Tea Roses
-              <img src="/roses.jpeg" alt="roses" />
-            </li>
-          </ul>
           <br></br>
           <h2>Characteristics </h2>
           <ul>
@@ -81,7 +47,7 @@ export default function Plants() {
           </ul>
           <br></br>
           <footer>
-            <p>© 2025 Gardenia.net. All rights reserved.</p>
+            <p></p>
           </footer>
         </div>
       </div>

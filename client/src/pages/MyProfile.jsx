@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { UserContext } from "../context/UserContext";
+import { ProjectContext } from "../context/ProjectContext";
 import "./myprofile.css";
 
-export default function MyProfile({ user, projects }) {
+export default function MyProfile() {
+  const { user } = useContext(UserContext);
+  const { projects, getProjects, addProject } = useContext(ProjectContext);
   return (
     <div className="myprofile-container">
       <h1>Welcome {user?.username}</h1>
