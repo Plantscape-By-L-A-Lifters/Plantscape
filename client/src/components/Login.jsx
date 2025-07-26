@@ -43,12 +43,24 @@ function Login() {
       <form onSubmit={login}>
         <label>
           Username:
-          <input type="text" name="username" />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            autoComplete="username"
+            required
+          />
         </label>
         <br />
         <label>
           Password:
-          <input type="password" name="password" />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autoComplete="current-password"
+            required
+          />
         </label>
         <br />
         <button type="submit">Login</button>

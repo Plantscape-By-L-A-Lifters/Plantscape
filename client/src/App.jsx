@@ -8,10 +8,12 @@ import Plants from "./pages/Plants";
 import StyleQuiz from "./pages/StyleQuiz";
 import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
+import MyProjects from "./pages/MyProjects.jsx";
 import MyProject from "./pages/MyProject";
 import Login from "./components/login.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
+import MyGardenBeds from "./pages/MyGardenBeds.jsx";
 
 function App() {
   // const [user, setUser] = useState({});
@@ -66,7 +68,7 @@ function App() {
 
   return (
     <>
-      <Navbar user={user} logout={logout} />
+      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
@@ -74,14 +76,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/myproject" element={<MyProject />} />
-        <Route
-          path="/projects"
-          element={<MyProject projects={projects} setProjects={setProjects} />}
-        />{" "}
-        //CCRUZ: Justin, lets coordinate on the project state duplicate
+
+        <Route path="/myprojects" element={<MyProjects />} />
+        <Route path="/myproject/:projectId" element={<MyProject />} />
+
         <Route path="/newgardenbed" element={<GardenBedForm />} />
-        <Route path="/mygardenbed" element={<MyGardenBed />} />
+
+        <Route path="/mygardenbeds" element={<MyGardenBeds />} />
+        <Route path="/mygardenbed/:layoutId" element={<MyGardenBed />} />
       </Routes>
     </>
   );

@@ -3,7 +3,7 @@ import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./plants.css";
 
 export default function Plants() {
-  const { plantCatalog } = useContext(PlantCatalogContext);
+  const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);
   // console.log("full plant catalog", plantCatalog);
   return (
     <div className="plants-container">
@@ -11,22 +11,24 @@ export default function Plants() {
         <h1>Creating Your Dream Garden </h1>
         <p>Select A Plant!</p>
         <br></br>
-        <ul>
-          {plantCatalog.length > 0 ? (
-            plantCatalog.map((plant) => {
-              console.log("each plant", plant.plant_name, plant.image_url);
+        {loadingPlants ? ( // Show loading state
+          <p>Loading plants...</p>
+        ) : plantCatalog.length > 0 ? (
+          <ul>
+            {plantCatalog.map((plant) => {
+              // console.log("each plant", plant.plant_name, plant.image_url); // Keep for debugging if needed
               return (
                 <li key={plant.id}>
                   {plant.plant_name || "Unnamed Plant"}
                   <img src={plant.image_url} alt={plant.plant_name} />
                 </li>
               );
-            })
-          ) : (
-            <p>No plant found</p>
-          )}
-        </ul>
-        <div>
+            })}
+          </ul>
+        ) : (
+          <p>No plants found in the catalog.</p> // Message if catalog is empty after loading
+        )}
+        {/* <div>
           <br></br>
           <h2>Characteristics </h2>
           <ul>
@@ -49,7 +51,7 @@ export default function Plants() {
           <footer>
             <p></p>
           </footer>
-        </div>
+        </div> */}
       </div>
     </div>
   );

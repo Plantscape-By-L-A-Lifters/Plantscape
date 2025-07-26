@@ -217,32 +217,33 @@ const fetchLayoutsById = async (id) => {
   return layout;
 };
 
+//This would fetch all plants garden bed layouts regardless of user or logged in status.. this is a start for a future service of sharing public and private projects/gardenbeds
 // fetchPlantLayout (NEW - moved from plant_layout.js)
-const fetchPlantLayout = async () => {
-  const SQL = `
-    SELECT id, plant_id, layout_id, x_coord, y_coord, diameter, height
-    FROM plant_layout
-    `;
-  const response = await client.query(SQL);
-  return response.rows;
-};
+// const fetchPlantLayout = async () => {
+//   const SQL = `
+//     SELECT id, plant_id, layout_id, x_coord, y_coord, diameter, height
+//     FROM plant_layout
+//     `;
+//   const response = await client.query(SQL);
+//   return response.rows;
+// };
 
-// fetchPlantLayoutById (NEW - moved from plant_layout.js)
-const fetchPlantLayoutById = async (id) => {
-  const SQL = `
-    SELECT id, plant_id, layout_id, x_coord, y_coord, diameter, height
-    FROM plant_layout
-    WHERE id = $1
-    `;
-  const response = await client.query(SQL, [id]);
-  return response.rows[0];
-};
+//this route is likely not needed for frontend, and would need strong security additions. so commenting it out for now
+// const fetchPlantLayoutById = async (id) => {
+//   const SQL = `
+//     SELECT id, plant_id, layout_id, x_coord, y_coord, diameter, height
+//     FROM plant_layout
+//     WHERE id = $1
+//     `;
+//   const response = await client.query(SQL, [id]);
+//   return response.rows[0];
+// };
 
 module.exports = {
   createLayout,
   fetchLayouts,
   fetchLayoutsById,
   createPlantLayout, // Now handles x_coord, y_coord, diameter, height
-  fetchPlantLayout, // New export
-  fetchPlantLayoutById, // New export
+  // fetchPlantLayout,
+  // fetchPlantLayoutById,
 };

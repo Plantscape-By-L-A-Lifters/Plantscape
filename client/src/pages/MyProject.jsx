@@ -4,7 +4,6 @@ import { UserContext } from "../context/UserContext"; // Adjust path if your con
 import { ProjectContext } from "../context/ProjectContext"; // Adjust path
 import { GardenBedContext } from "../context/GardenBedContext"; // Keep if needed for garden beds
 
-// Renamed from 'Results' to 'MyProject' for clarity based on file name
 const MyProject = () => {
   // Destructure necessary values from contexts
   const { user } = useContext(UserContext);
@@ -15,24 +14,24 @@ const MyProject = () => {
     setActiveProjectId, // Function to set the active project ID (optional)
   } = useContext(ProjectContext);
 
-  // If you still need GardenBedContext for this component:
   const {
-    /* garden bed related state/functions */
+    gardenBeds, // List of garden beds for the current project
+    fetchGardenBedsForProject, // Function to fetch beds for the current project
+    loadingGardenBeds, // Loading state for garden beds
   } = useContext(GardenBedContext);
 
   // Get the project ID from the URL parameters
-  // Assuming your route is something like <Route path="/myproject/:projectId" element={<MyProject />} />
   const { projectId } = useParams();
 
-  // useEffect to fetch the specific project when the component mounts or projectId changes
   useEffect(() => {
     // Determine which project ID to fetch: URL param has priority, then activeProjectId
     const idToFetch = projectId || activeProjectId;
 
     if (idToFetch && user?.id) {
       // Ensure we have an ID and a logged-in user
+      // 1. Fetch the detailed project
       fetchProject(idToFetch);
-      // Optional: If the URL param is different from activeProjectId, update activeProjectId
+      // 2. Update activeProjectId if URL param is different (optional, for consistency)
       if (projectId && projectId !== activeProjectId) {
         setActiveProjectId(projectId);
       }
@@ -42,7 +41,15 @@ const MyProject = () => {
       );
       // Optionally redirect or show a message if no project ID is available
     }
-  }, [projectId, activeProjectId, user?.id, fetchProject, setActiveProjectId]); // Add fetchProject to deps
+  }, [projectId, activeProjectId, user?.id, fetchProject, setActiveProjectId]);
+
+  // Effect to fetch garden beds once the currentEditingProject is loaded
+  useEffect(() => {
+    // Only fetch garden beds if currentEditingProject is available
+    if (currentEditingProject?.id) {
+      fetchGardenBedsForProject();
+    }
+  }, [currentEditingProject?.id, fetchGardenBedsForProject]); // Dependency on currentEditingProject.id and the fetch function
 
   // --- Render Logic ---
   if (!user.id) {
@@ -54,31 +61,40 @@ const MyProject = () => {
     return <div>Loading project details...</div>;
   }
 
-  // Display the detailed project information
   return (
     <div>
       <h2>My Project: {currentEditingProject.project_name}</h2>
       <p>Project ID: {currentEditingProject.id}</p>
-      <p>Owner: {user.username}</p> {/* Display owner from UserContext */}
-      {/* Display other project details from currentEditingProject */}
+      <p>Owner: {user.username}</p>
       {currentEditingProject.description && (
         <p>Description: {currentEditingProject.description}</p>
       )}
-      {/* Add more details of the project as needed */}
+
       <h3>Garden Beds:</h3>
-      {/*
-        Map through garden beds here.
-        You'll need to ensure currentEditingProject includes garden bed data,
-        or fetch garden beds separately using GardenBedContext if they are related to currentEditingProject.
-        Example: currentEditingProject.gardenBeds.map(...)
-      */}
-      <p>
-        (Garden bed mapping will go here once garden beds have a dynamic link
-        with :id or are part of the project object)
-      </p>
+      {loadingGardenBeds ? (
+        <div>Loading garden beds...</div>
+      ) : gardenBeds.length === 0 ? (
+        <div>No garden beds found for this project.</div>
+      ) : (
+        <ul>
+          {gardenBeds.map((bed) => (
+            <li key={bed.id}>
+              <Link to={`/mygardenbed/${bed.id}`}>
+                {bed.layout_name} (Size: {bed.bedSize.bedLength}x
+                {bed.bedSize.bedDepth})
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
       <Link to="/newgardenbed">Add New Garden Bed</Link>
-      {/* <Link to={`/mygardenbed/${/garden_bed_id/}`}>View Garden Bed</Link>*/}
-      {/* Add buttons or forms for editing the project */}
+      {/*
+        The link below is an example for navigating to a specific garden bed.
+        The exact path and how you pass the ID depends on your routing setup.
+        <Link to={`/mygardenbed/${currentEditingGardenBed.id}`}>View Garden Bed</Link>
+      */}
+
       <button
         onClick={() => console.log("Implement edit project functionality")}
       >
@@ -89,4 +105,4 @@ const MyProject = () => {
   );
 };
 
-export default MyProject; // Export as MyProject
+export default MyProject;
