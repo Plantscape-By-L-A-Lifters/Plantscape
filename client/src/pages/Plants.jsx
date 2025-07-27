@@ -3,7 +3,7 @@ import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./Plants.css";
 
 export default function Plants() {
-  const { plantCatalog } = useContext(PlantCatalogContext);
+  const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);
   // console.log("full plant catalog", plantCatalog);
   return (
     <div className="plants-container">
@@ -11,80 +11,24 @@ export default function Plants() {
         <h1>Creating Your Dream Garden </h1>
         <p>Select A Plant!</p>
         <br></br>
-        <div>
-          {plantCatalog.length > 0 ? (
-            plantCatalog.map((plant) => {
-              // console.log("each plant", plant.name, plant.id);
-              return (
-                <div key={plant.id} className="plantContainer">
-                  <h3>{plant.plant_name || "Unnamed Plant"}</h3>
-                </div>
-              );
-            })
-          ) : (
-            <p>No plant found</p>
-          )}
-        </div>
-        {/* CCRUZ: THIS WAS MY ATTEMPT AT GETTING THE IMAGES TO MAP, BUT THE FILE NAMING WASN'T STANDARDIZED SO IT DIDN'T WORK.
-        Keeping it as an example for future use - DELETE WHEN READY.
-        <div className="plant-list">
-          {plantCatalog.map((plant) => {
-            const imgUrl = getImageUrl(plant.plant_name, {
-              cloudName: "dprixcop0", // or your actual Cloudinary cloud name
-            });
-
-            return (
-              <div key={plant.id} className="plant-card">
-                <img
-                  src={imgUrl}
-                  alt={plant.plant_name}
-                  style={{
-                    width: "150px",
-                    height: "150px",
-                    objectFit: "cover",
-                  }}
-                />
-                <h3>{plant.plant_name}</h3>
-                <p>{plant.plant_type}</p>
-              </div>
-            );
-          })}
-        </div> */}
-        <div>
+        {loadingPlants ? ( // Show loading state
+          <p>Loading plants...</p>
+        ) : plantCatalog.length > 0 ? (
           <ul>
-            <li>
-              Cedar sedge
-              <img src="/cedar-sedge.jpg" alt="cedar_sedge" />
-            </li>
-            <li>
-              Corn flowers
-              <img src="/corn_flowers.jpeg" alt="corn_flowers" />
-            </li>
-            <li>
-              Elephant Ears
-              <img src="/Elephant-Ear.jpeg" alt="Elephant-Ear" />
-            </li>
-            <li>
-              Lavender
-              <img src="/lavender.jpeg" alt="lavender" />
-            </li>
-            <li>
-              Foam flowers
-              <img src="/foam flower.jpeg" alt="foamflower" />
-            </li>
-            <li>
-              Halone grass
-              <img src="/hakone_grass.jpeg" alt="hakone_grass" />
-            </li>
-            <li>
-              Lamb's Ears
-              <img src="/lamb's ear.jpeg" alt="lamb's ear" />
-            </li>
-            <li>
-              Tea Roses
-              <img src="/roses.jpeg" alt="roses" />
-            </li>
+            {plantCatalog.map((plant) => {
+              // console.log("each plant", plant.plant_name, plant.image_url); // Keep for debugging if needed
+              return (
+                <li key={plant.id}>
+                  {plant.plant_name || "Unnamed Plant"}
+                  <img src={plant.image_url} alt={plant.plant_name} />
+                </li>
+              );
+            })}
           </ul>
+        ) : (
+          <p>No plants found in the catalog.</p> // Message if catalog is empty after loading
+        )}
+        {/* <div>
           <br></br>
           <h2>Characteristics </h2>
           <ul>
@@ -105,9 +49,9 @@ export default function Plants() {
           </ul>
           <br></br>
           <footer>
-            <p>© 2025 Gardenia.net. All rights reserved.</p>
+            <p></p>
           </footer>
-        </div>
+        </div> */}
       </div>
     </div>
   );

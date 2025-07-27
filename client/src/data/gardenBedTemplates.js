@@ -51,8 +51,6 @@ export const gardenBedTemplates = [
         height: 5,
         x: 2, //length/2-2*diameter
         y: 1, //tallest plant goes in back, so, just diameter/2
-        color: "#6FC500",
-        accent_color: "",
       },
       //next row loops through next tallest plant
       {

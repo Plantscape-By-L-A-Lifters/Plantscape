@@ -1,73 +1,52 @@
-// CCRUZ: Currently not using context for user state.  here is a starting point if we want to incorporate it in the future.
+import { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-// import { createContext, useState, useEffect } from "react";
-// import axios from "axios";
+export const UserContext = createContext();
 
-// export const UserContext = createContext();
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({}); // will hold { id, email, isAdmin, ... }
+  const navigate = useNavigate();
 
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState(null); // will hold { id, email, isAdmin, ... }
-//   const [loading, setLoading] = useState(true);
+  const getHeaders = () => {
+    const token = window.localStorage.getItem("token");
+    // Return an object with headers if token exists, otherwise an empty object
+    // This prevents sending 'undefined' as authorization header
+    return token ? { headers: { authorization: token } } : {};
+  };
 
-//   const isAuthenticated = !!user;
-//   const isAdmin = user?.isAdmin || false;
+  const attemptLogin = async () => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      try {
+        const { data } = await axios.get("/api/authenticate/me", getHeaders());
+        setUser(data);
+      } catch (error) {
+        console.error("Authentication failed:", error); // Use console.error for errors
+        window.localStorage.removeItem("token");
+        setUser({}); // Clear user on auth failure
+      }
+    }
+  };
 
-//   // Optional: auto-fetch logged in user if token/session exists
-//   useEffect(() => {
-//     const fetchUser = async () => {
-//       try {
-//         const { data } = await axios.get("/api/me");
-//         setUser(data);
-//       } catch (err) {
-//         console.warn("User not logged in", err);
-//         setUser(null);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
+  useEffect(() => {
+    attemptLogin();
+  }, []); //Runs once on mount
 
-//     fetchUser();
-//   }, []);
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    setUser({}); // Clear user state
+    navigate("/"); // Redirect to home page
+  };
 
-//   const logoutUser = async () => {
-//     try {
-//       await axios.post("/api/logout");
-//       setUser(null);
-//     } catch (err) {
-//       console.error("Logout failed", err);
-//     }
-//   };
+  // Provide all necessary values to consumers
+  return (
+    <UserContext.Provider
+      value={{ user, setUser, attemptLogin, logout, getHeaders }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+};
 
-//   return (
-//     <UserContext.Provider
-//       value={{
-//         user,
-//         setUser,
-//         isAuthenticated,
-//         isAdmin,
-//         loading,
-//         logoutUser,
-//       }}
-//     >
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-
-//USAGE IN COMPONENTS - EXAMPLE:
-// import { useContext } from "react";
-// import { UserContext } from "../context/UserContext";
-
-// const Dashboard = () => {
-//   const { user, isAdmin, isAuthenticated, logoutUser } = useContext(UserContext);
-
-//   if (!isAuthenticated) return <p>Please log in</p>;
-
-//   return (
-//     <div>
-//       <h1>Welcome, {user.name}</h1>
-//       {isAdmin && <p>You have admin privileges</p>}
-//       <button onClick={logoutUser}>Log out</button>
-//     </div>
-//   );
-// };
+export default UserProvider;

@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import './navbar.css';
+import { UserContext } from "../context/UserContext";
+import "./navbar.css";
 
-export default function Navbar({ user, logout }) {
+export default function Navbar() {
+  const { user, logout } = useContext(UserContext);
   return (
     <nav className="navbar">
       {user?.id ? (
