@@ -1,4 +1,4 @@
--- SQL SEED File generated on 2025-07-26T04:06:19.177Z
+-- SQL SEED File generated on 2025-07-27T04:56:01.554Z
 
 
 DROP TABLE IF EXISTS projects CASCADE;
@@ -95,14 +95,14 @@ CREATE TABLE fave_design(
 
 
 -- Users Inserts
-INSERT INTO users (id, username, password, is_admin) VALUES ('22575560-a367-42e3-9bf0-49a5a7c8ddbc', 'Justin', '$2b$07$bwxQezgDuM4J73FwG/IC8uWpwoXLA4eRJzhICoLPDRIu5NKhltCaa', TRUE) ON CONFLICT (id) DO NOTHING;
-INSERT INTO users (id, username, password, is_admin) VALUES ('069ea174-5ecb-4703-85c2-49c7286d93bc', 'Chelsea', '$2b$07$01JzaT4Ax.Qz99jgbwNtx.NdZPEXqlLyYVo9T7ubA7nyfYL6w6xBS', TRUE) ON CONFLICT (id) DO NOTHING;
-INSERT INTO users (id, username, password, is_admin) VALUES ('210954a1-1d49-4fec-a81f-92738276115f', 'Callen', '$2b$07$GQ4Hth7jH35ilu0ewm9bzemDFMPuG3AqNQHYUpZ7j5wgXGudsqzM2', TRUE) ON CONFLICT (id) DO NOTHING;
-INSERT INTO users (id, username, password, is_admin) VALUES ('3b982c64-4293-48e3-a9cb-bc98e0df3e5b', 'Ellie', '$2b$07$GZzWuQ3b/idlvUSmsL9uLOsLGYlsz6s7h4R099ikEVuYnnMfdcr2u', TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO users (id, username, password, is_admin) VALUES ('78a014bd-35fb-49f4-877f-8c8a1dc510ff', 'Justin', '$2b$07$i38oShQ2oR0XQ.7JzrQFj.aVIXJeAma.aREWSnosP28lvZ1q/cvAa', TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO users (id, username, password, is_admin) VALUES ('8fb79eca-5262-4d99-9e29-9afc283cb5f8', 'Chelsea', '$2b$07$6x1o2yo9NjXN3eh/51LxWeDou4p.vSLYeGaT0Y0TdoPbF7AA0TjXu', TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO users (id, username, password, is_admin) VALUES ('85b7edfd-d0be-4156-933a-40004a3c38c5', 'Callen', '$2b$07$Q7la.MWknYpVOjchFiv87ek3kwEStrZDIlW1CsCCLfWpeVYRm57ZC', TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO users (id, username, password, is_admin) VALUES ('08f778c7-b10a-4d1b-bee1-4f8635233da3', 'Ellie', '$2b$07$6yIjU7pSdt24F9fq2vtkUup2JLZwG/VXLwUI8Po7vkfRTV.Dj1AT.', TRUE) ON CONFLICT (id) DO NOTHING;
 
 -- Designs Inserts
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  '213f3124-3729-4bae-af4f-43b720e6b5df',
+  'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc',
   'modern minimalism',
   'A sleek, refined space defined by sculptural plants, white space, and minimal materials. Focused on balance, simplicity, and restraint.',
   'A Modern Minimalism garden distills modern design to its purest form. It emphasizes sculptural simplicity, white space, and deliberate restraint in both planting and materials. With sparse, architectural elements and a limited palette, the space feels quiet and refined. Negative space is used as intentionally as the plantings, celebrating geometry, balance, and thoughtful reduction.',
@@ -110,7 +110,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  'ea3e1e8e-0d00-4b96-ac7e-571dd1708518',
+  'cb520214-6747-4ce4-81d3-305a13c780aa',
   'modern lush',
   'Blends modern structure with rich, dense planting. A limited palette and strong forms create rhythm and depth, achieving a lush, immersive feel without visual clutter.',
   'A Modern Lush garden blends the clean lines and structured aesthetic of modern design with rich, textural planting. While maintaining asymmetry and abstraction, this style embraces fullness—layering dense foliage and masses of plants to create a continuous visual rhythm. It incorporates restraint through a curated color palette and thoughtful repetition, achieving a lush, immersive effect without visual clutter. The result is a sophisticated, tactile space where structure meets abundance.',
@@ -118,7 +118,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  '13bd400e-c849-4d28-b73e-54e7d1b7cc19',
+  '5ef09090-a44d-4067-bf69-474d2c639d6a',
   'classical',
   'Emphasizes symmetry, order, and geometry with manicured lawns, sculpted shrubs, and a restrained palette. Formal structure and repetition create timeless elegance.',
   'A Classical garden emphasizes structure, balance, and timeless elegance. Rooted in symmetry and formal hierarchy, this style features linear layouts, geometric planting patterns, and meticulously defined borders—often through evergreen hedges or hardscaping that remain present year-round. Gardens are typically curated around a formal path system that leads the eye toward focal points such as fountains, sculptures, or neatly clipped topiary. Plantings follow a limited color palette, typically favoring greens and whites, with repetition and order reinforcing a sense of calm and control. Manicured lawns, sculpted shrubs, and ornamental elements lend a sense of refinement and grandeur.',
@@ -126,7 +126,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  'ea911dc9-eb50-4809-bd8b-f1202cce3f17',
+  '84d03225-a2f4-411b-9b19-cd5e31f49bed',
   'cottage',
   'A colorful, romantic garden filled with densely layered flowers and herbs. Informal and abundant, it blends ornament and utility with personal charm.',
   'While it shares the wild charm and informality of a naturalistic garden, the Cottage garden adds a distinctly romantic and curated flair. Overflowing with color, scent, and personality, this style mixes edible and ornamental plants in a dense, layered fashion that feels spontaneous but often reflects human intention. Cottage gardens typically favor traditional favorites—roses, herbs, and self-seeding perennials—arranged in a way that suggests abundance and lived-in comfort. Unlike naturalistic gardens, which aim to mimic native ecosystems, cottage gardens lean into nostalgic beauty and personal expression, with a looser relationship to ecological function.',
@@ -134,7 +134,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  'abdda3fe-350a-471b-ab82-c4c2e38326de',
+  '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c',
   'naturalistic',
   'A relaxed, organic garden inspired by native landscapes. Flowing plant groupings and natural materials create a vibrant, ever-changing space full of life and movement.',
   'A Naturalistic garden embraces the untamed beauty of nature, blurring the boundary between cultivated space and wild landscape. Inspired by native ecosystems—from sun-drenched prairies to shaded woodlands—this style prioritizes biodiversity, habitat creation, and ecological harmony. Plants are arranged in loose, organic patterns that mimic natural plant communities, with clumped or scattered groupings and no formal hierarchy. Materials like stone, wood, and gravel blend seamlessly into the environment, while color, texture, and form follow the rhythms of the surrounding landscape. Whether open and airy or densely layered, naturalistic gardens evolve with the seasons and invite both people and wildlife into a living, dynamic space.',
@@ -142,7 +142,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  '3908995b-a170-49ea-93ec-e01556056b16',
+  '853d88c2-ea4f-4fb9-b4ef-f7854d871337',
   'naturalistic woodland',
   'Shade-loving native plants arranged in soft layers under trees. Inspired by forest floors, it feels quiet, textured, and seasonal.',
   'Shaded and serene, the Woodland naturalistic garden draws inspiration from forest understories and dappled glades. Plantings emphasize shade-loving natives such as ferns, groundcovers, woodland grasses, and spring ephemerals, arranged in loose layers that follow the natural contours of the land. Trees and understory shrubs provide vertical structure, while mosses, leaf litter, and natural stone pathways create a grounded, organic feel. Designed to feel untouched and timeless, this garden thrives in full to partial shade and encourages seasonal shifts, from early spring blooms to the golden tones of fall.',
@@ -150,7 +150,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
-  '9f740bed-c308-4099-aed4-e42b7e042dd8',
+  '0a1b7ed3-052e-4514-977a-28da75117f42',
   'naturalistic prairie',
   'Sun-loving grasses and wildflowers arranged in natural drifts. A dynamic, low-intervention garden full of movement, color, and habitat value.',
   'Expansive, sun-filled, and dynamic, the Prairie naturalistic garden mimics the beauty and resilience of native grasslands. Tall and short grasses—such as little bluestem or switchgrass—sway among vibrant wildflowers in irregular, intermingled groupings. Designed for full sun and open exposure, this style values movement, pollinator support, and long-season interest. Drifts of color, clumps of texture, and soft transitions between plants create a living tapestry that changes daily. Hardscaping is minimal, allowing the planting palette and the play of wind and light to take center stage.',
@@ -159,7 +159,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
 
 -- Plants Inserts
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'a852e93f-b0c2-4d15-98ea-fc96f55bc2b4',
+  '9a38f7c7-789c-4e72-8a68-a386c23897ff',
   'prairie acacia',
   NULL,
   'acacia angustissima',
@@ -177,7 +177,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '0e7dddbb-ebdc-4e94-9450-f16a39da6828',
+  'e94812bc-f3b3-4631-b878-d3f1c5acddd6',
   'splitbeard bluestem',
   NULL,
   'andropogon ternarius',
@@ -195,7 +195,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'aade954c-da18-48c2-90da-5f77b45c9a07',
+  'b5551d3b-2e60-4107-a5c7-cf6a680dc11e',
   'false boneset',
   'brickellbush',
   'brickellia eupatorioides',
@@ -213,7 +213,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '84a0b1e4-74f1-4102-a026-8ca5f4f35185',
+  '056956fd-625b-4ac9-8e2c-2420a82f9fb0',
   'cedar sedge',
   NULL,
   'carex planostachys',
@@ -231,7 +231,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'c39f1378-ed04-46f2-82f8-eae235ccc6c7',
+  '4b0e2de5-1254-4211-943d-438e56df7be4',
   'hairy sunflower',
   'rough sunflower',
   'helianthus hirsutus',
@@ -249,7 +249,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '43dab1a9-0736-4331-84d6-6ad4859b6db2',
+  '412222b9-7fce-45ea-a607-1ae8e8158d1e',
   'elephant ear',
   NULL,
   'colocasia esculenta',
@@ -267,7 +267,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '238ecc8b-d8d5-4e96-9bb0-0fca3873ceaa',
+  'aa62ce68-0911-4dc4-8de1-3eae050d7ba2',
   'foxtail fern',
   'asparagus fern',
   'asparagus aethiopicus',
@@ -285,7 +285,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'af85ae84-5dbc-4c63-bfff-d756b5ce5583',
+  '845f87f4-8901-4863-a3a2-721341b434d9',
   'pink muhly grass',
   NULL,
   'muhlenbergia capillaris',
@@ -303,7 +303,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '39b6475b-5dbe-407c-ac33-fc524b95ffb1',
+  '59e27d0a-6282-4dae-9954-bd1575606c5d',
   'boxwood',
   NULL,
   'buxus spp.',
@@ -321,7 +321,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '7220b937-11e6-4e9c-b9f9-82a5c96193bb',
+  '8c1d591b-5037-42d0-b625-81c69c3a6c9f',
   'hybrid tea roses',
   NULL,
   'rosa spp.',
@@ -339,7 +339,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '84a609b6-81c5-44b6-bac5-2403aa74df49',
+  '82ae6680-901c-46d4-9bad-584cb0cb36ac',
   'lavender',
   NULL,
   'lavendula spp.',
@@ -357,7 +357,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '5a3b8fe3-af36-4f49-b424-48d8d93d8382',
+  '3ae1cab3-d3cb-4963-8706-d6028068be94',
   'hydrangeas',
   'big daddy',
   'hydrangea macrophylla',
@@ -375,7 +375,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'bfbc7208-fe65-4781-a49e-b7356f4fb18e',
+  '9cdef5a7-ee31-49b1-93cf-77731fac839a',
   'lambs ear',
   NULL,
   'stachys byzantina',
@@ -393,7 +393,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '37902125-8575-4bc2-9038-3a3834a122e9',
+  '42ad1c53-aa10-494f-9184-c0dde7a81f70',
   'cat''s pajamas catmint',
   NULL,
   'epeta',
@@ -411,7 +411,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'ed8dcc41-7e3c-4667-b277-0772edb26c59',
+  'c07cfda2-9193-4eb0-afc1-5bd4303892ab',
   'coneflowers',
   NULL,
   'centaurea cyanus',
@@ -429,7 +429,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'fb74003c-b8d2-4008-a0af-d8f35e93cf80',
+  'afe6e697-9296-4aa2-96b7-54998efc1e85',
   'hakone grass',
   'aurelia',
   'hakonechloa macra',
@@ -447,7 +447,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '97613806-d0d9-4f55-91d0-c8857d753ff3',
+  'bab67fe6-4afa-4dfa-a896-effe1421128f',
   'siberian bugloss',
   'jack frost',
   'brunnera macrophylla',
@@ -465,7 +465,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '26977d0f-7571-4f0d-a77d-2c47dd0c2c7a',
+  '69a88eb6-1112-40c9-bcf3-a6481d2f1f9f',
   'hellebore',
   NULL,
   'helleborus x nigercors',
@@ -483,7 +483,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'd505e982-8323-4fcc-a2c8-de09e2c4af35',
+  'c2d8fa32-ac33-4afa-8b32-503e6106ea18',
   'chinese silver grass',
   NULL,
   'miscanthus sinensis',
@@ -501,7 +501,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '37dd5c45-2d44-4a6c-9867-3add8a20386f',
+  '0133cd46-4964-4fa8-b084-e301092d80d8',
   'century plant',
   NULL,
   'agave americana',
@@ -519,7 +519,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'e5197b88-3050-4d73-a99e-da81c1700547',
+  '0f211d36-6832-4ebd-846a-7cca014457f2',
   'inland sea oats',
   NULL,
   'chasmanthium latifolium',
@@ -537,7 +537,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '8f2e6bbb-9fdf-4cdb-ad41-fa69bfdcd0ac',
+  'cc074d02-11bd-4650-8f65-4856cc000885',
   'lavender cotton',
   NULL,
   'santolina chamaecyparissus',
@@ -555,7 +555,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '8d8304a6-6cb3-4a9a-9276-76488891cdcf',
+  'c4a35109-de4c-4b77-8e51-08787288f7c8',
   'japanese painted fern',
   NULL,
   'athyrium niponicum var. pictum',
@@ -573,7 +573,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'c07ec418-1cc2-4491-8e3b-a76ba437f19d',
+  '1624d30d-3ab3-4bf9-a022-a31f84af99be',
   'hosta ''formal attire''',
   NULL,
   'plantain lilies',
@@ -591,7 +591,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '94c4903a-a756-4059-8cb2-d632a5e85e97',
+  '393fdb96-bbd5-4fa3-9ea5-3759fe282372',
   'astilbe',
   NULL,
   'astilbe',
@@ -609,7 +609,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'fd6b0991-b429-43c7-8b3d-2a648f4daf92',
+  'cba18a87-d267-4814-820b-894a635968ba',
   'heuchera ''bella notte''',
   'coral bells, bella notte',
   'bella notte',
@@ -627,7 +627,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '70627b83-8d67-4602-b0a3-d48c6a60f64a',
+  '23fbedc1-a9ea-4452-9e65-d79b95d89e5f',
   'foamflower',
   NULL,
   'tiarella cordifolia',
@@ -645,7 +645,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '20f2afe3-9d52-4807-a18f-a23158f04215',
+  'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37',
   'spreading plum yew',
   'spreading japanese plum yew',
   'cephalotaxus harringtonia ''prostrata''',
@@ -663,7 +663,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'f683c515-e1d2-406f-bb3d-82c3147c0fe9',
+  '59abfa2e-cce9-430b-b74f-9c55944a0123',
   'anacacho orchid tree',
   NULL,
   'bauhinia lunarioides',
@@ -681,7 +681,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '26b55457-8e9e-4e77-882c-09e9d8307b91',
+  '2bd7a759-c672-4757-8163-564e37522e0b',
   'teresa''s texas sage',
   NULL,
   'salvia greggii ''teresa''',
@@ -699,7 +699,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '15eb72a4-ef0e-4e93-b04c-41b2f608c650',
+  'cfa8f575-3fba-4dea-bd4f-e876b2868bee',
   'blackfoot daisy',
   NULL,
   'melampodium leucanthum',
@@ -717,7 +717,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '550d1b56-81bb-4e80-94f0-66fd9d0c7127',
+  'c96a76ab-041b-4447-99c5-01e24c3a7432',
   'flame acanthus',
   NULL,
   'anisacanthus quadrifidus',
@@ -735,7 +735,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'e88f8339-d195-4bf8-ab44-0237f0f55f44',
+  '9680ba83-bc72-4af7-86ca-b29152d51bf2',
   'mealy blue sage',
   NULL,
   'salvia farinacea',
@@ -753,7 +753,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '964ca2f2-5e5e-498e-bbaf-90ce9a2ba228',
+  '3864bfd1-9781-4dee-83c2-58e5ded466b8',
   'texas sotol',
   NULL,
   'dasylirion texanum',
@@ -771,7 +771,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  'd0fdc076-8b92-46b1-a65d-b919dec14029',
+  '24d9a7c0-5695-490a-b0f0-8522482ea5f5',
   'white autumn sage',
   NULL,
   'salvia greggii ‘white’',
@@ -789,7 +789,7 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_form, is_toxic, sun_requirements, height_min_ft, height_max_ft, width_min_ft, width_max_ft, seasonal_interest, primary_color, accent_color, image_url) VALUES (
-  '738d015d-5f93-4000-a926-476f0b7a31a3',
+  '12c8a019-45bf-4e68-88c0-60ed7ae77c03',
   'mexican feathergrass',
   NULL,
   'nassella tenuissima',
@@ -807,227 +807,227 @@ INSERT INTO plants (id, plant_name, other_common_names, technical_name, growth_f
 ) ON CONFLICT (id) DO NOTHING;
 
 -- plant_Design_Types Inserts
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e25daafe-721f-4d5e-85a8-020de5a5557c', 'a852e93f-b0c2-4d15-98ea-fc96f55bc2b4', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('914418dc-7211-47e9-8486-e8f7e3ea2f9f', 'a852e93f-b0c2-4d15-98ea-fc96f55bc2b4', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b5f58ff6-4f0c-4e67-8f5e-94892670687e', 'a852e93f-b0c2-4d15-98ea-fc96f55bc2b4', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('943772c1-eb7e-4f6f-a714-4c76078636db', 'a852e93f-b0c2-4d15-98ea-fc96f55bc2b4', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('270ffb56-42e9-4d2e-976b-fbe689a9ce90', '9a38f7c7-789c-4e72-8a68-a386c23897ff', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('46259d13-c518-4d0f-9583-260d269db359', '9a38f7c7-789c-4e72-8a68-a386c23897ff', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a9d286fd-70a2-442a-a13d-8cf9bea3f33b', '9a38f7c7-789c-4e72-8a68-a386c23897ff', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('36ec2a2f-b046-4a75-b2be-0be381ca1712', '9a38f7c7-789c-4e72-8a68-a386c23897ff', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c4e90249-5f2a-4e9a-9acb-b4252fca328f', '0e7dddbb-ebdc-4e94-9450-f16a39da6828', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('831e69f1-c877-4e5f-90db-a7cb7a67637f', '0e7dddbb-ebdc-4e94-9450-f16a39da6828', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d5b59653-efb5-4832-9554-67802516d31d', '0e7dddbb-ebdc-4e94-9450-f16a39da6828', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9b52c34f-b669-4299-968b-58b7350e07eb', '0e7dddbb-ebdc-4e94-9450-f16a39da6828', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f1e2af73-1263-440b-8cd5-bef21ef591b8', '0e7dddbb-ebdc-4e94-9450-f16a39da6828', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d999db29-f7e4-442c-9354-054e5af6228b', 'e94812bc-f3b3-4631-b878-d3f1c5acddd6', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('5992f944-2418-47ed-a545-13db015660ef', 'e94812bc-f3b3-4631-b878-d3f1c5acddd6', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('dd23819f-730b-4f48-9ad1-ee1964affb5c', 'e94812bc-f3b3-4631-b878-d3f1c5acddd6', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('36886399-2cc1-4ba5-b0a2-3eb92b2832f3', 'e94812bc-f3b3-4631-b878-d3f1c5acddd6', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f27fcf6f-8586-453d-85ef-a734b3af4533', 'e94812bc-f3b3-4631-b878-d3f1c5acddd6', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e29117b5-765d-4e79-a48a-699b801de42e', 'aade954c-da18-48c2-90da-5f77b45c9a07', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('540c6f48-08e3-4ef5-8115-57a53e747349', 'aade954c-da18-48c2-90da-5f77b45c9a07', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4a13fa19-ba0f-4982-9d9f-b5ffa8263c96', 'b5551d3b-2e60-4107-a5c7-cf6a680dc11e', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('39ad4d7c-dccb-4a6d-ba14-5fdee6e8f0a0', 'b5551d3b-2e60-4107-a5c7-cf6a680dc11e', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('991871a4-9b79-4f5e-ada8-38b061afaf3f', '84a0b1e4-74f1-4102-a026-8ca5f4f35185', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0ebe48ec-3eb0-4eef-a3e0-5cbb648cee01', '84a0b1e4-74f1-4102-a026-8ca5f4f35185', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2d8c09a9-b89d-40ac-ac0d-537ffd606952', '84a0b1e4-74f1-4102-a026-8ca5f4f35185', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0b5aed3d-95ef-46f2-a48d-a58fc6ec133c', '84a0b1e4-74f1-4102-a026-8ca5f4f35185', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2d56ea9f-cab0-42df-9620-92305210c122', '056956fd-625b-4ac9-8e2c-2420a82f9fb0', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7b76c1e2-a26c-49c5-accd-795a28e182ef', '056956fd-625b-4ac9-8e2c-2420a82f9fb0', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b5acf41c-de05-44f9-8806-822c6f37280f', '056956fd-625b-4ac9-8e2c-2420a82f9fb0', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a989b390-9523-42bb-a4a3-1a524218316a', '056956fd-625b-4ac9-8e2c-2420a82f9fb0', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4cb032f7-fdb9-434e-bb7d-656f4b122cd4', 'c39f1378-ed04-46f2-82f8-eae235ccc6c7', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6d2e7fe6-a2d0-4e95-a273-bb40f168b15a', 'c39f1378-ed04-46f2-82f8-eae235ccc6c7', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('db80b2b1-ea51-49fc-bca4-dd8a676ddb03', '4b0e2de5-1254-4211-943d-438e56df7be4', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9cbafa72-67d4-4736-b9b6-27a05361b193', '4b0e2de5-1254-4211-943d-438e56df7be4', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e4d14090-4155-4861-a3cb-9616d051e0f5', '43dab1a9-0736-4331-84d6-6ad4859b6db2', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('06dbe5f2-1ebb-47e9-99a0-d9de0bfc4f65', '43dab1a9-0736-4331-84d6-6ad4859b6db2', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('57209637-0b93-4400-b5cb-0383dca89b93', '43dab1a9-0736-4331-84d6-6ad4859b6db2', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8ae409d6-21db-41d9-8aea-3f8f592c84b9', '43dab1a9-0736-4331-84d6-6ad4859b6db2', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f1a326c0-f887-4610-9f5d-3f65dab7d108', '412222b9-7fce-45ea-a607-1ae8e8158d1e', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('14092609-0c90-4d65-841c-0e201a1c91bd', '412222b9-7fce-45ea-a607-1ae8e8158d1e', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bee42be4-6258-40a4-af86-dd078f4618d6', '412222b9-7fce-45ea-a607-1ae8e8158d1e', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('003d3cea-be40-4ca3-a785-d3705bbfe188', '412222b9-7fce-45ea-a607-1ae8e8158d1e', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a233751f-b3d3-4a1c-8b97-adf92c61e99f', '238ecc8b-d8d5-4e96-9bb0-0fca3873ceaa', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('319d1a74-e1e6-4b83-a356-73dfa301d04c', '238ecc8b-d8d5-4e96-9bb0-0fca3873ceaa', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d8fb4e04-f2cf-487f-a56a-3a07a3b1167f', '238ecc8b-d8d5-4e96-9bb0-0fca3873ceaa', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('af5908d5-40be-45d4-b416-086a162952a0', '238ecc8b-d8d5-4e96-9bb0-0fca3873ceaa', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c2146203-b5b0-4faa-abc5-fe80c5c26fb0', 'aa62ce68-0911-4dc4-8de1-3eae050d7ba2', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a260f94f-c205-4438-9466-b1f3bbe91bb2', 'aa62ce68-0911-4dc4-8de1-3eae050d7ba2', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9ddc7a17-178e-4ef1-b5f4-9c712ccc97a2', 'aa62ce68-0911-4dc4-8de1-3eae050d7ba2', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7e81ac92-e184-4aba-9e7d-f53d64d45369', 'aa62ce68-0911-4dc4-8de1-3eae050d7ba2', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('aab8dccd-af79-4b3e-b2ba-b5b9c9be7a0d', 'af85ae84-5dbc-4c63-bfff-d756b5ce5583', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('06f7670c-62b8-4f71-907a-fae7292bab0d', 'af85ae84-5dbc-4c63-bfff-d756b5ce5583', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b4834683-754e-4b1c-b899-aebb4ce21c8c', 'af85ae84-5dbc-4c63-bfff-d756b5ce5583', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1a4e028c-946c-42e7-9e8b-3ca90b98ca88', 'af85ae84-5dbc-4c63-bfff-d756b5ce5583', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f2f6a8b6-ebb0-472e-90e5-33bdb8f3f287', 'af85ae84-5dbc-4c63-bfff-d756b5ce5583', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bf03f7a2-eb35-4e1c-b48a-7b954581002b', '845f87f4-8901-4863-a3a2-721341b434d9', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('14e10a62-a086-41bf-9be0-0019b148ab16', '845f87f4-8901-4863-a3a2-721341b434d9', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('89bc32f2-fcf9-40f4-b45a-36fe0de45fb6', '845f87f4-8901-4863-a3a2-721341b434d9', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('92cc690d-8d77-4874-9c45-db7111d9dcad', '845f87f4-8901-4863-a3a2-721341b434d9', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c1448e31-97f0-439c-8cdd-9f4cafaa496c', '845f87f4-8901-4863-a3a2-721341b434d9', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7c39a215-0a42-4659-996e-25d85118328c', '39b6475b-5dbe-407c-ac33-fc524b95ffb1', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7b8918fe-1f9a-4544-907e-110774d08dbb', '39b6475b-5dbe-407c-ac33-fc524b95ffb1', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4b851683-f78f-472e-b097-233b3f9137c0', '39b6475b-5dbe-407c-ac33-fc524b95ffb1', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('287ad78f-1920-4eeb-8773-54a81cb27c74', '59e27d0a-6282-4dae-9954-bd1575606c5d', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fb547de0-ae88-4106-aaca-fce958dc4614', '59e27d0a-6282-4dae-9954-bd1575606c5d', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d924735a-7f76-4699-9d9b-6e6bb3ada1c8', '59e27d0a-6282-4dae-9954-bd1575606c5d', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('aaff1847-4b9a-4883-aefa-22b74ac471a2', '7220b937-11e6-4e9c-b9f9-82a5c96193bb', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d2343f17-a877-49e4-8710-8fa1fda972d2', '8c1d591b-5037-42d0-b625-81c69c3a6c9f', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2f9637fc-c74b-48b7-a39c-b05816973dd7', '84a609b6-81c5-44b6-bac5-2403aa74df49', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1b55cb77-6cbd-40cc-a3f7-86d992da2f10', '84a609b6-81c5-44b6-bac5-2403aa74df49', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('81891352-a578-4de6-ab5b-2f5e6c6af8be', '84a609b6-81c5-44b6-bac5-2403aa74df49', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d9c215b3-e3a2-43c5-b73e-b548d7b7e1dd', '84a609b6-81c5-44b6-bac5-2403aa74df49', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e285b25d-3e7c-4e86-93d3-157b8522cc99', '84a609b6-81c5-44b6-bac5-2403aa74df49', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('184940bf-8761-47d2-b0c7-ead297738988', '82ae6680-901c-46d4-9bad-584cb0cb36ac', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fc7f591d-7289-4d3d-ba64-59813ee64344', '82ae6680-901c-46d4-9bad-584cb0cb36ac', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0fff9a80-8196-4041-a451-037ddf4b166d', '82ae6680-901c-46d4-9bad-584cb0cb36ac', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c00c9b1a-cfed-4102-90cc-4dee5cba9cda', '82ae6680-901c-46d4-9bad-584cb0cb36ac', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fb5a0ea2-fac9-427c-8983-7c87f6f19af7', '82ae6680-901c-46d4-9bad-584cb0cb36ac', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('3fd22e9b-8258-4932-9f69-54b099d19838', '5a3b8fe3-af36-4f49-b424-48d8d93d8382', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('89ad1c99-f7c0-4588-a7e9-b07bfa8d6aa5', '5a3b8fe3-af36-4f49-b424-48d8d93d8382', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f8218656-90c4-4812-8b02-286c20379fb4', '5a3b8fe3-af36-4f49-b424-48d8d93d8382', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('41457595-f066-445d-a72d-ee3da8d319e3', '3ae1cab3-d3cb-4963-8706-d6028068be94', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('48dca8ee-fd7e-435d-a82f-e704bb663795', '3ae1cab3-d3cb-4963-8706-d6028068be94', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('25033063-dec9-4c6b-89c2-3a24bd22a9ad', '3ae1cab3-d3cb-4963-8706-d6028068be94', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1ec9ff9b-70ad-4cdf-a44a-489dcfa58804', 'bfbc7208-fe65-4781-a49e-b7356f4fb18e', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('aa85865a-004a-4590-988d-0f1f6db1cf41', 'bfbc7208-fe65-4781-a49e-b7356f4fb18e', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('48e4b7e7-faea-4877-825a-01077173d1c3', 'bfbc7208-fe65-4781-a49e-b7356f4fb18e', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8b588687-5093-4dd3-a67a-cfa84ec0c82f', 'bfbc7208-fe65-4781-a49e-b7356f4fb18e', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('54a24beb-bdd5-4452-8c6a-86e5b9355356', 'bfbc7208-fe65-4781-a49e-b7356f4fb18e', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7bdc233e-1c1d-4b43-8c7d-9545983dd31e', '9cdef5a7-ee31-49b1-93cf-77731fac839a', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('02bacf33-e771-4255-9686-b8f0644fb0b3', '9cdef5a7-ee31-49b1-93cf-77731fac839a', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('629771cb-ccbd-40a6-935d-59d4d532a60a', '9cdef5a7-ee31-49b1-93cf-77731fac839a', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('97a061a8-8c25-49c5-9854-534fdaa290d6', '9cdef5a7-ee31-49b1-93cf-77731fac839a', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6aaf1fef-9293-4c24-bc3f-aacd60c9cf13', '9cdef5a7-ee31-49b1-93cf-77731fac839a', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('95b764b0-2dfa-44d3-8e0f-1a177b8586ce', '37902125-8575-4bc2-9038-3a3834a122e9', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d70cff4b-359d-4a33-a937-390ea5ed9bda', '37902125-8575-4bc2-9038-3a3834a122e9', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('658744bd-e48a-434b-aeab-373b17bfe278', '37902125-8575-4bc2-9038-3a3834a122e9', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('75584a92-fda8-41d2-8da8-fb148dfa224d', '37902125-8575-4bc2-9038-3a3834a122e9', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a84d3fbc-8780-49cc-9176-db78bd896578', '37902125-8575-4bc2-9038-3a3834a122e9', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8d531f57-e216-4bfb-8b2a-c0a2ea6e0c57', '42ad1c53-aa10-494f-9184-c0dde7a81f70', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bcbe0d2e-9811-4cd8-a956-af8d356e04c1', '42ad1c53-aa10-494f-9184-c0dde7a81f70', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('96de5065-c7c4-4758-9e3f-983b6a3d0264', '42ad1c53-aa10-494f-9184-c0dde7a81f70', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1c56cde8-8f09-4a91-a449-cef9c18d4c82', '42ad1c53-aa10-494f-9184-c0dde7a81f70', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('3a8706da-c477-46da-81e7-86c8e3dc5e9b', '42ad1c53-aa10-494f-9184-c0dde7a81f70', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('dd9e6064-5055-417d-9685-2618d2026471', 'ed8dcc41-7e3c-4667-b277-0772edb26c59', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('65266b4d-62e1-4116-a994-e94ae0d35731', 'ed8dcc41-7e3c-4667-b277-0772edb26c59', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f8188bb2-7b30-4829-a9fd-35475d783b7d', 'ed8dcc41-7e3c-4667-b277-0772edb26c59', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('07577151-5604-45aa-9adb-a3f1169e0a00', 'ed8dcc41-7e3c-4667-b277-0772edb26c59', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('63a2bb28-9791-4a1d-84a8-88a5a4b80a7a', 'c07cfda2-9193-4eb0-afc1-5bd4303892ab', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a31be00c-07d1-4043-8ddd-9783cec91657', 'c07cfda2-9193-4eb0-afc1-5bd4303892ab', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ea3be98e-49b1-43f2-9805-e6f88ca581c0', 'c07cfda2-9193-4eb0-afc1-5bd4303892ab', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0d63a1b0-884d-4c18-a9e1-823fcb6f846d', 'c07cfda2-9193-4eb0-afc1-5bd4303892ab', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('39c2334d-a75c-4272-95e9-35029643face', 'fb74003c-b8d2-4008-a0af-d8f35e93cf80', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('48205a57-00c7-4c5f-9d80-82c6a79898fa', 'fb74003c-b8d2-4008-a0af-d8f35e93cf80', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b9a0e52e-92b2-4881-9c71-c6caafb811d6', 'fb74003c-b8d2-4008-a0af-d8f35e93cf80', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('cb6375a7-a125-43b6-894a-541695be431e', 'fb74003c-b8d2-4008-a0af-d8f35e93cf80', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('565b3227-06a1-4498-8f02-9c3b584a73ca', 'fb74003c-b8d2-4008-a0af-d8f35e93cf80', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('cb8499b1-5434-48b6-a08e-57b2889fdb5a', 'afe6e697-9296-4aa2-96b7-54998efc1e85', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('72d48d48-8b8d-4dd4-8002-6564dfa3644b', 'afe6e697-9296-4aa2-96b7-54998efc1e85', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f28839a4-1adc-49b8-8ef2-008792c559d2', 'afe6e697-9296-4aa2-96b7-54998efc1e85', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b4cc3329-7468-44e8-b6f7-c7439ef52f45', 'afe6e697-9296-4aa2-96b7-54998efc1e85', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('26114df9-54f8-4170-99ad-cc7dcec5dadf', 'afe6e697-9296-4aa2-96b7-54998efc1e85', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e72ccc16-e39a-435e-91ed-e9e5167971bb', '97613806-d0d9-4f55-91d0-c8857d753ff3', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0bb741fd-a2e3-4d3a-a689-6ed1abe8a067', '97613806-d0d9-4f55-91d0-c8857d753ff3', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a72a72ea-29da-4657-863c-61965aca8107', '97613806-d0d9-4f55-91d0-c8857d753ff3', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('26153cae-1b50-408a-8f42-57691bd841a7', 'bab67fe6-4afa-4dfa-a896-effe1421128f', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e15b8977-76bf-431e-bfc2-8a96295bec01', 'bab67fe6-4afa-4dfa-a896-effe1421128f', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('cb7c0670-3c4f-49cb-8561-789cc66aaaed', 'bab67fe6-4afa-4dfa-a896-effe1421128f', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7ee0495b-c7c7-4c8c-b134-ef47678428b7', '26977d0f-7571-4f0d-a77d-2c47dd0c2c7a', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('08cf24b8-552b-4196-a842-380f10a8e4f7', '26977d0f-7571-4f0d-a77d-2c47dd0c2c7a', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1b45e39f-aa28-4eba-a7ae-4268f4236d52', '26977d0f-7571-4f0d-a77d-2c47dd0c2c7a', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f912e85a-f3d2-40fd-8886-e19c16bd3fb4', '69a88eb6-1112-40c9-bcf3-a6481d2f1f9f', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6b456f33-176c-40ca-9428-f0291640fc57', '69a88eb6-1112-40c9-bcf3-a6481d2f1f9f', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('3c887c00-b3f0-4f2f-a5b8-c27cca55a7c1', '69a88eb6-1112-40c9-bcf3-a6481d2f1f9f', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8c6ed17b-4f5b-4666-a79a-c73ef472afe3', 'd505e982-8323-4fcc-a2c8-de09e2c4af35', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9bebc84b-53d4-4fa6-ab8d-2fdbb1a5a112', 'd505e982-8323-4fcc-a2c8-de09e2c4af35', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('59d72135-293f-43a4-ada3-9c13d58645f8', 'd505e982-8323-4fcc-a2c8-de09e2c4af35', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1d41c752-4cb4-41e8-95a8-d1c36ede322b', 'd505e982-8323-4fcc-a2c8-de09e2c4af35', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ee0f9263-91f9-4173-89f4-ab1a3f2af525', 'd505e982-8323-4fcc-a2c8-de09e2c4af35', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('00767dda-43c6-4932-b9ba-c7dae7ba9f2a', 'c2d8fa32-ac33-4afa-8b32-503e6106ea18', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('30b4c947-2f1b-4262-8e83-ee8e0fb74b45', 'c2d8fa32-ac33-4afa-8b32-503e6106ea18', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('21254f8e-0db2-4c89-bbc2-18e6a5cd018f', 'c2d8fa32-ac33-4afa-8b32-503e6106ea18', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('10339209-3d03-45a1-9142-edddeef2d9b9', 'c2d8fa32-ac33-4afa-8b32-503e6106ea18', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('957bbe65-4328-499a-998b-2f6f0d9c92c7', 'c2d8fa32-ac33-4afa-8b32-503e6106ea18', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2d16ca36-d6b9-4c7c-bee6-1746400ab51b', '37dd5c45-2d44-4a6c-9867-3add8a20386f', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ba1a5bf2-8b21-4b2c-a85a-8d7f37136327', '37dd5c45-2d44-4a6c-9867-3add8a20386f', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('66cc2234-ee17-4a31-9922-6a73c2286060', '37dd5c45-2d44-4a6c-9867-3add8a20386f', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1cbe0eb6-8243-430e-999e-ee2ef686767e', '0133cd46-4964-4fa8-b084-e301092d80d8', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4af65cdf-74d1-4bae-8229-91cd8342a9c7', '0133cd46-4964-4fa8-b084-e301092d80d8', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('05919fcf-7a17-478c-896c-2d0f8fff38cc', '0133cd46-4964-4fa8-b084-e301092d80d8', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('db02f87e-8819-4903-8d89-1fa7941f384f', 'e5197b88-3050-4d73-a99e-da81c1700547', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7417a823-bbb6-49f4-ae82-0e2475e35c82', 'e5197b88-3050-4d73-a99e-da81c1700547', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d75abed4-35d0-4775-8432-3212a38b4bb8', 'e5197b88-3050-4d73-a99e-da81c1700547', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0956b247-2495-4214-a124-41a2104e533c', 'e5197b88-3050-4d73-a99e-da81c1700547', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4789ff6c-e19e-426e-a132-d49e0657fffb', 'e5197b88-3050-4d73-a99e-da81c1700547', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c2ca13ac-b1b4-4546-bcce-6fbd40cdbdec', '0f211d36-6832-4ebd-846a-7cca014457f2', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7e90449a-67fc-488d-b6de-75204a5f3d57', '0f211d36-6832-4ebd-846a-7cca014457f2', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('981b8fc2-2243-4090-9ebc-76832828dcf8', '0f211d36-6832-4ebd-846a-7cca014457f2', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('235bb165-1429-4729-a0b5-8df46a20de02', '0f211d36-6832-4ebd-846a-7cca014457f2', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ac03ed31-a722-406a-810d-03e3970a56f8', '0f211d36-6832-4ebd-846a-7cca014457f2', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('172e7989-b103-44c6-9aef-e8ab44f0a4e0', '8f2e6bbb-9fdf-4cdb-ad41-fa69bfdcd0ac', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('011a39bd-5052-4f74-ae64-6a91e82360de', '8f2e6bbb-9fdf-4cdb-ad41-fa69bfdcd0ac', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fb4d90e8-5700-4d19-bee9-dedda563a584', '8f2e6bbb-9fdf-4cdb-ad41-fa69bfdcd0ac', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('447d4b16-4064-4655-a5fb-5cc3d5d05738', '8f2e6bbb-9fdf-4cdb-ad41-fa69bfdcd0ac', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('23f0ca44-3d3f-418e-9631-657b1b2e56cc', 'cc074d02-11bd-4650-8f65-4856cc000885', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c3d9ec71-271f-4669-9871-2142e2d633c6', 'cc074d02-11bd-4650-8f65-4856cc000885', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fa87e531-02b1-4974-a5a5-3801c2853a5c', 'cc074d02-11bd-4650-8f65-4856cc000885', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2188ec65-13f5-410b-83fa-8c921a073ce9', 'cc074d02-11bd-4650-8f65-4856cc000885', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('87bef11c-9165-442b-b8a7-622b148e77cd', '8d8304a6-6cb3-4a9a-9276-76488891cdcf', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d9c4c3da-6c6b-4f78-900b-dff32b1b0853', '8d8304a6-6cb3-4a9a-9276-76488891cdcf', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('85a08842-b64a-4b9b-98cf-f7da957ff2af', '8d8304a6-6cb3-4a9a-9276-76488891cdcf', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('40c4d917-1bbb-4d62-96aa-206b7e19292c', '8d8304a6-6cb3-4a9a-9276-76488891cdcf', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('75b8fdde-2e89-4fe8-b70e-ed4d3e64dc8d', '8d8304a6-6cb3-4a9a-9276-76488891cdcf', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9e5ac4cc-2a4b-49c8-949e-780c531a12c0', 'c4a35109-de4c-4b77-8e51-08787288f7c8', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a2257683-ccca-4738-b435-f35e97ff267a', 'c4a35109-de4c-4b77-8e51-08787288f7c8', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('86d4e408-baf2-414a-8485-f5fae89fa007', 'c4a35109-de4c-4b77-8e51-08787288f7c8', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('447be991-15c0-4a15-a9c5-214cdd40a0e0', 'c4a35109-de4c-4b77-8e51-08787288f7c8', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8dbd9a9e-eb8f-4c2c-a0f2-6ec848d96e52', 'c4a35109-de4c-4b77-8e51-08787288f7c8', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c4907ea5-c35f-411e-bba2-3180cce9b251', 'c07ec418-1cc2-4491-8e3b-a76ba437f19d', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2f2d5674-4820-4788-8611-aec1d32a024c', 'c07ec418-1cc2-4491-8e3b-a76ba437f19d', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2af48529-ad2d-4e02-929f-3d89cd5393a7', 'c07ec418-1cc2-4491-8e3b-a76ba437f19d', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('3abb80b6-c587-42be-ad6b-242de6cd1a46', '1624d30d-3ab3-4bf9-a022-a31f84af99be', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('36a0e810-f924-49e2-ab63-e4198759b6e2', '1624d30d-3ab3-4bf9-a022-a31f84af99be', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('092de27e-e806-4b17-a492-b7c09a67853a', '1624d30d-3ab3-4bf9-a022-a31f84af99be', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6796e02e-fd1b-4116-b2d9-1263850bb10a', '94c4903a-a756-4059-8cb2-d632a5e85e97', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('25389e97-7e19-4984-ae88-c0d66dfa155d', '94c4903a-a756-4059-8cb2-d632a5e85e97', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('08049ad5-0e5f-4185-b179-76ade9996299', '94c4903a-a756-4059-8cb2-d632a5e85e97', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a19a6ca8-f7bf-4fb2-b308-3623ce940358', '94c4903a-a756-4059-8cb2-d632a5e85e97', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e8968baa-c67d-41b4-8514-a2be38a2f532', '94c4903a-a756-4059-8cb2-d632a5e85e97', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('549ac93d-8684-4e1f-8401-a27a1afeb3be', '393fdb96-bbd5-4fa3-9ea5-3759fe282372', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('417680a6-ec00-4346-ada0-787ca8d78550', '393fdb96-bbd5-4fa3-9ea5-3759fe282372', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c48f5a7e-f362-41b9-a0b8-d9a105bb6480', '393fdb96-bbd5-4fa3-9ea5-3759fe282372', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4b10e38b-7d13-4ba7-b109-50b7810d9086', '393fdb96-bbd5-4fa3-9ea5-3759fe282372', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('33f5df43-35ef-43ff-9a22-001f83b21fa1', '393fdb96-bbd5-4fa3-9ea5-3759fe282372', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('8b864349-4edc-40c1-a907-74cc1184a4d5', 'fd6b0991-b429-43c7-8b3d-2a648f4daf92', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('45c16982-bf51-4fa6-93f7-9bf4d04d9d17', 'fd6b0991-b429-43c7-8b3d-2a648f4daf92', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ca8d9760-f859-48f0-ad83-34b98dd0c314', 'fd6b0991-b429-43c7-8b3d-2a648f4daf92', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('64e23583-1746-4776-991e-555d2d12dcd3', 'cba18a87-d267-4814-820b-894a635968ba', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9966b846-cd48-4037-a4e9-246e6dadd54e', 'cba18a87-d267-4814-820b-894a635968ba', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('70de6bad-caa7-411c-8c25-726737400fe0', 'cba18a87-d267-4814-820b-894a635968ba', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4bd8b0b6-2a1f-4bbd-bec8-a6c46117bcbe', '70627b83-8d67-4602-b0a3-d48c6a60f64a', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('de1592b3-3625-4d87-b948-addf20b48736', '70627b83-8d67-4602-b0a3-d48c6a60f64a', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('de20110d-ec0b-4a1e-b6bd-d218aa0866cc', '70627b83-8d67-4602-b0a3-d48c6a60f64a', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('91b09dd6-20fb-493e-b8b5-5a76f96d1140', '23fbedc1-a9ea-4452-9e65-d79b95d89e5f', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('274cb994-a713-4de5-874d-6af7e64c2428', '23fbedc1-a9ea-4452-9e65-d79b95d89e5f', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f077265f-64b0-47e9-8f8a-3e72b5016cb3', '23fbedc1-a9ea-4452-9e65-d79b95d89e5f', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('59380d6d-8b40-4ef6-b0cc-29a2ee32672f', '20f2afe3-9d52-4807-a18f-a23158f04215', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b8102674-2ca6-4b7a-b0e0-8fce5ea9a2b3', '20f2afe3-9d52-4807-a18f-a23158f04215', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a3f11342-2613-4cd4-ab2f-0597aa9f04ea', '20f2afe3-9d52-4807-a18f-a23158f04215', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('43c2eadb-6dd2-4037-be28-bf083b51582d', '20f2afe3-9d52-4807-a18f-a23158f04215', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('96262f87-3f85-4def-90bb-75bf8adf611d', '20f2afe3-9d52-4807-a18f-a23158f04215', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('f9fe7351-c762-4965-995f-5caf71c3e2b8', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('87285f6c-2df6-4975-a4da-4d65f32bdb20', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('5c2fa563-be41-4c20-993a-a2f9feb5fd98', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4191a871-cb1f-4a2b-b4ae-085703b80a12', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1859b3a1-488e-441c-9a8a-e2c2fd278917', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1be3d5c5-af2c-4aca-b9ea-acf82b592d8e', 'f683c515-e1d2-406f-bb3d-82c3147c0fe9', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('861f3bf5-3dfb-41aa-9cc0-c316b7d5d4e5', 'f683c515-e1d2-406f-bb3d-82c3147c0fe9', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ce5343e4-ecc3-4bf8-a7c5-48003e48daa1', 'f683c515-e1d2-406f-bb3d-82c3147c0fe9', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b6c602eb-6d90-4ea5-90e9-0c3f80339cd2', 'f683c515-e1d2-406f-bb3d-82c3147c0fe9', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('15ffab2d-8316-447c-b59f-acd5c0d45986', 'f683c515-e1d2-406f-bb3d-82c3147c0fe9', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7388063b-bbc1-4b97-91de-0831301162f0', '59abfa2e-cce9-430b-b74f-9c55944a0123', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('be297874-4b5b-4aa2-9477-9462eace119c', '59abfa2e-cce9-430b-b74f-9c55944a0123', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('337fcc76-24d6-4b63-9ae1-25e70ddaa65d', '59abfa2e-cce9-430b-b74f-9c55944a0123', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6947b666-cee1-48fd-9126-d8b9d92692f1', '59abfa2e-cce9-430b-b74f-9c55944a0123', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ab56d553-4a23-485a-a104-1bbc526088a2', '59abfa2e-cce9-430b-b74f-9c55944a0123', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('3f2b8cd3-3fb0-403a-b590-43faf26fd429', '26b55457-8e9e-4e77-882c-09e9d8307b91', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b9535940-4e70-4679-884f-c5338050c374', '26b55457-8e9e-4e77-882c-09e9d8307b91', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ab97168a-98f7-45f1-bd9b-75e0f0cef966', '26b55457-8e9e-4e77-882c-09e9d8307b91', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('94914b28-4724-44e6-9c2f-ee2d839ed1a1', '26b55457-8e9e-4e77-882c-09e9d8307b91', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a9e4b297-4b54-42fd-8fa4-69c0f4f2941e', '26b55457-8e9e-4e77-882c-09e9d8307b91', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9758a794-8b1d-4611-9c92-8d0c351bb786', '2bd7a759-c672-4757-8163-564e37522e0b', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a4468ffe-f8ea-4cf8-a4ef-c111c4dc7a68', '2bd7a759-c672-4757-8163-564e37522e0b', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1f2a1d93-a3fe-4d12-aaa9-cdfda623a9a2', '2bd7a759-c672-4757-8163-564e37522e0b', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('7f4ca43a-1766-430d-b179-7ea799c8f467', '2bd7a759-c672-4757-8163-564e37522e0b', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('2f6a257a-0249-4667-87c8-2367a54840a0', '2bd7a759-c672-4757-8163-564e37522e0b', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('273f13ef-4047-4609-88fe-21e81b6a21df', '15eb72a4-ef0e-4e93-b04c-41b2f608c650', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bf50ea1b-94b6-40e2-86a1-52fa35cc6dcb', '15eb72a4-ef0e-4e93-b04c-41b2f608c650', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('b97cb6cb-cf20-4c03-ac10-f6d560884fb0', '15eb72a4-ef0e-4e93-b04c-41b2f608c650', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bc96d150-b0ec-4f00-9ee2-8a38fbceb092', 'cfa8f575-3fba-4dea-bd4f-e876b2868bee', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('907219ab-a3bb-40c8-bd91-5f6bbaf707d7', 'cfa8f575-3fba-4dea-bd4f-e876b2868bee', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9c8deca9-36a0-4b82-9c95-a3909a760ff9', 'cfa8f575-3fba-4dea-bd4f-e876b2868bee', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6b9462b9-1d1d-476c-aac4-6489b49c3f47', '550d1b56-81bb-4e80-94f0-66fd9d0c7127', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e4217692-e086-4692-b3b3-70cf6da58c74', '550d1b56-81bb-4e80-94f0-66fd9d0c7127', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('70b17ac4-981a-4d49-9720-40042406ada6', '550d1b56-81bb-4e80-94f0-66fd9d0c7127', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('a15e8885-fea6-4f48-8c0a-31710e3f5ec7', '550d1b56-81bb-4e80-94f0-66fd9d0c7127', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d52239e6-9d23-49e8-8aff-d8abd6793a34', '550d1b56-81bb-4e80-94f0-66fd9d0c7127', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('21d8e8fd-d2c8-4e5b-af21-960673cefd5e', 'c96a76ab-041b-4447-99c5-01e24c3a7432', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ed4c229f-8a8c-438a-992c-a882eadc2ea5', 'c96a76ab-041b-4447-99c5-01e24c3a7432', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fe9e80f6-5266-47d5-a505-a45d2525263c', 'c96a76ab-041b-4447-99c5-01e24c3a7432', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('57388166-67b3-41f9-9c84-127d561078a2', 'c96a76ab-041b-4447-99c5-01e24c3a7432', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('5366f961-efd5-46b2-8448-ecbc9e30c0b9', 'c96a76ab-041b-4447-99c5-01e24c3a7432', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bf7a3e09-baeb-46ad-b484-0ac400b9a58d', 'e88f8339-d195-4bf8-ab44-0237f0f55f44', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1df4b1c0-948a-480e-8606-06d67eaebc05', 'e88f8339-d195-4bf8-ab44-0237f0f55f44', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('c8da83ff-064d-4c13-aae4-d64f7ebebfe0', 'e88f8339-d195-4bf8-ab44-0237f0f55f44', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9810d0c1-2815-4eae-8a8b-c461962e001f', '9680ba83-bc72-4af7-86ca-b29152d51bf2', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9bc4f842-3c19-4ab1-be18-5373200075a5', '9680ba83-bc72-4af7-86ca-b29152d51bf2', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9610b5b7-5f7b-4767-b597-47f218d52fc3', '9680ba83-bc72-4af7-86ca-b29152d51bf2', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('da6918d6-ed2b-4a68-b3b6-7e033c9323d6', '964ca2f2-5e5e-498e-bbaf-90ce9a2ba228', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6fcf0838-ce43-4a93-8c66-1e1eec1bce08', '964ca2f2-5e5e-498e-bbaf-90ce9a2ba228', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0ea735a7-12c4-42ad-89c7-88ff5bac54ba', '964ca2f2-5e5e-498e-bbaf-90ce9a2ba228', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0d1687a6-a48e-4f3a-8418-0489dfb12c82', '964ca2f2-5e5e-498e-bbaf-90ce9a2ba228', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('1d499c20-778b-4ad1-bf9a-1fb3834a2589', '3864bfd1-9781-4dee-83c2-58e5ded466b8', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('92b5138a-2e0a-41f3-bad7-83aa3e55b0f8', '3864bfd1-9781-4dee-83c2-58e5ded466b8', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0e144c12-e02a-4168-9902-2ded094b83e8', '3864bfd1-9781-4dee-83c2-58e5ded466b8', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('4d26a567-c1ea-4c91-866b-362d8a97ab35', '3864bfd1-9781-4dee-83c2-58e5ded466b8', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fc41bae2-c370-4825-988c-688cf370f104', 'd0fdc076-8b92-46b1-a65d-b919dec14029', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('85bd2962-048a-47dc-879c-fcbe317e6c41', 'd0fdc076-8b92-46b1-a65d-b919dec14029', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('0a607aed-1ea6-4959-9791-e2f501f4a7e4', 'd0fdc076-8b92-46b1-a65d-b919dec14029', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('bae0d4af-b8b1-48d5-941f-39390808b702', 'd0fdc076-8b92-46b1-a65d-b919dec14029', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d52a7104-ac7c-4c61-a7c3-66ab3b175402', 'd0fdc076-8b92-46b1-a65d-b919dec14029', '13bd400e-c849-4d28-b73e-54e7d1b7cc19') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d7564c9f-2b62-43b4-b69a-e5569c5ab2c0', '24d9a7c0-5695-490a-b0f0-8522482ea5f5', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('5f4b2695-2cd6-425a-aac9-64aad41d487a', '24d9a7c0-5695-490a-b0f0-8522482ea5f5', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('6cba0648-47f6-4490-8027-27017872fe05', '24d9a7c0-5695-490a-b0f0-8522482ea5f5', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('236a490a-b38d-4d6c-8f71-c7c4161daddd', '24d9a7c0-5695-490a-b0f0-8522482ea5f5', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('fae56db5-e43c-4886-b13c-cb73cc17c60f', '24d9a7c0-5695-490a-b0f0-8522482ea5f5', '5ef09090-a44d-4067-bf69-474d2c639d6a') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e054c84a-483b-4363-8d76-fb3ff67a8bd7', '738d015d-5f93-4000-a926-476f0b7a31a3', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('5705e546-ce4a-493a-a9a2-061862b273ad', '738d015d-5f93-4000-a926-476f0b7a31a3', 'ea3e1e8e-0d00-4b96-ac7e-571dd1708518') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('323396f2-5d89-4601-9a63-3b060322b799', '738d015d-5f93-4000-a926-476f0b7a31a3', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (plant_id, design_id) DO NOTHING;
-INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('9409db8c-1e82-4451-a0b4-4ce1e688d65b', '738d015d-5f93-4000-a926-476f0b7a31a3', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('53be96d6-56ba-42ef-abb1-06516e6226f5', '12c8a019-45bf-4e68-88c0-60ed7ae77c03', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('ee8af1e7-9c62-4e4d-a9c6-aded4c3eebe4', '12c8a019-45bf-4e68-88c0-60ed7ae77c03', 'cb520214-6747-4ce4-81d3-305a13c780aa') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('e788968d-54de-489a-a437-e42b3465f883', '12c8a019-45bf-4e68-88c0-60ed7ae77c03', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (plant_id, design_id) DO NOTHING;
+INSERT INTO plant_Design_Types (id, plant_id, design_id) VALUES ('d32de076-96ba-4fe4-b790-43ad4c00536e', '12c8a019-45bf-4e68-88c0-60ed7ae77c03', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (plant_id, design_id) DO NOTHING;
 
 -- Projects Inserts
-INSERT INTO projects (id, project_name, user_id) VALUES ('d4578d62-99bf-4b7c-843c-8d0cb5dfb480', 'BackyardForest', '22575560-a367-42e3-9bf0-49a5a7c8ddbc') ON CONFLICT (id) DO NOTHING;
+INSERT INTO projects (id, project_name, user_id) VALUES ('9e1e18bd-cd6a-459e-ab16-8675fa99e733', 'BackyardForest', '78a014bd-35fb-49f4-877f-8c8a1dc510ff') ON CONFLICT (id) DO NOTHING;
 
 -- Layouts Inserts
 INSERT INTO layouts (id, layout_name, bed_length, bed_depth, design_type, projects_id) VALUES (
-  '6ff0afb9-489f-4431-b080-e6da74b28fb6',
+  '3b1af4b8-20bf-4771-8f7a-a3ff72d92e2b',
   'newBeginnings',
   10,
   10,
-  'ea911dc9-eb50-4809-bd8b-f1202cce3f17',
-  'd4578d62-99bf-4b7c-843c-8d0cb5dfb480'
+  '84d03225-a2f4-411b-9b19-cd5e31f49bed',
+  '9e1e18bd-cd6a-459e-ab16-8675fa99e733'
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO layouts (id, layout_name, bed_length, bed_depth, design_type, projects_id) VALUES (
-  '2b96acc8-5555-43ac-88b9-59338e7b0476',
+  '9ad97d1d-e4e9-4c17-869b-4cfd192edaef',
   'FernForest',
   12,
   6,
-  '213f3124-3729-4bae-af4f-43b720e6b5df',
-  'd4578d62-99bf-4b7c-843c-8d0cb5dfb480'
+  'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc',
+  '9e1e18bd-cd6a-459e-ab16-8675fa99e733'
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO layouts (id, layout_name, bed_length, bed_depth, design_type, projects_id) VALUES (
-  '66a3e2f7-39e6-4685-8a86-f380d5d238ec',
+  'c2994731-6d42-461c-8eba-fdf057ddf80a',
   'AbsoluteSucculent',
   15,
   10,
-  'abdda3fe-350a-471b-ab82-c4c2e38326de',
-  'd4578d62-99bf-4b7c-843c-8d0cb5dfb480'
+  '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c',
+  '9e1e18bd-cd6a-459e-ab16-8675fa99e733'
 ) ON CONFLICT (id) DO NOTHING;
 
 
 -- Favorite Plants Inserts
-INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('2fe8be3d-1d36-472c-8a90-19f4f22e5199', '22575560-a367-42e3-9bf0-49a5a7c8ddbc', '8d8304a6-6cb3-4a9a-9276-76488891cdcf') ON CONFLICT (user_id, plant_id) DO NOTHING;
-INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('160f994b-0a2d-477f-8540-bc8a6f2c3061', '3b982c64-4293-48e3-a9cb-bc98e0df3e5b', '20f2afe3-9d52-4807-a18f-a23158f04215') ON CONFLICT (user_id, plant_id) DO NOTHING;
-INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('091b5180-0549-49ab-b9e5-1463ac2e5f05', '210954a1-1d49-4fec-a81f-92738276115f', '39b6475b-5dbe-407c-ac33-fc524b95ffb1') ON CONFLICT (user_id, plant_id) DO NOTHING;
-INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('dc27b06c-66d0-43f6-8b47-428fa537fae8', '069ea174-5ecb-4703-85c2-49c7286d93bc', '20f2afe3-9d52-4807-a18f-a23158f04215') ON CONFLICT (user_id, plant_id) DO NOTHING;
+INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('ab9bfa87-a671-42ef-a6a2-78026de964eb', '78a014bd-35fb-49f4-877f-8c8a1dc510ff', 'c4a35109-de4c-4b77-8e51-08787288f7c8') ON CONFLICT (user_id, plant_id) DO NOTHING;
+INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('ce66ecc6-0a7d-472a-a276-779a2e1351a5', '08f778c7-b10a-4d1b-bee1-4f8635233da3', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37') ON CONFLICT (user_id, plant_id) DO NOTHING;
+INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('97516fda-77b5-4a44-9fb6-35fae276c79d', '85b7edfd-d0be-4156-933a-40004a3c38c5', '59e27d0a-6282-4dae-9954-bd1575606c5d') ON CONFLICT (user_id, plant_id) DO NOTHING;
+INSERT INTO favorite_plants (id, user_id, plant_id) VALUES ('96d9f25c-3c78-43f6-b46a-ceb256e5dfbe', '8fb79eca-5262-4d99-9e29-9afc283cb5f8', 'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37') ON CONFLICT (user_id, plant_id) DO NOTHING;
 
 -- Plant Layout Inserts
 INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, height) VALUES (
-  '8c2cd4b4-bf85-47d1-b611-6d415051ae20',
-  '8d8304a6-6cb3-4a9a-9276-76488891cdcf',
-  '6ff0afb9-489f-4431-b080-e6da74b28fb6',
+  'b2206a48-e38c-4363-b187-a3001e266b08',
+  'c4a35109-de4c-4b77-8e51-08787288f7c8',
+  '3b1af4b8-20bf-4771-8f7a-a3ff72d92e2b',
   2,
   3,
   1.00,
@@ -1035,9 +1035,9 @@ INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, h
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, height) VALUES (
-  '3d79bc8f-2295-4251-9e9c-d013877e98cb',
-  '20f2afe3-9d52-4807-a18f-a23158f04215',
-  '2b96acc8-5555-43ac-88b9-59338e7b0476',
+  'ed7ace98-d037-4e8b-b3ef-38fcf2585184',
+  'e7b999ba-54a7-4a5b-a3c7-d8f6797eab37',
+  '9ad97d1d-e4e9-4c17-869b-4cfd192edaef',
   15,
   7,
   3.00,
@@ -1045,9 +1045,9 @@ INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, h
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, height) VALUES (
-  '00e72c90-2dea-4fe4-bac0-1635bc5a160e',
-  '39b6475b-5dbe-407c-ac33-fc524b95ffb1',
-  '66a3e2f7-39e6-4685-8a86-f380d5d238ec',
+  '2af6f8c1-4139-4aca-b81e-168cd5c304e5',
+  '59e27d0a-6282-4dae-9954-bd1575606c5d',
+  'c2994731-6d42-461c-8eba-fdf057ddf80a',
   10,
   5,
   2.00,
@@ -1056,7 +1056,7 @@ INSERT INTO plant_layout (id, plant_id, layout_id, x_coord, y_coord, diameter, h
 
 
 -- Fave Designs Inserts
-INSERT INTO fave_design (id, user_id, design_id) VALUES ('242af303-f96c-471f-9cb9-5116f86cf118', '3b982c64-4293-48e3-a9cb-bc98e0df3e5b', '213f3124-3729-4bae-af4f-43b720e6b5df') ON CONFLICT (id) DO NOTHING;
-INSERT INTO fave_design (id, user_id, design_id) VALUES ('4e4aeff4-974b-4f48-a505-d0baf156af44', '210954a1-1d49-4fec-a81f-92738276115f', 'abdda3fe-350a-471b-ab82-c4c2e38326de') ON CONFLICT (id) DO NOTHING;
-INSERT INTO fave_design (id, user_id, design_id) VALUES ('1b168c08-26ba-4c08-ad2a-3989f9f73e63', '069ea174-5ecb-4703-85c2-49c7286d93bc', 'ea911dc9-eb50-4809-bd8b-f1202cce3f17') ON CONFLICT (id) DO NOTHING;
+INSERT INTO fave_design (id, user_id, design_id) VALUES ('33d9b50c-a169-4d4b-a933-459b0d8fa60e', '08f778c7-b10a-4d1b-bee1-4f8635233da3', 'a4e1b58e-f2d6-423f-a332-2965ddf0f6bc') ON CONFLICT (id) DO NOTHING;
+INSERT INTO fave_design (id, user_id, design_id) VALUES ('7b8143d3-e9b7-40a1-a984-1848af48aa40', '85b7edfd-d0be-4156-933a-40004a3c38c5', '8ddbc1dc-bbd3-41b7-929f-46db20f1d53c') ON CONFLICT (id) DO NOTHING;
+INSERT INTO fave_design (id, user_id, design_id) VALUES ('5ef07689-56c6-4717-b8ba-be92a71868ba', '8fb79eca-5262-4d99-9e29-9afc283cb5f8', '84d03225-a2f4-411b-9b19-cd5e31f49bed') ON CONFLICT (id) DO NOTHING;
 
