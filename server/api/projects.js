@@ -5,7 +5,7 @@ const {
   createProject,
   fetchMyProjects,
   fetchSingleProjectById,
-} = require("../db/projects");
+} = require("../db/Projects");
 
 const { isLoggedIn } = require("./middleware");
 
