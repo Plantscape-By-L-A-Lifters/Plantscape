@@ -36,6 +36,10 @@ function Login() {
     }
   };
 
+  const toRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <div>
       <h2>Login:</h2>
@@ -70,8 +74,5 @@ function Login() {
     </div>
   );
 }
-const toRegister = () => {
-  navigate("/register");
-};
 
 export default Login;
