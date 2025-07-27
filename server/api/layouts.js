@@ -13,7 +13,7 @@ const {
 
 const {
   fetchSingleProjectById, // NEW: Import this from db/projects for security checks
-} = require("../db/projects"); // Assuming db/projects.js is correct and exports this
+} = require("../db/Projects"); // Assuming db/projects.js is correct and exports this
 
 const { isLoggedIn } = require("./middleware");
 
