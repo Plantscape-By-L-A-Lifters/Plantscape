@@ -1,7 +1,11 @@
 import { useContext } from "react";
 import { GardenBedContext } from "../context/GardenBedContext";
 
-export function TemplateSelector() {
+export function TemplateSelector({
+  templates,
+  onSelectTemplate,
+  selectedTemplate,
+}) {
   const { templateBeds, createBedFromTemplate } = useContext(GardenBedContext);
 
   return (

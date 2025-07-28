@@ -1,19 +1,224 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import { GardenBedContext } from "../context/GardenBedContext";
 import { TemplateSelector } from "../components/TemplateSelector";
+import { ProjectContext } from "../context/ProjectContext";
+import { UserContext } from "../context/UserContext";
+import { DesignStyleContext } from "../context/DesignStyleContext";
+import { parseDimensionInput } from "../utils/dimensionParser";
 
 export default function GardenBedForm() {
-  //local use state for Form
-  const [formData, setFormData] = useState({
-    bedName: "",
-    bedLength: "",
-    bedDepth: "",
-  });
+  const navigate = useNavigate();
+  const { projectId: projectIdFromUrl } = useParams();
+
+  //Contexts//
+  const { templateBeds, createGardenBed, fetchGardenBedsForProject } =
+    useContext(GardenBedContext); // need a helper function to extract design_type from each template.
+  const { userId, getHeaders } = useContext(UserContext);
+  const { currentEditingProject, fetchProject } = useContext(ProjectContext);
+  const { styles: designStyles } = useContext(DesignStyleContext); // unnecessary rename?
+
+  //Local States//
+  const [bedName, setBedName] = useState("");
+  const [bedWidth, setBedWidth] = useState(null);
+  const [bedDepth, setBedDepth] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedDesignStyleId, setSelectedDesignStyleId] = useState("");
+  const [startMode, setStartMode] = useState("template"); // 'template' or 'custom'
+
+  //Common local states for form handling//
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // --- useEffect to fetch current project if not already loaded ---
+  useEffect(() => {
+    if (projectIdFromUrl && !currentEditingProject?.id && userId) {
+      fetchProject(projectIdFromUrl);
+    }
+  }, [projectIdFromUrl, currentEditingProject, userId, fetchProject]);
+
+  // --- Handle Template Selection ---
+  const handleTemplateSelect = (template) => {
+    setSelectedTemplate(template);
+    setBedWidth(template.bedWidth);
+    setBedDepth(template.bedDepth);
+    setBedName(template.name);
+  };
+
+  // --- NEW: onChange handler for dimension inputs ---
+  const handleDimensionChange = (e, setter) => {
+    const rawValue = e.target.value;
+    // We update the state with the raw value first to allow user to type
+    // The parsing for submission happens in handleSubmit
+    setter(rawValue);
+  };
+  // --- Input Validation Helper ---
+  const validateInputs = () => {
+    if (!bedName.trim()) {
+      return "Garden Bed Name cannot be empty.";
+    }
+    if (!userId) {
+      return "User not authenticated. Please log in.";
+    }
+
+    if (startMode === "custom") {
+      const parsedLength = parseFloat(bedWidth);
+      const parsedDepth = parseFloat(bedDepth);
+
+      if (isNaN(parsedLength) || parsedLength <= 0) {
+        return "Bed Length must be a positive number.";
+      }
+      if (isNaN(parsedDepth) || parsedDepth <= 0) {
+        return "Bed Depth must be a positive number.";
+      }
+      if (!selectedDesignStyleId) {
+        return "Please select a design style for your custom bed.";
+      }
+    } else if (startMode === "template") {
+      if (!selectedTemplate) {
+        return "Please select a template.";
+      }
+    }
+    return null; // No errors
+  };
+
+  // --- Form Submission Handler ---
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    //run the input validation helper function, validateInputs and set error state for any errors that pop up
+    const validationError = validateInputs();
+    if (validationError) {
+      setSubmitError(validationError);
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError(null); // Clear previous errors
+    setSubmitSuccess(false); // Reset success state
+
+    const projectId = currentEditingProject?.id;
+
+    if (!projectId) {
+      setSubmitError(
+        "No active project selected. Please select a project first."
+      );
+      setSubmitting(false);
+      return;
+    }
+
+    try {
+      let bedData = {
+        layout_name: bedName.trim(),
+        projects_id: projectId,
+      };
+
+      //instead of setting all the various bedData at once, we are separating it into two start modes: template based, or custom
+      if (startMode === "template") {
+        bedData = {
+          ...bedData,
+          bed_length: parseFloat(selectedTemplate.bedWidth),
+          bed_depth: parseFloat(selectedTemplate.bedDepth),
+          design_type: selectedTemplate.designStyleId,
+        };
+      } else {
+        bedData = {
+          ...bedData,
+          bed_length: parseFloat(parseDimensionInput.bedWidth),
+          bed_depth: parseFloat(parseDimensionInput.bedDepth),
+          design_type: selectedDesignStyleId,
+        };
+      }
+
+      const response = await axios.post(
+        `/api/layouts/${projectId}/layouts`,
+        bedData,
+        getHeaders()
+      );
+
+      setSubmitSuccess(true);
+      if (fetchGardenBedsForProject) {
+        await fetchGardenBedsForProject();
+      }
+
+      navigate(`/mygardenbed/${response.data.id}`);
+    } catch (err) {
+      console.error(
+        "Error creating garden bed layout:",
+        err.response ? err.response.data : err.message
+      );
+      setSubmitError(
+        err.response?.data?.error ||
+          "Failed to create garden bed layout. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
-    <form>
-      <h1>Please choose a template garden bed to get started:</h1>
-      <TemplateSelector />
-    </form>
+    <div>
+      <h1>Create a New Garden Bed:</h1>
+      {!currentEditingProject && projectIdFromUrl ? (
+        <p>Loading project details...</p>
+      ) : !currentEditingProject && !projectIdFromUrl ? (
+        <p>Please select a project first (e.g., from "My Projects").</p>
+      ) : (
+        <p>
+          For Project: <span>{currentEditingProject.project_name}</span>
+        </p>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="bedName">Garden Bed Name:</label>
+          <input
+            type="text"
+            id="bedName"
+            value={bedName}
+            onChange={(e) => setBedName(e.target.value)}
+            placeholder="North Bed along Fence, Part-Shade"
+            style={{ color: bedName ? "inherit" : "#999" }}
+            required
+            disabled={submitting}
+          />
+        </div>
+        <div>
+          <h2>
+            Would you like to start with a template ...or do you prefer to start
+            fresh?
+          </h2>
+          <div>
+            <button
+              type="button"
+              onClick={() => setStartMode("template")}
+              disabled={submitting}
+            >
+              Start with a Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setStartMode("custom")}
+              disabled={submitting}
+            >
+              Start Fresh (Custom)
+            </button>
+          </div>
+          <label htmlFor="templateBase">Available Templates:</label>
+          <input
+            type="text"
+            id="bedName"
+            value={bedName}
+            onChange={(e) => setBedName(e.target.value)}
+            placeholder="North Bed along Fence, Part-Shade"
+            style={{ color: bedName ? "inherit" : "#999" }}
+            required
+            disabled={submitting}
+          />
+        </div>
+      </form>
+    </div>
   );
 }
