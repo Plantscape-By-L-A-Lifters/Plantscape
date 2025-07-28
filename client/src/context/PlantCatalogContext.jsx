@@ -69,6 +69,24 @@ export const PlantCatalogProvider = ({ children }) => {
     }
   }, []);
 
+  //  Helper function to find a plant by its name from the already loaded catalog
+  // Now returns the full plant object if found, otherwise null.
+  const plantByName = useCallback(
+    (name) => {
+      if (!name || plantCatalog.length === 0) {
+        return null; // Return null if name is empty or catalog is not loaded
+      }
+      // Perform a case-insensitive search for the plant name
+      const foundPlant = plantCatalog.find(
+        (p) => p.plant_name.toLowerCase() === name.toLowerCase()
+      );
+      // Return the full plant object if found, otherwise null
+      console.log(`plantByName: Searching for "${name}", found:`, foundPlant);
+      return foundPlant;
+    },
+    [plantCatalog]
+  ); // Dependency: plantCatalog, so it re-memoizes if the catalog changes
+
   return (
     <PlantCatalogContext.Provider
       value={{
@@ -80,6 +98,7 @@ export const PlantCatalogProvider = ({ children }) => {
         fetchPlantById,
         loadingSinglePlant,
         errorSinglePlant,
+        plantByName,
       }}
     >
       {children}
