@@ -1,90 +1,65 @@
+import { useState } from "react";
+import "./StyleQuiz.css";
 
-import React, { useState } from 'react';
-
-
-
-const gardenStyles = [
+const quizData = [
   {
-    name: "Classical",
-    style: "Formal",
-    features: ["Symmetry", "Structured layout", "Low hedges", "Gravel paths"],
-    planting: "Neatly trimmed, layered"
+    id: 1,
+    image: <img src="/corn_flowers.jpeg" alt="Corn Flowers" className="quiz-image"/>,
+    title: "Image 1",
   },
   {
-    name: "Modern",
-    style: "Clean and minimal",
-    features: ["Geometric layout", "Lawn with pavers", "Simple hardscape"],
-    planting: "Sculptural plants, minimal color palette"
+    id: 2,
+    image: "/images/wildflower-style.jpg",
+    title: "Image 2",
   },
   {
-    name: "Cottagecore",
-    style: "Romantic and wild",
-    features: ["Natural shapes", "Dense planting", "Whimsical feel"],
-    planting: "Clumping, lots of colors, large variety"
+    id: 3,
+    image: "/images/symmetrical-design.jpg",
+    title: "Image 3",
   },
-  {
-    name: "Modern Lush",
-    style: "Modern + Dense Planting",
-    features: ["Toned down palette", "Modern layout", "Cottage-style density"],
-    planting: "Monochrome tones, dense layout like cottagecore"
-  }
 ];
 
-export default function stylequiz() {
-  const [selectedStyle, setSelectedStyle] = useState(null);
+export default function Quiz() {
+  const [current, setCurrent] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
 
-  const handleSelect = (style) => {
-    setSelectedStyle(style);
+  const handleAnswer = () => {
+    if (current < quizData.length - 1) {
+      setCurrent(current + 1);
+    } else {
+      setIsComplete(true);
+    }
   };
 
-  const handleBack = () => {
-    setSelectedStyle(null);
-  };
+  const { image, question } = quizData[current];
 
   return (
-    <div className="picker-container">
-      <h1>  Garden Style   </h1>
-
-      {selectedStyle ? (
-        <div className="details">
-          <button onClick={handleBack}>← Back</button>
-          <h2>{selectedStyle.name}</h2>
-          <p><strong>Style:</strong> {selectedStyle.style}</p>
-          <p><strong>Features:</strong> {selectedStyle.features.join(", ")}</p>
-          <p><strong>Planting:</strong> {selectedStyle.planting}</p>
-        </div>
-      ) : (
-        <div className="gallery">
-          {gardenStyles.map((style) => (
-            <div
-              className="card"
-              key={style.name}
-              onClick={() => handleSelect(style)}
-            >
-            
-<img src="/public/classical.jpg" alt="Classical" />
-
-<br></br>
-
-<img src="/public/modern.jpeg" alt="Modern" />
-
-<br></br>
-
-<img src="/public/cottage.jpg" alt="Cottage" />
-
-<br></br>
-
-<img src="/public/modernlush.jpg" alt="ModernLush" />
-
-<br></br> 
-              <h3>{style.name}</h3>
+    <div className="quiz-wrapper">
+      <div className="quiz-container">
+        {isComplete ? (
+          <>
+            <h2 className="quiz-question">Thanks for taking the quiz!</h2>
+            <p>We hope this helped you get inspired 🌿</p>
+          </>
+        ) : (
+          <>
+            <h2 className="quiz-question">{question}</h2>
+            <img src={image} alt="quiz" className="quiz-image" />
+            <div className="quiz-buttons">
+              <button onClick={handleAnswer}>Yes</button>
+              <button onClick={handleAnswer}>No</button>
             </div>
-          ))}
-        </div>
-)}
-</div>
-);
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
+
+
+
+
+
 
 
  
