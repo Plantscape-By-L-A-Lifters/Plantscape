@@ -1,10 +1,9 @@
-// components/ProtectedRoute.jsx
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { UserContext } from "../UserContext"; // Adjust path as needed
+import { UserContext } from "../context/UserContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { isLoggedIn, loading } = useContext(UserContext); // Assuming UserContext provides isLoggedIn and loading
+  const { isLoggedIn, loading } = useContext(UserContext);
 
   // If UserContext is still loading authentication status, show nothing or a loading spinner
   if (loading) {

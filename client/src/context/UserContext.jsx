@@ -47,8 +47,9 @@ export const UserProvider = ({ children }) => {
     navigate("/"); // Redirect to home page
   };
 
-  // NEW: Derived state for convenience
+  // NEW: Derived states for convenience
   const isLoggedIn = !!user; // True if user object is not null/undefined
+  const userId = user ? user.id : null;
 
   // Provide all necessary values to consumers
   return (
@@ -60,6 +61,7 @@ export const UserProvider = ({ children }) => {
         logout,
         getHeaders,
         isLoggedIn,
+        userId,
         loading,
       }}
     >

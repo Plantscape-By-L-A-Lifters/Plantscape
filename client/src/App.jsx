@@ -16,6 +16,7 @@ import Register from "./components/Register.jsx";
 import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 import MyGardenBeds from "./pages/MyGardenBeds.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
   // const [user, setUser] = useState({});
@@ -76,14 +77,18 @@ function App() {
         <Route path="/plants" element={<Plants />} />
         <Route path="/quiz" element={<StyleQuiz />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<MyProfile />} />
-        <Route path="/newproject" element={<ProjectForm />} />
-        <Route path="/myprojects" element={<MyProjects />} />
-        <Route path="/myproject/:projectId" element={<MyProject />} />
-        <Route path="/newgardenbed" element={<GardenBedForm />} />
-        <Route path="/mygardenbeds" element={<MyGardenBeds />} />
-        <Route path="/mygardenbed/:layoutId" element={<MyGardenBed />} />
         <Route path="/register" element={<Register />} />
+
+        {/* NEW: Wrapped routes that require authentication with ProtectedRoute */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<MyProfile />} />
+          <Route path="/newproject" element={<ProjectForm />} />
+          <Route path="/myprojects" element={<MyProjects />} />
+          <Route path="/myproject/:projectId" element={<MyProject />} />
+          <Route path="/newgardenbed" element={<GardenBedForm />} />
+          <Route path="/mygardenbeds" element={<MyGardenBeds />} />
+          <Route path="/mygardenbed/:layoutId" element={<MyGardenBed />} />
+        </Route>
       </Routes>
     </>
   );
