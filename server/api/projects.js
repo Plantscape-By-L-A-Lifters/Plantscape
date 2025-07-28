@@ -13,8 +13,16 @@ app.post("/", isLoggedIn, async (req, res, next) => {
   try {
     // IMPORTANT: Attach the user_id from the authenticated user (req.user.id)
     // This prevents users from creating projects for other users.
-    const projectData = { ...req.body, user_id: req.user.id };
-    res.status(201).send(await createProject(projectData)); // Use 201 for resource creation
+    const { project_name } = req.body;
+    const user_id = req.user.id;
+    if (!user_id) {
+      return res
+        .status(401)
+        .json({ error: "Unauthorized: User ID not found in token." });
+    }
+
+    const newProject = await createProject({ project_name, user_id });
+    res.status(201).send(newProject);
   } catch (error) {
     next(error);
   }
@@ -53,7 +61,6 @@ app.get("/:projectId", isLoggedIn, async (req, res, next) => {
     if (!project || project.user_id !== req.user.id) {
       const error = Error("Project not found or unauthorized");
       error.status = 404; // Not Found (if project doesn't exist or doesn't belong to user)
-      // Alternatively, use 403 Forbidden if the project exists but belongs to someone else.
       throw error;
     }
 
