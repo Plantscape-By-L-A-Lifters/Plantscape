@@ -5,6 +5,7 @@ import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Plants from "./pages/Plants";
+import PlantDetails from "./pages/PlantDetails.jsx";
 import StyleQuiz from "./pages/StyleQuiz";
 import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
@@ -74,6 +75,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/plants" element={<Plants />} />
+        <Route path="/plants/:id" element={<PlantDetails />} />
         <Route path="/quiz" element={<StyleQuiz />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<MyProfile />} />

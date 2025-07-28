@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./Plants.css";
 
@@ -11,7 +12,7 @@ export default function Plants() {
         <h1>Creating Your Dream Garden </h1>
         <p>Select A Plant!</p>
         <br></br>
-        {loadingPlants ? ( // Show loading state
+        {loadingPlants ? (
           <p>Loading plants...</p>
         ) : plantCatalog.length > 0 ? (
           <ul>
@@ -19,8 +20,11 @@ export default function Plants() {
               // console.log("each plant", plant.plant_name, plant.image_url); // Keep for debugging if needed
               return (
                 <li key={plant.id}>
-                  {plant.plant_name || "Unnamed Plant"}
-                  <img src={plant.image_url} alt={plant.plant_name} />
+                  {/* Wrap the plant name and image with a Link component */}
+                  <Link to={`/plants/${plant.id}`}>
+                    {plant.plant_name || "Unnamed Plant"}
+                    <img src={plant.image_url} alt={plant.plant_name} />
+                  </Link>
                 </li>
               );
             })}
