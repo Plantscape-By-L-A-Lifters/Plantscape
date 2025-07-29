@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import './Home.css';
 
 export default function Home() {
   return (
     <>
+    <div className="home-container"></div>
       <div className="hero">
         <h1>Turn your backyard into your dream garden.</h1>
       </div>

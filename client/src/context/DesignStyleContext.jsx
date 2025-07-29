@@ -1,33 +1,27 @@
 import { createContext, useState, useEffect } from "react";
+import axios from "axios"; // Import axios for API calls
 
 export const DesignStyleContext = createContext();
 
-const defaultStyles = [
-  {
-    id: 1,
-    name: "Classical",
-    gridMinCols: 4,
-    // gridEven: true,
-    spacingFactor: 1.2,
-  },
-  {
-    id: 2,
-    name: "Modern",
-    gridMinCols: 3,
-    // gridOdd: true,
-    spacingFactor: 1.4,
-  },
-  {
-    id: 3,
-    name: "Cottage",
-    gridMinCols: 3,
-    spacingFactor: 1.0,
-  },
-];
-
 export const DesignStyleProvider = ({ children }) => {
-  const [styles, setStyles] = useState(defaultStyles);
-  const [selectedStyle, setSelectedStyle] = useState(null); // user-selected
+  const [styles, setStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState(null); // user-selected style
+
+  useEffect(() => {
+    const fetchStyles = async () => {
+      try {
+        const { data } = await axios.get("/api/design");
+        setStyles(data);
+        if (data.length > 0 && !selectedStyle) {
+          setSelectedStyle(data[0].id); // Default to the ID of the first design style
+        }
+      } catch (err) {
+        console.error("Failed to fetch design styles:", err);
+      }
+    };
+
+    fetchStyles();
+  }, [selectedStyle]);
 
   return (
     <DesignStyleContext.Provider
