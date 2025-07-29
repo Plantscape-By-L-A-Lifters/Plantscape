@@ -68,6 +68,7 @@ export default function Plants() {
           </div>
         </div>
       )}
+
     </div>
   );
 }
