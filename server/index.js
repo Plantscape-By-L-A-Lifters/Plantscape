@@ -12,30 +12,33 @@ console.log(
   `Server running in ${isProduction ? "production" : "development"} mode.`
 );
 
-// NEW: CORS Middleware - IMPORTANT: Configure this before your routes
-// For production, it's best to specify the exact origin of your frontend:
+// CORS Middleware - IMPORTANT: Configure this before your routes
 app.use(
   cors({
-    origin: "https://plantscape-cxpu.onrender.com", // Replace with your actual frontend URL
-    credentials: true, // If you're sending cookies or authorization headers
+    origin: isProduction
+      ? "https://plantscape-cxpu.onrender.com"
+      : "http://localhost:5173", // Dynamic origin based on environment
+    credentials: true,
   })
 );
 
 app.use(express.json());
 
 // Content-Security-Policy - Ensure this is permissive enough for all your assets
-// The previous CSP was quite restrictive. This one is a bit more open for common cases.
-// If you have specific external domains for images/scripts, you'll need to add them.
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; " +
-      "img-src 'self' data: https:; " + // Allows images from self, data URIs, and any https source
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " + // 'unsafe-inline' and 'unsafe-eval' are often needed for development/some libraries, but review for production
-      "style-src 'self' 'unsafe-inline' https:; " + // Allows styles from self, inline, and any https source
-      "font-src 'self' https:; " + // Allows fonts from self and any https source
-      "connect-src 'self' https://plantscape-2aqa.onrender.com; " + // Explicitly allow connections to your backend
-      "object-src 'none';" // Disallow <object>, <embed>, <applet>
+      "img-src 'self' data: https:; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+      "style-src 'self' 'unsafe-inline' https:; " +
+      "font-src 'self' https:; " +
+      `connect-src 'self' ${
+        isProduction
+          ? "https://plantscape-2aqa.onrender.com"
+          : "http://localhost:3000"
+      }; ` + // Dynamic backend URL
+      "object-src 'none';"
   );
   next();
 });
