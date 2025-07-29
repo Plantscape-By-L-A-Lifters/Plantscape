@@ -6,6 +6,12 @@ const app = express();
 const cors = require("cors"); // NEW: Import cors middleware for deployment
 const path = require("path"); // NEW: Import path for potential static serving or fallback on deployment
 
+// NEW: In order to prevent DB from resetting, first we need to Determine if running in production
+const isProduction = process.env.NODE_ENV === "production";
+console.log(
+  `Server running in ${isProduction ? "production" : "development"} mode.`
+);
+
 // NEW: CORS Middleware - IMPORTANT: Configure this before your routes
 // For production, it's best to specify the exact origin of your frontend:
 app.use(
@@ -65,9 +71,14 @@ const init = async () => {
   await client.connect();
   console.log("connected to database");
 
-  // Now call seed *without* it connecting/disconnecting itself
-  // Pass false to indicate the connection is already managed by Server/index.js
-  await seed(false); // Pass false so it doesn't try to connect/disconnect again
+  // --- CRITICAL CHANGE: Conditionally seed the database ---
+  if (!isProduction) {
+    console.log("Seeding database (development mode)...");
+    await seed(false); // Only seed if NOT in production
+  } else {
+    console.log("Skipping database seeding in production mode.");
+  }
+  // --- END CRITICAL CHANGE ---
 
   app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
