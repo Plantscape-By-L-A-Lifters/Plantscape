@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext"; // Adjust path as needed
 import { ProjectContext } from "../context/ProjectContext"; // Adjust path as needed
+import "./MyProjects.css";
 
 const MyProjects = () => {
   const { user } = useContext(UserContext);
@@ -37,7 +38,7 @@ const MyProjects = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <h2>My Projects</h2>
       <Link to="/newproject">Create New Project</Link>
 
