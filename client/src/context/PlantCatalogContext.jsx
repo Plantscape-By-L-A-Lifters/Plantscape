@@ -48,7 +48,7 @@ export const PlantCatalogProvider = ({ children }) => {
       setPlant(null);
       return null; // Exit early if ID is invalid
     }
-
+     // 
     // ONLY if plantId is valid, then we proceed to set loading and make the API call
     setLoadingSinglePlant(true);
     setErrorSinglePlant(null); // Clear previous errors

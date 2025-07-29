@@ -3,12 +3,27 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./Plants.css";
+import { useEffect } from "react";
+import axios from "axios";
+import { UserContext } from "../context/UserContext";
 
 
 export default function Plants() {
 
+  const { user, getHeaders} = useContext(UserContext);
   const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);
   const [selectedPlant, setSelectedPlant] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+
+  const addFave = async(plantId) =>{
+    try {
+      const {data} = await axios.post('/api/favorite_plants', {plant_id: plantId, user_id: user.id}, getHeaders())
+      setFavorites([...favorites,data])
+      console.log(favorites)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="plants-container">
@@ -26,10 +41,14 @@ export default function Plants() {
                 className="plant-image"
                 onClick={() => setSelectedPlant(plant)}
               />
+              {user?(
+                 <button onClick={()=>addFave(plant.id)}>Favorite</button>
+              ):null}
             </div>
           ))
         ) : (
-          <p>No plants found.</p> )}</div> </div>)
+          <p>No plants found.</p> )}</div> </div>
+        )
         }
   // console.log("full plant catalog", plantCatalog);
   // return (
