@@ -43,6 +43,7 @@ export default function GardenBedForm() {
   // --- Handle Template Selection ---
   const handleTemplateSelect = (template) => {
     setSelectedTemplate(template);
+    const { bedWidth, bedDepth } = template.bedSize;
     setBedWidth(template.bedWidth);
     setBedDepth(template.bedDepth);
     setBedName(template.name);
@@ -67,6 +68,8 @@ export default function GardenBedForm() {
       // Parse the dimensions here for validation
       const parsedWidth = parseFloat(parseDimensionInput(bedWidth)); // Changed to parsedWidth
       const parsedDepth = parseFloat(parseDimensionInput(bedDepth));
+      console.log("Parsed Width Custom:", parsedWidth);
+      console.log("Parsed Depth Custom:", parsedDepth);
 
       if (isNaN(parsedWidth) || parsedWidth <= 0) {
         // Changed to parsedWidth
@@ -121,8 +124,8 @@ export default function GardenBedForm() {
       if (startMode === "template") {
         bedData = {
           ...bedData,
-          bed_length: parseFloat(selectedTemplate.bedWidth),
-          bed_depth: parseFloat(selectedTemplate.bedDepth),
+          bed_length: parseFloat(selectedTemplate.bedSize.bedWidth),
+          bed_depth: parseFloat(selectedTemplate.bedSize.bedDepth),
           design_type: selectedTemplate.designStyleId,
         };
       } else {
@@ -221,7 +224,7 @@ export default function GardenBedForm() {
               {selectedTemplate && (
                 <p>
                   Selected Template: <span>{selectedTemplate.name}</span> (
-                  {selectedTemplate.bedLength}x{selectedTemplate.bedDepth}ft,
+                  {selectedTemplate.bedWidth}x{selectedTemplate.bedDepth}ft,
                   Design: {selectedTemplate.designStyleName})
                 </p>
               )}

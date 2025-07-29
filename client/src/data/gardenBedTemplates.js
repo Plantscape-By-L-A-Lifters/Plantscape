@@ -2,7 +2,7 @@ export const gardenBedTemplates = [
   {
     id: "template-1",
     name: "Classically Arranged",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://ecogardenconstruct.com/wp-content/uploads/2023/01/amenajare-peisagistica-bg.jpg",
     placedPlants: [
@@ -211,7 +211,7 @@ export const gardenBedTemplates = [
   {
     id: "template-2",
     name: "Prairie Paradise",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://www.epicgardening.com/wp-content/uploads/2023/09/Herb-garden-with-ornamental-grasses-and-herbs-in-autumn-1200x667.jpg",
     placedPlants: [
@@ -422,28 +422,28 @@ export const gardenBedTemplates = [
   {
     id: "template-3",
     name: "Native Woodland",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://hips.hearstapps.com/hmg-prod/images/woodland-garden-ideas-ground-1618242057.jpg?crop=1xw:1xh;center,top&resize=980:*",
   },
   {
     id: "template-4",
     name: "Cottagecore",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://cdn.shopify.com/s/files/1/0593/3265/7306/files/01-pollinator-flower-bed.png?v=1727708811",
   },
   {
     id: "template-5",
     name: "Modern Minimalism",
-    bedSize: { bedLength: 8, bedDepth: 5 },
+    bedSize: { bedWidth: 8, bedDepth: 5 },
     image_url:
       "https://www.almanac.com/sites/default/files/users/The%20Editors/rock-garden-house-shutterstock_1948570909.jpg",
   },
   {
     id: "template-6",
     name: "Modern Lush",
-    bedSize: { bedLength: 15, bedDepth: 10 },
+    bedSize: { bedWidth: 15, bedDepth: 10 },
     image_url:
       "https://www.monrovia.com/media/amasty/blog/1024x577_Robin_Parsons_garden_designer_-_West_Seattle_project_2514PM_copy.jpg",
   },
