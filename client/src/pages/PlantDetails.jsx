@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { usePlantCatalog } from "../context/PlantCatalogContext";
+import "./PlantDetails.css";
 
 const PlantDetails = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const PlantDetails = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       {plant.image_url && (
         <img
           src={plant.image_url}

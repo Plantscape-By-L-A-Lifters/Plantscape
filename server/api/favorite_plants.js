@@ -13,6 +13,7 @@ const {
 
 app.post('/', isLoggedIn, async (req, res, next) => { 
     try {
+        console.log(req.body)
         res.send( await createFavoritePlant(req.body))
     } catch (error) {
         next(error)

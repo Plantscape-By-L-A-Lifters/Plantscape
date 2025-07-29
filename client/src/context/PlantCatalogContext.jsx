@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
 } from "react";
+import { UserContext } from "./UserContext";
 import axios from "axios";
 
 export const PlantCatalogContext = createContext();
@@ -17,6 +18,8 @@ export const PlantCatalogProvider = ({ children }) => {
   const [loadingSinglePlant, setLoadingSinglePlant] = useState(false);
   const [errorPlantCatalog, setErrorPlantCatalog] = useState(null);
   const [errorSinglePlant, setErrorSinglePlant] = useState(null);
+  const { user, getHeaders } = useContext(UserContext);
+  const [favoritePlant, setFavoritePlant] = useState([]);
 
   const fetchPlants = useCallback(async () => {
     console.log("ran fetch Plants function");
@@ -87,6 +90,16 @@ export const PlantCatalogProvider = ({ children }) => {
     [plantCatalog]
   ); // Dependency: plantCatalog, so it re-memoizes if the catalog changes
 
+  // adds the capability to add favorites
+const addFavePlant = useCallback(async (plantId) => {
+  try {
+    const { data } = await axios.post('/api/favorite_plants', { plant_id: plantId, user_id: user.id }, getHeaders());
+    setFavoritePlant([...favoritePlant, data]); // Use functional update
+  } catch (error) {
+    console.error("Failed to add favorite plant:", error); // Consistent error logging
+  }
+}, [user, getHeaders]); // Dependencies for useCallback
+
   return (
     <PlantCatalogContext.Provider
       value={{
@@ -99,6 +112,9 @@ export const PlantCatalogProvider = ({ children }) => {
         loadingSinglePlant,
         errorSinglePlant,
         plantByName,
+        addFavePlant,
+        favoritePlant,
+        setFavoritePlant
       }}
     >
       {children}

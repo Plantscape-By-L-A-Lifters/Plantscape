@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 
 export default function ProjectForm() {
   const [projectName, setProjectName] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
+  // const [projectDescription, setProjectDescription] = useState(""); not currently linked to db, can be added later
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
