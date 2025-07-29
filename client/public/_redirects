@@ -1,6 +1,6 @@
 /\* /index.html 200
 
-<!-- This file is critical for deployment.  It prevents errors when switching between or manually entering routes outside of the root url:
+<!-- This file is critical for deployment.  It redirects all requests for paths that don't correspond to a static file back to your index.html:
 
     /*: This is a wildcard that matches any path requested by the browser that doesn't directly map to an existing static file (like index.html, main.js, style.css, etc.).
 
