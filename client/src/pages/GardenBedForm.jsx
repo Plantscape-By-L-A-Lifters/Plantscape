@@ -7,6 +7,7 @@ import { ProjectContext } from "../context/ProjectContext";
 import { UserContext } from "../context/UserContext";
 import { DesignStyleContext } from "../context/DesignStyleContext";
 import { parseDimensionInput } from "../utils/dimensionParser";
+import "./gardenBedForm.css";
 
 export default function GardenBedForm() {
   const navigate = useNavigate();
@@ -47,13 +48,12 @@ export default function GardenBedForm() {
     setBedName(template.name);
   };
 
-  // --- NEW: onChange handler for dimension inputs ---
+  // --- onChange handler for dimension inputs ---
   const handleDimensionChange = (e, setter) => {
     const rawValue = e.target.value;
-    // We update the state with the raw value first to allow user to type
-    // The parsing for submission happens in handleSubmit
     setter(rawValue);
   };
+
   // --- Input Validation Helper ---
   const validateInputs = () => {
     if (!bedName.trim()) {
@@ -64,14 +64,16 @@ export default function GardenBedForm() {
     }
 
     if (startMode === "custom") {
-      const parsedLength = parseFloat(bedWidth);
-      const parsedDepth = parseFloat(bedDepth);
+      // Parse the dimensions here for validation
+      const parsedWidth = parseFloat(parseDimensionInput(bedWidth)); // Changed to parsedWidth
+      const parsedDepth = parseFloat(parseDimensionInput(bedDepth));
 
-      if (isNaN(parsedLength) || parsedLength <= 0) {
-        return "Bed Length must be a positive number.";
+      if (isNaN(parsedWidth) || parsedWidth <= 0) {
+        // Changed to parsedWidth
+        return "Bed Width must be a positive number (e.g., 5.5 or 5'6)."; // Updated message
       }
       if (isNaN(parsedDepth) || parsedDepth <= 0) {
-        return "Bed Depth must be a positive number.";
+        return "Bed Depth must be a positive number (e.g., 3.25 or 3'3).";
       }
       if (!selectedDesignStyleId) {
         return "Please select a design style for your custom bed.";
@@ -126,8 +128,8 @@ export default function GardenBedForm() {
       } else {
         bedData = {
           ...bedData,
-          bed_length: parseFloat(parseDimensionInput.bedWidth),
-          bed_depth: parseFloat(parseDimensionInput.bedDepth),
+          bed_length: parseFloat(parseDimensionInput(bedWidth)),
+          bed_depth: parseFloat(parseDimensionInput(bedDepth)),
           design_type: selectedDesignStyleId,
         };
       }
@@ -159,7 +161,7 @@ export default function GardenBedForm() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Create a New Garden Bed:</h1>
       {!currentEditingProject && projectIdFromUrl ? (
         <p>Loading project details...</p>
@@ -187,37 +189,117 @@ export default function GardenBedForm() {
         </div>
         <div>
           <h2>
-            Would you like to start with a template ...or do you prefer to start
-            fresh?
+            Would you like to start with a template ...or do you prefer a blank
+            slate?
           </h2>
-          <div>
+          <div className="mode-toggle-buttons">
             <button
               type="button"
               onClick={() => setStartMode("template")}
               disabled={submitting}
+              className={startMode === "template" ? "active" : ""}
             >
-              Start with a Template
+              Template
             </button>
             <button
               type="button"
               onClick={() => setStartMode("custom")}
               disabled={submitting}
+              className={startMode === "custom" ? "active" : ""}
             >
-              Start Fresh (Custom)
+              Custom
             </button>
           </div>
-          <label htmlFor="templateBase">Available Templates:</label>
-          <input
-            type="text"
-            id="bedName"
-            value={bedName}
-            onChange={(e) => setBedName(e.target.value)}
-            placeholder="North Bed along Fence, Part-Shade"
-            style={{ color: bedName ? "inherit" : "#999" }}
-            required
-            disabled={submitting}
-          />
+          {startMode === "template" && (
+            <div className="template-section">
+              <h3>Select a Template:</h3>
+              <TemplateSelector
+                templates={templateBeds}
+                onSelectTemplate={handleTemplateSelect}
+                selectedTemplateId={selectedTemplate?.id}
+              />
+              {selectedTemplate && (
+                <p>
+                  Selected Template: <span>{selectedTemplate.name}</span> (
+                  {selectedTemplate.bedLength}x{selectedTemplate.bedDepth}ft,
+                  Design: {selectedTemplate.designStyleName})
+                </p>
+              )}
+            </div>
+          )}
+
+          {startMode === "custom" && (
+            <div className="custom-section">
+              <h3>Define Custom Dimensions:</h3>
+              <div>
+                <label htmlFor="designStyle">
+                  Select Design Style:<span> (Optional)</span>
+                </label>
+                <select
+                  id="designStyle"
+                  value={selectedDesignStyleId}
+                  onChange={(e) => setSelectedDesignStyleId(e.target.value)}
+                  required={startMode === "custom"}
+                  disabled={submitting}
+                >
+                  <option value="">-- Select a Style --</option>
+                  {designStyles.map((style) => (
+                    <option key={style.id} value={style.id}>
+                      {style.design_style_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="bedWidth">Garden Bed Width (ft):</label>
+                <input
+                  type="text"
+                  id="bedWidth"
+                  value={bedWidth}
+                  onChange={(e) => handleDimensionChange(e, setBedWidth)}
+                  placeholder="e.g., 5.5 or 5'6"
+                  required={startMode === "custom"}
+                  disabled={submitting}
+                />
+                <p className="dimension-helper-text">
+                  Enter as decimal feet (e.g., 5.5) or feet and inches (e.g.,
+                  5'6" or 5' 6).
+                </p>
+              </div>
+              <div>
+                <label htmlFor="bedDepth">Garden Bed Depth (ft):</label>
+                <input
+                  type="text"
+                  id="bedDepth"
+                  value={bedDepth}
+                  onChange={(e) => handleDimensionChange(e, setBedDepth)}
+                  placeholder="e.g., 3.25 or 3'3"
+                  required={startMode === "custom"}
+                  disabled={submitting}
+                />
+                <p className="dimension-helper-text">
+                  Enter as decimal feet (e.g., 3.25) or feet and inches (e.g.,
+                  3'3" or 3' 3).
+                </p>
+              </div>
+            </div>
+          )}
         </div>
+
+        <div>
+          <button
+            type="submit"
+            disabled={submitting || !currentEditingProject?.id}
+          >
+            {submitting ? "Creating..." : "Create Garden Bed"}
+          </button>
+        </div>
+
+        {submitSuccess && (
+          <p className="success-message">Garden Bed created successfully!</p>
+        )}
+
+        {submitError && <p className="error-message">{submitError}</p>}
       </form>
     </div>
   );
