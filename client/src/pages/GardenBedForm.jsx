@@ -7,7 +7,7 @@ import { ProjectContext } from "../context/ProjectContext";
 import { UserContext } from "../context/UserContext";
 import { DesignStyleContext } from "../context/DesignStyleContext";
 import { parseDimensionInput } from "../utils/dimensionParser";
-import "./gardenBedForm.css";
+import "./GardenBedForm.css";
 
 export default function GardenBedForm() {
   const navigate = useNavigate();
