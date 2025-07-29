@@ -1,0 +1,9 @@
+/\* /index.html 200
+
+<!-- This file is critical for deployment.  It redirects all requests for paths that don't correspond to a static file back to your index.html:
+
+    /*: This is a wildcard that matches any path requested by the browser that doesn't directly map to an existing static file (like index.html, main.js, style.css, etc.).
+
+    /index.html: This is the destination path. It tells the Render server to serve your index.html file.
+
+    200: This is the HTTP status code. Using 200 (OK) is crucial. It tells the browser that the request was successful, even though it served index.html for a different path. This allows React Router to then read the URL (/plants in this case) and render the correct component client-side. If you used a 301 or 302 redirect, the browser might change the URL in the address bar to /index.html, which is not what you want. -->
