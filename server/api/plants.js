@@ -12,7 +12,7 @@ const {
     isAdmin
 } = require('./middleware')
 
-app.post ('/',isLoggedIn,isAdmin, async(req, res, next) =>{ // add is admin to route 
+app.post ('/',isLoggedIn,isAdmin, async(req, res, next) =>{ 
     try {
         res.send(await createPlant(req.body))
     } catch (error) {
