@@ -13,17 +13,17 @@ import "./assets/main.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
+      <UserProvider>
       <PlantCatalogProvider>
         <DesignStyleProvider>
-          <UserProvider>
             <ProjectProvider>
               <GardenBedProvider>
                 <App />
               </GardenBedProvider>
             </ProjectProvider>
-          </UserProvider>
         </DesignStyleProvider>
       </PlantCatalogProvider>
+        </UserProvider>
     </Router>
   </React.StrictMode>
 );

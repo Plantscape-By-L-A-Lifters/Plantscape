@@ -12,12 +12,12 @@ const createFavoritePlant = async (Faves) => {
     return response.rows[0]
 }
 
-const fetchFavoritePlants = async () => {
+const fetchFavoritePlants = async (user_id) => {
     const SQL =`
     SELECT * 
     FROM favorite_plants
     `
-    const response = await client.query(SQL)
+    const response = await client.query(SQL,[user_id])
     return response.rows
 }
 
