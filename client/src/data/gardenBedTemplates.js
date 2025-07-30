@@ -1,4 +1,6 @@
-//ideally the garden bed templates would be part of the generateSeed.js function.. for the sake of time, im pulling the seeded ids from that file and hard-coding them below.
+// gardenBedTemplates.js
+// Ideally, the garden bed templates would be part of the generateSeed.js function.
+// For the sake of time, I'm pulling the seeded IDs from that file and hard-coding them below.
 
 const DesignsStyleIds = [
   {
@@ -31,8 +33,6 @@ const DesignsStyleIds = [
   },
 ];
 
-const templatePlacedPlants = [];
-
 // Helper function to get design ID by name
 const getDesignId = (name) => {
   const design = DesignsStyleIds.find(
@@ -45,7 +45,8 @@ export const gardenBedTemplates = [
   {
     id: "template-1",
     name: "Classically Arranged",
-    designStyleId: getDesignId("classical"), //temporary solution to above
+    designStyleName: "classical", // Added for display
+    designStyleId: getDesignId("classical"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://ecogardenconstruct.com/wp-content/uploads/2023/01/amenajare-peisagistica-bg.jpg",
@@ -97,6 +98,8 @@ export const gardenBedTemplates = [
         height: 5,
         x: 2, //length/2-2*diameter
         y: 1, //tallest plant goes in back, so, just diameter/2
+        color: "#6FC500",
+        accent_color: "",
       },
       //next row loops through next tallest plant
       {
@@ -255,6 +258,7 @@ export const gardenBedTemplates = [
   {
     id: "template-2",
     name: "Prairie Paradise",
+    designStyleName: "naturalistic prairie", // Added for display
     designStyleId: getDesignId("naturalistic prairie"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
@@ -467,33 +471,41 @@ export const gardenBedTemplates = [
   {
     id: "template-3",
     name: "Native Woodland",
+    designStyleName: "naturalistic woodland", // Added for display
     designStyleId: getDesignId("naturalistic woodland"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://hips.hearstapps.com/hmg-prod/images/woodland-garden-ideas-ground-1618242057.jpg?crop=1xw:1xh;center,top&resize=980:*",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-4",
     name: "Cottagecore",
+    designStyleName: "cottage", // Added for display
     designStyleId: getDesignId("cottage"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://cdn.shopify.com/s/files/1/0593/3265/7306/files/01-pollinator-flower-bed.png?v=1727708811",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-5",
     name: "Modern Minimalism",
+    designStyleName: "modern minimalism", // Added for display
     designStyleId: getDesignId("modern minimalism"),
     bedSize: { bedWidth: 8, bedDepth: 5 },
     image_url:
       "https://www.almanac.com/sites/default/files/users/The%20Editors/rock-garden-house-shutterstock_1948570909.jpg",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-6",
     name: "Modern Lush",
+    designStyleName: "modern lush", // Added for display
     designStyleId: getDesignId("modern lush"),
     bedSize: { bedWidth: 15, bedDepth: 10 },
     image_url:
       "https://www.monrovia.com/media/amasty/blog/1024x577_Robin_Parsons_garden_designer_-_West_Seattle_project_2514PM_copy.jpg",
+    placedPlants: [], // Added empty array
   },
 ];
