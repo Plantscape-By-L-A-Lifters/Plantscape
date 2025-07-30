@@ -1,62 +1,112 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
+import { UserContext } from "../context/UserContext";
 import "./Plants.css";
 
 export default function Plants() {
-  const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);
-  // console.log("full plant catalog", plantCatalog);
+  const { user } = useContext(UserContext);
+  // Destructure favoritePlant from the context
+  const { plantCatalog, loadingPlants, addFavePlant, unfavoritePlant, favoritePlant } =
+    useContext(PlantCatalogContext);
+  const [selectedPlant, setSelectedPlant] = useState(null);
+
+  // Helper function to check if the current plant is in the user's favorites
+  const checkIfPlantIsFavorited = (plantId) => {
+    // .some() is efficient as it stops searching once it finds a match
+    return favoritePlant.some((fav) => fav.plant_id === plantId);
+  };
+
+  // Helper function to get the ID of the favorite record itself, which is needed for deletion
+  const getFavoriteRecordId = (plantId) => {
+    // .find() returns the first matching favorite object
+    const favoriteRecord = favoritePlant.find(
+      (fav) => fav.plant_id === plantId
+    );
+    // Return the id of that record, or null if it doesn't exist
+    return favoriteRecord ? favoriteRecord.id : null;
+  };
+
+  // Filter out plants that do not have a valid image_url
+  const renderablePlants = plantCatalog.filter(
+    (plant) => plant.image_url && plant.image_url.trim() !== ""
+  );
+
   return (
     <div className="plants-container">
-      <div>
-        <h1>Creating Your Dream Garden </h1>
-        <p>Select A Plant!</p>
-        <br></br>
+      <h1>Creating Your Dream Garden</h1>
+      <p>Select A Plant!</p>
+      <br />
+      <div className="plants-grid">
         {loadingPlants ? (
           <p>Loading plants...</p>
-        ) : plantCatalog.length > 0 ? (
-          <ul>
-            {plantCatalog.map((plant) => {
-              // console.log("each plant", plant.plant_name, plant.image_url); // Keep for debugging if needed
-              return (
-                <li key={plant.id}>
-                  {/* Wrap the plant name and image with a Link component */}
-                  <Link to={`/plants/${plant.id}`}>
-                    {plant.plant_name || "Unnamed Plant"}
-                    <img src={plant.image_url} alt={plant.plant_name} />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+        ) : renderablePlants.length > 0 ? (
+          renderablePlants.map((plant) => (
+            <div key={plant.id} className="plantContainer">
+              <h3>{plant.plant_name || "Unnamed Plant"}</h3>
+              <hr />
+              <img
+                src={plant.image_url} // Cloudinary image URL
+                alt={plant.plant_name}
+                className="plant-image"
+                onClick={() => setSelectedPlant(plant)}
+              />
+            </div>
+          ))
         ) : (
-          <p>No plants found in the catalog.</p> // Message if catalog is empty after loading
+          <p>No plants found.</p>
         )}
-        {/* <div>
-          <br></br>
-          <h2>Characteristics </h2>
-          <ul>
-            <li>Symmetrical layout and geometric patterns</li>
-            <li>Well-manicured hedges and topiaries</li>
-            <li>Straight pathways and axial design</li>
-            <li>Use of evergreen plants for year-round structure</li>
-            <li>Formal water features like fountains or reflecting pools</li>
-            <li>Ornamental elements such as statues or urns</li>
-          </ul>
-          <br></br>
-          <h3>Maintenance Tips</h3>
-          <ul>
-            <li>Regular pruning to maintain shapes</li>
-            <li>Frequent edging for crisp lines</li>
-            <li>Seasonal replanting of annuals</li>
-            <li>Weed control for clean appearance</li>
-          </ul>
-          <br></br>
-          <footer>
-            <p></p>
-          </footer>
-        </div> */}
-      </div>
+      </div>{" "}
+      {/* Modal for plant details */}
+      {selectedPlant && (
+        <div className="modal" onClick={() => setSelectedPlant(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{selectedPlant.plant_name}</h2>
+            <img
+              src={selectedPlant.image_url}
+              alt={selectedPlant.plant_name}
+              className="modal-image"
+            />
+            {selectedPlant.sun_requirements && (
+              <p>{selectedPlant.sun_requirements}</p>
+            )}
+            {selectedPlant.is_toxic ? (
+              <p style={{ fontStyle: "italic" }}>toxic</p>
+            ) : (
+              <p>non-toxic</p>
+            )}
+
+            <p>
+              <Link to={`/plants/${selectedPlant.id}`}>more details...</Link>
+            </p>
+            {/* Show buttons only if a user is logged in */}
+            {user ? (
+              // Check if the plant is favorited
+              checkIfPlantIsFavorited(selectedPlant.id) ? (
+                // If YES, show the "Unfavorite" button
+                <button
+                  onClick={() => {
+                    // Find the favorite record ID to pass to the unfavorite function
+                    const favoriteId = getFavoriteRecordId(selectedPlant.id);
+                    if (favoriteId) {
+                      unfavoritePlant(favoriteId);
+                    }
+                  }}
+                  className="favorited-button"
+                >
+                  Favorited! (Remove)
+                </button>
+              ) : (
+                // If NO, show the "Favorite" button
+                <button onClick={() => addFavePlant(selectedPlant.id)}>
+                  Favorite
+                </button>
+              )
+            ) : null}
+            {/* <button onClick={() => setSelectedPlant(null)}>Close</button> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

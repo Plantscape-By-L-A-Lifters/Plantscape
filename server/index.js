@@ -1,4 +1,6 @@
 require("dotenv").config(); // MUST be at the very top!
+console.log('--- SERVER INDEX.JS LOADED ---'); // ADD THIS LINE
+
 const { client, seed } = require("./db");
 
 const express = require("express");
@@ -6,30 +8,39 @@ const app = express();
 const cors = require("cors"); // NEW: Import cors middleware for deployment
 const path = require("path"); // NEW: Import path for potential static serving or fallback on deployment
 
-// NEW: CORS Middleware - IMPORTANT: Configure this before your routes
-// For production, it's best to specify the exact origin of your frontend:
+// NEW: In order to prevent DB from resetting, first we need to Determine if running in production
+const isProduction = process.env.NODE_ENV === "production";
+console.log(
+  `Server running in ${isProduction ? "production" : "development"} mode.`
+);
+
+// CORS Middleware - IMPORTANT: Configure this before your routes
 app.use(
   cors({
-    origin: "https://plantscape-cxpu.onrender.com", // Replace with your actual frontend URL
-    credentials: true, // If you're sending cookies or authorization headers
+    origin: isProduction
+      ? "https://plantscape-cxpu.onrender.com"
+      : "http://localhost:5173", // Dynamic origin based on environment
+    credentials: true,
   })
 );
 
 app.use(express.json());
 
 // Content-Security-Policy - Ensure this is permissive enough for all your assets
-// The previous CSP was quite restrictive. This one is a bit more open for common cases.
-// If you have specific external domains for images/scripts, you'll need to add them.
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; " +
-      "img-src 'self' data: https:; " + // Allows images from self, data URIs, and any https source
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " + // 'unsafe-inline' and 'unsafe-eval' are often needed for development/some libraries, but review for production
-      "style-src 'self' 'unsafe-inline' https:; " + // Allows styles from self, inline, and any https source
-      "font-src 'self' https:; " + // Allows fonts from self and any https source
-      "connect-src 'self' https://plantscape-2aqa.onrender.com; " + // Explicitly allow connections to your backend
-      "object-src 'none';" // Disallow <object>, <embed>, <applet>
+      "img-src 'self' data: https:; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+      "style-src 'self' 'unsafe-inline' https:; " +
+      "font-src 'self' https:; " +
+      `connect-src 'self' ${
+        isProduction
+          ? "https://plantscape-2aqa.onrender.com"
+          : "http://localhost:3000"
+      }; ` + // Dynamic backend URL
+      "object-src 'none';"
   );
   next();
 });
@@ -67,9 +78,14 @@ const init = async () => {
   await client.connect();
   console.log("connected to database");
 
-  // Now call seed *without* it connecting/disconnecting itself
-  // Pass false to indicate the connection is already managed by Server/index.js
-  await seed(false); // Pass false so it doesn't try to connect/disconnect again
+  // --- CRITICAL CHANGE: Conditionally seed the database ---
+  if (!isProduction) {
+    console.log("Seeding database (development mode)...");
+    await seed(false); // Only seed if NOT in production
+  } else {
+    console.log("Skipping database seeding in production mode.");
+  }
+  // --- END CRITICAL CHANGE ---
 
   app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
