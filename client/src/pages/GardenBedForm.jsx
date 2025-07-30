@@ -44,8 +44,8 @@ export default function GardenBedForm() {
   const handleTemplateSelect = (template) => {
     setSelectedTemplate(template);
     const { bedWidth, bedDepth } = template.bedSize;
-    setBedWidth(template.bedWidth);
-    setBedDepth(template.bedDepth);
+    setBedWidth(bedWidth);
+    setBedDepth(bedDepth);
     setBedName(template.name);
   };
 
@@ -72,7 +72,6 @@ export default function GardenBedForm() {
       console.log("Parsed Depth Custom:", parsedDepth);
 
       if (isNaN(parsedWidth) || parsedWidth <= 0) {
-        // Changed to parsedWidth
         return "Bed Width must be a positive number (e.g., 5.5 or 5'6)."; // Updated message
       }
       if (isNaN(parsedDepth) || parsedDepth <= 0) {
@@ -84,6 +83,10 @@ export default function GardenBedForm() {
     } else if (startMode === "template") {
       if (!selectedTemplate) {
         return "Please select a template.";
+      }
+      // Added validation for template's designStyleId, as it's required by the backend
+      if (!selectedTemplate.designStyleId) {
+        return "Selected template is missing a design style. Please choose another template or contact support.";
       }
     }
     return null; // No errors
@@ -127,15 +130,19 @@ export default function GardenBedForm() {
           bed_length: parseFloat(selectedTemplate.bedSize.bedWidth),
           bed_depth: parseFloat(selectedTemplate.bedSize.bedDepth),
           design_type: selectedTemplate.designStyleId,
+          placed_plants_data: selectedTemplate.placedPlants,
         };
       } else {
         bedData = {
           ...bedData,
           bed_length: parseFloat(parseDimensionInput(bedWidth)),
           bed_depth: parseFloat(parseDimensionInput(bedDepth)),
-          design_type: selectedDesignStyleId,
+          design_type: selectedDesignStyleId, // <--- Added for custom mode
+          placed_plants_data: [], // <--- Added for custom mode (empty array)
         };
       }
+      // Debug log to see the payload being sent
+      console.log("Sending bedData to API:", bedData);
 
       const response = await axios.post(
         `/api/layouts/${projectId}/layouts`,
@@ -224,8 +231,9 @@ export default function GardenBedForm() {
               {selectedTemplate && (
                 <p>
                   Selected Template: <span>{selectedTemplate.name}</span> (
-                  {selectedTemplate.bedWidth}x{selectedTemplate.bedDepth}ft,
-                  Design: {selectedTemplate.designStyleName})
+                  {selectedTemplate.bedSize.bedWidth}x
+                  {selectedTemplate.bedSize.bedDepth}ft, Design:{" "}
+                  {selectedTemplate.designStyleName})
                 </p>
               )}
             </div>

@@ -7,8 +7,6 @@ const {
   createPlantLayout,
   fetchLayouts, // Fetches all layouts for a given project
   fetchLayoutsById, // Fetches a single layout by its ID
-  // fetchPlantLayout, // Removed from db/layouts.js exports in previous steps, and is a security risk if public
-  // fetchPlantLayoutById // This function is fine, but its API route needs strong security
 } = require("../db/layouts"); //NOTE: layout and plant-layout files have been merged
 
 const {
@@ -22,7 +20,13 @@ const { isLoggedIn } = require("./middleware");
 app.post("/:projectId/layouts", isLoggedIn, async (req, res, next) => {
   try {
     const { projectId } = req.params;
-    const { layout_name, bed_length, bed_depth, design_type } = req.body;
+    const {
+      layout_name,
+      bed_length,
+      bed_depth,
+      design_type,
+      placed_plants_data,
+    } = req.body;
 
     // SECURITY CHECK 1: Ensure the project exists and belongs to the logged-in user
     const project = await fetchSingleProjectById(projectId);
@@ -40,6 +44,7 @@ app.post("/:projectId/layouts", isLoggedIn, async (req, res, next) => {
       bed_depth,
       design_type,
       projects_id: projectId, // Associate with the project
+      placed_plants_data,
     });
     res.status(201).send(layout);
   } catch (error) {
