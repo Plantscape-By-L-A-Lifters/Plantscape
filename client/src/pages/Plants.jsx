@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState, navi } from "react";
+import { Link , useNavigate} from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import { UserContext } from "../context/UserContext";
 import "./Plants.css";
@@ -10,6 +10,8 @@ export default function Plants() {
   const { plantCatalog, loadingPlants, addFavePlant, unfavoritePlant, favoritePlant } =
     useContext(PlantCatalogContext);
   const [selectedPlant, setSelectedPlant] = useState(null);
+  const navigate = useNavigate();
+
 
   // Helper function to check if the current plant is in the user's favorites
   const checkIfPlantIsFavorited = (plantId) => {
@@ -32,11 +34,27 @@ export default function Plants() {
     (plant) => plant.image_url && plant.image_url.trim() !== ""
   );
 
+    const handleAdminClick = () => {
+    if (user && user.is_admin) { // Check if user exists and is an admin
+      navigate("/Admin"); // Navigate to the /admin route
+    } else {
+      console.warn("User is not an admin or not logged in.");
+      // Optionally, you could show a toast notification here
+      // toast.warn("You must be an admin to access this page.");
+    }
+  };
+
   return (
     <div className="plants-container">
       <h1>Creating Your Dream Garden</h1>
       <p>Select A Plant!</p>
       <br />
+      {/* Admin Button - only show if user is logged in AND is an admin */}
+      {user && user.is_admin && ( // <--- MODIFIED CONDITIONAL RENDERING HERE
+        <button onClick={handleAdminClick} className="admin-button">
+          Create Plant {/* Button text indicates navigation to admin dashboard */}
+        </button>
+      )}
       <div className="plants-grid">
         {loadingPlants ? (
           <p>Loading plants...</p>

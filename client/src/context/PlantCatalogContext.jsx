@@ -133,11 +133,7 @@ export const PlantCatalogProvider = ({ children }) => {
         return; // Guard against no user
       }
       try {
-        const { data } = await api.post(
-          "/api/favorite_plants",
-          { plant_id: plantId, user_id: user.id },
-          getHeaders()
-        );
+        const { data } = await api.post("/api/favorite_plants", { plant_id: plantId, user_id: user.id }, getHeaders());
         console.log("Successfully added favorite. Server response:", data);
         // Use functional update to safely add the new favorite
         setFavoritePlant((prevFavorites) => {

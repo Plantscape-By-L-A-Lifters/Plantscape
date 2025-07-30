@@ -18,6 +18,7 @@ import GardenBedForm from "./pages/GardenBedForm";
 import MyGardenBed from "./pages/MyGardenBed";
 import MyGardenBeds from "./pages/MyGardenBeds.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Admin from "./pages/Admin.jsx";
 
 function App() {
   // const [user, setUser] = useState({});
@@ -90,6 +91,7 @@ function App() {
           <Route path="/newgardenbed" element={<GardenBedForm />} />
           <Route path="/mygardenbeds" element={<MyGardenBeds />} />
           <Route path="/mygardenbed/:layoutId" element={<MyGardenBed />} />
+          <Route path="/Admin" element={<Admin />} />
         </Route>
       </Routes>
     </>

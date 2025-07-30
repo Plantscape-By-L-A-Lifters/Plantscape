@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import "./login.css";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL
+
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -22,7 +24,7 @@ function Login() {
 
     try {
       setError("");
-      const { data } = await axios.post("/api/authenticate/login", user);
+      const { data } = await axios.post(`${baseURL}authenticate/login`, user);
       const { token } = data;
       window.localStorage.setItem("token", token);
       await attemptLogin();
