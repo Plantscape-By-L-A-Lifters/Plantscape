@@ -1,4 +1,6 @@
 require("dotenv").config(); // MUST be at the very top!
+console.log('--- SERVER INDEX.JS LOADED ---'); // ADD THIS LINE
+
 const { client, seed } = require("./db");
 
 const express = require("express");
