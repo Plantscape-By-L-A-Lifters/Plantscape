@@ -34,7 +34,7 @@ export const PlantCatalogProvider = ({ children }) => {
     console.log("ran fetch Plants function");
     setLoadingPlants(true); // Set loading to true before fetching
     try {
-      const { data } = await axios.get("/api/plants");
+      const { data } = await api.get("/api/plants");
       setPlantCatalog(data);
     } catch (err) {
       console.error("Failed to fetch plants:", err);
@@ -65,7 +65,7 @@ export const PlantCatalogProvider = ({ children }) => {
     setErrorSinglePlant(null); // Clear previous errors
     console.log("loading plant");
     try {
-      const { data } = await axios.get(`/api/plants/${plantId}`);
+      const { data } = await api.get(`/api/plants/${plantId}`);
       setPlant(data);
       return data;
     } catch (err) {
@@ -105,7 +105,7 @@ export const PlantCatalogProvider = ({ children }) => {
     }
     try {
       console.log("Fetching favorite plants for user:", user.id);
-      const { data } = await axios.get("/api/favorite_plants", getHeaders());
+      const { data } = await api.get("/api/favorite_plants", getHeaders());
       setFavoritePlant(data);
       console.log("Fetched favorite plants data:", data);
     } catch (error) {
@@ -133,7 +133,7 @@ export const PlantCatalogProvider = ({ children }) => {
         return; // Guard against no user
       }
       try {
-        const { data } = await axios.post(
+        const { data } = await api.post(
           "/api/favorite_plants",
           { plant_id: plantId, user_id: user.id },
           getHeaders()
