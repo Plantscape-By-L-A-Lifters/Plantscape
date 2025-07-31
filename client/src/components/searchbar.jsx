@@ -1,6 +1,6 @@
 import React from 'react';
 
-const searchbar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ searchTerm, setSearchTerm }) => {
   return (
     <input
       type="text"
@@ -18,4 +18,4 @@ const searchbar = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
-export default searchbar;
+export default SearchBar;

@@ -2,21 +2,33 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./Plants.css";
+import SearchBar from "../components/searchbar";
 
 export default function Plants() {
   const { plantCatalog, loadingPlants } = useContext(PlantCatalogContext);
   const [selectedPlant, setSelectedPlant] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");// New Search State
 
   // Filter out plants that do not have a valid image_url
   const renderablePlants = plantCatalog.filter(
     (plant) => plant.image_url && plant.image_url.trim() !== ""
   );
 
+  //Filter plants based on search term
+  const filteredPlants = renderablePlants.filter((plant) =>
+    plant.plant_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="plants-container">
       <h1>Creating Your Dream Garden</h1>
       <p>Select A Plant!</p>
       <br />
+
+      {/* Search Bar */}
+      <SearchBar className="search-bar">
+      </SearchBar>
+      <br />
+
       <div className="plants-grid">
         {loadingPlants ? (
           <p>Loading plants...</p>
