@@ -9,15 +9,6 @@ import {
 import { UserContext } from "./UserContext";
 import axios from "axios";
 
-// *** IMPORTANT: CONFIGURE AXIOS BASEURL TO BACKEND API ***
-const api = axios.create({
-  baseURL: 'http://localhost:3000', // <-- backend's URL a work around so that the unfavorite function can work appropriately only used for unfavorite since every other axios request is working
-  // You can also add default headers here if needed for all requests
-  // headers: {
-  //   'Content-Type': 'application/json',
-  // },
-});
-
 export const PlantCatalogContext = createContext();
 
 export const PlantCatalogProvider = ({ children }) => {
