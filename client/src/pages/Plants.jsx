@@ -1,17 +1,23 @@
 import { useContext, useState, navi } from "react";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import { UserContext } from "../context/UserContext";
 import "./Plants.css";
+import SearchBar from "../components/searchbar";
 
 export default function Plants() {
   const { user } = useContext(UserContext);
   // Destructure favoritePlant from the context
-  const { plantCatalog, loadingPlants, addFavePlant, unfavoritePlant, favoritePlant } =
-    useContext(PlantCatalogContext);
+  const {
+    plantCatalog,
+    loadingPlants,
+    addFavePlant,
+    unfavoritePlant,
+    favoritePlant,
+  } = useContext(PlantCatalogContext);
   const [selectedPlant, setSelectedPlant] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); // New Search State
   const navigate = useNavigate();
-
 
   // Helper function to check if the current plant is in the user's favorites
   const checkIfPlantIsFavorited = (plantId) => {
@@ -34,8 +40,13 @@ export default function Plants() {
     (plant) => plant.image_url && plant.image_url.trim() !== ""
   );
 
-    const handleAdminClick = () => {
-    if (user && user.is_admin) { // Check if user exists and is an admin
+  //Filter plants based on search term
+  const filteredPlants = renderablePlants.filter((plant) =>
+    plant.plant_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const handleAdminClick = () => {
+    if (user && user.is_admin) {
+      // Check if user exists and is an admin
       navigate("/Admin"); // Navigate to the /admin route
     } else {
       console.warn("User is not an admin or not logged in.");
@@ -49,12 +60,17 @@ export default function Plants() {
       <h1>Creating Your Dream Garden</h1>
       <p>Select A Plant!</p>
       <br />
+      {/* Search Bar */}
+      <SearchBar className="search-bar"></SearchBar>
+      <br />
       {/* Admin Button - only show if user is logged in AND is an admin */}
-      {user && user.is_admin && ( // <--- MODIFIED CONDITIONAL RENDERING HERE
-        <button onClick={handleAdminClick} className="admin-button">
-          Create Plant {/* Button text indicates navigation to admin dashboard */}
-        </button>
-      )}
+      {user &&
+        user.is_admin && ( // <--- MODIFIED CONDITIONAL RENDERING HERE
+          <button onClick={handleAdminClick} className="admin-button">
+            Create Plant{" "}
+            {/* Button text indicates navigation to admin dashboard */}
+          </button>
+        )}
       <div className="plants-grid">
         {loadingPlants ? (
           <p>Loading plants...</p>
