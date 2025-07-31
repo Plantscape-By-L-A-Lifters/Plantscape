@@ -9,15 +9,6 @@ import {
 import { UserContext } from "./UserContext";
 import axios from "axios";
 
-// *** IMPORTANT: CONFIGURE AXIOS BASEURL TO BACKEND API ***
-const api = axios.create({
-  baseURL: 'http://localhost:10000', // <-- backend's URL a work around so that the unfavorite function can work appropriately only used for unfavorite since every other axios request is working
-  // You can also add default headers here if needed for all requests
-  // headers: {
-  //   'Content-Type': 'application/json',
-  // },
-});
-
 export const PlantCatalogContext = createContext();
 
 export const PlantCatalogProvider = ({ children }) => {
@@ -34,7 +25,7 @@ export const PlantCatalogProvider = ({ children }) => {
     console.log("ran fetch Plants function");
     setLoadingPlants(true); // Set loading to true before fetching
     try {
-      const { data } = await api.get("/api/plants");
+      const { data } = await axios.get("/api/plants");
       setPlantCatalog(data);
     } catch (err) {
       console.error("Failed to fetch plants:", err);
@@ -65,7 +56,7 @@ export const PlantCatalogProvider = ({ children }) => {
     setErrorSinglePlant(null); // Clear previous errors
     console.log("loading plant");
     try {
-      const { data } = await api.get(`/api/plants/${plantId}`);
+      const { data } = await axios.get(`/api/plants/${plantId}`);
       setPlant(data);
       return data;
     } catch (err) {
@@ -105,7 +96,7 @@ export const PlantCatalogProvider = ({ children }) => {
     }
     try {
       console.log("Fetching favorite plants for user:", user.id);
-      const { data } = await api.get("/api/favorite_plants", getHeaders());
+      const { data } = await axios.get("/api/favorite_plants", getHeaders());
       setFavoritePlant(data);
       console.log("Fetched favorite plants data:", data);
     } catch (error) {
@@ -133,7 +124,7 @@ export const PlantCatalogProvider = ({ children }) => {
         return; // Guard against no user
       }
       try {
-        const { data } = await api.post(
+        const { data } = await axios.post(
           "/api/favorite_plants",
           { plant_id: plantId, user_id: user.id },
           getHeaders()
@@ -155,13 +146,19 @@ export const PlantCatalogProvider = ({ children }) => {
   // Adds the capability to delete
   const unfavoritePlant = useCallback(
     async (favePlantId) => {
-      console.log("Attempting to remove favorite:", { favePlantId, userId: user?.id });
+      console.log("Attempting to remove favorite:", {
+        favePlantId,
+        userId: user?.id,
+      });
       if (!user) {
         console.error("Cannot remove favorite. User is not logged in.");
         return; // Guard against no user
       }
       try {
-          await api.delete(`/api/favorite_plants/${favePlantId}/user/${user.id}`, getHeaders());
+        await axios.delete(
+          `/api/favorite_plants/${favePlantId}/user/${user.id}`,
+          getHeaders()
+        );
         console.log("Successfully removed favorite via API.");
         // Use functional update to safely remove the favorite
         setFavoritePlant((prevFavorites) => {
