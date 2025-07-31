@@ -18,7 +18,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": apiProxyTarget,
+      '/api': { // This is the key for the path to proxy
+        target: 'http://localhost:3000', // The target backend URL
+        changeOrigin: true, // THIS SHOULD BE INSIDE THE OBJECT for '/api'
+        // rewrite: (path) => path.replace(/^\/api/, ''), // Optional, uncomment if needed
+      },
     },
   },
 });
