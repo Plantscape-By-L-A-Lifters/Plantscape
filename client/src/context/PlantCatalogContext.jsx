@@ -26,6 +26,7 @@ export const PlantCatalogProvider = ({ children }) => {
     setLoadingPlants(true); // Set loading to true before fetching
     try {
       const { data } = await axios.get("/api/plants");
+      const { data } = await axios.get("/api/plants");
       setPlantCatalog(data);
     } catch (err) {
       console.error("Failed to fetch plants:", err);
@@ -56,6 +57,7 @@ export const PlantCatalogProvider = ({ children }) => {
     setErrorSinglePlant(null); // Clear previous errors
     console.log("loading plant");
     try {
+      const { data } = await axios.get(`/api/plants/${plantId}`);
       const { data } = await axios.get(`/api/plants/${plantId}`);
       setPlant(data);
       return data;
@@ -96,6 +98,7 @@ export const PlantCatalogProvider = ({ children }) => {
     }
     try {
       console.log("Fetching favorite plants for user:", user.id);
+      const { data } = await axios.get("/api/favorite_plants", getHeaders());
       const { data } = await axios.get("/api/favorite_plants", getHeaders());
       setFavoritePlant(data);
       console.log("Fetched favorite plants data:", data);
@@ -142,13 +145,20 @@ export const PlantCatalogProvider = ({ children }) => {
   // Adds the capability to delete
   const unfavoritePlant = useCallback(
     async (favePlantId) => {
-      console.log("Attempting to remove favorite:", { favePlantId, userId: user?.id });
+      console.log("Attempting to remove favorite:", {
+        favePlantId,
+        userId: user?.id,
+      });
       if (!user) {
         console.error("Cannot remove favorite. User is not logged in.");
         return; // Guard against no user
       }
       try {
-          await axios.delete(`/api/favorite_plants/${favePlantId}/user/${user.id}`, getHeaders());
+        await axios.delete(
+          `/api/favorite_plants/${favePlantId}/user/${user.id}`,
+          getHeaders()
+        );
+        console.log("Successfully removed favorite via API.");
         // Use functional update to safely remove the favorite
         setFavoritePlant((prevFavorites) => {
           const newFavorites = prevFavorites.filter(
