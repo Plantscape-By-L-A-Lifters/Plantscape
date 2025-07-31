@@ -40,7 +40,7 @@ export default function Admin() {
     try {
       // Assuming you have an API endpoint like /api/plants for all plants
       // and that it's protected by isAdmin middleware on the backend
-      const response = await axios.get("http://localhost:10000/api/plants", getHeaders()); // Use getHeaders
+      const response = await axios.get("/api/plants", getHeaders()); // Use getHeaders
       setPlantsToManage(response.data);
       console.log("Admin: Fetched plants for management:", response.data);
     } catch (err) {
@@ -78,7 +78,7 @@ export default function Admin() {
         width_max_ft: newPlantData.width_max_ft ? parseFloat(newPlantData.width_max_ft) : null,
       };
 
-      const response = await axios.post("http://localhost:10000/api/plants", payload, getHeaders()); // Use getHeaders
+      const response = await axios.post("/api/plants", payload, getHeaders()); // Use getHeaders
       console.log("Admin: Plant created successfully:", response.data);
       toast.success("Plant created successfully!");
       // Add the new plant to the list and clear the form

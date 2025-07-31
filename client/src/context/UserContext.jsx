@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       try {
-        const { data } = await axios.get("http://localhost:10000/api/authenticate/me", getHeaders());
+        const { data } = await axios.get("/api/authenticate/me", getHeaders());
         setUser(data);
       } catch (error) {
         console.error("Authentication failed:", error); // Use console.error for errors

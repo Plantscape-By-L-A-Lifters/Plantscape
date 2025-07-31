@@ -25,7 +25,7 @@ const Register = () => {
       setError(""); // Clear previous errors
       // Ensure axios is configured with a baseURL or use the full URL
       const { data } = await axios.post(
-        "http://localhost:10000/api/users/register",
+        "/api/users/register",
         user
       );
       toast.success("Registration Was A Success");
