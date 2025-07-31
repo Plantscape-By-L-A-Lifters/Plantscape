@@ -1,14 +1,59 @@
+// gardenBedTemplates.js
+// Ideally, the garden bed templates would be part of the generateSeed.js function.
+// For the sake of time, I'm pulling the seeded IDs from that file and hard-coding them below.
+
+const DesignsStyleIds = [
+  {
+    designStyleName: "classical",
+    designStyleId: "5ef09090-a44d-4067-bf69-474d2c639d6a",
+  },
+  {
+    designStyleName: "modern minimalism",
+    designStyleId: "a4e1b58e-f2d6-423f-a332-2965ddf0f6bc",
+  },
+  {
+    designStyleName: "modern lush",
+    designStyleId: "cb520214-6747-4ce4-81d3-305a13c780aa",
+  },
+  {
+    designStyleName: "cottage",
+    designStyleId: "84d03225-a2f4-411b-9b19-cd5e31f49bed",
+  },
+  {
+    designStyleName: "naturalistic",
+    designStyleId: "8ddbc1dc-bbd3-41b7-929f-46db20f1d53c",
+  },
+  {
+    designStyleName: "naturalistic woodland",
+    designStyleId: "853d88c2-ea4f-4fb9-b4ef-f7854d871337",
+  },
+  {
+    designStyleName: "naturalistic prairie",
+    designStyleId: "0a1b7ed3-052e-4514-977a-28da75117f42",
+  },
+];
+
+// Helper function to get design ID by name
+const getDesignId = (name) => {
+  const design = DesignsStyleIds.find(
+    (d) => d.designStyleName === name.toLowerCase()
+  );
+  return design ? design.designStyleId : null; // Return null or throw error if not found
+};
+
 export const gardenBedTemplates = [
   {
     id: "template-1",
     name: "Classically Arranged",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    designStyleName: "classical", // Added for display
+    designStyleId: getDesignId("classical"),
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://ecogardenconstruct.com/wp-content/uploads/2023/01/amenajare-peisagistica-bg.jpg",
     placedPlants: [
       {
         id: 1,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 6, //length/2
@@ -18,7 +63,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 2,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 8, //length/2+1*diameter
@@ -28,7 +73,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 3,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 4, //length/2-1*diameter
@@ -38,7 +83,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 4,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 10, //length/2+2*diameter
@@ -48,16 +93,18 @@ export const gardenBedTemplates = [
       },
       {
         id: 5,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 2, //length/2-2*diameter
         y: 1, //tallest plant goes in back, so, just diameter/2
+        color: "#6FC500",
+        accent_color: "",
       },
       //next row loops through next tallest plant
       {
         id: 6,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 4.5, //length/2-radius (optimized for max # of widest plant to start off-center)
@@ -67,7 +114,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 7,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 7.5, //length/2+radius
@@ -77,7 +124,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 8,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 10.5, //length/2+radius+diameter
@@ -87,7 +134,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 9,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 1.5, //length/2-radius-diameter
@@ -97,7 +144,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 10,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 1,
@@ -107,7 +154,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 11,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 2,
@@ -117,7 +164,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 3,
@@ -127,7 +174,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 4,
@@ -137,7 +184,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 13,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 5,
@@ -147,7 +194,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 14,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 6,
@@ -157,7 +204,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 15,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 7,
@@ -167,7 +214,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 16,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 8,
@@ -177,7 +224,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 17,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 9,
@@ -187,7 +234,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 18,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 10,
@@ -197,7 +244,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 19,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 11,
@@ -211,13 +258,15 @@ export const gardenBedTemplates = [
   {
     id: "template-2",
     name: "Prairie Paradise",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    designStyleName: "naturalistic prairie", // Added for display
+    designStyleId: getDesignId("naturalistic prairie"),
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://www.epicgardening.com/wp-content/uploads/2023/09/Herb-garden-with-ornamental-grasses-and-herbs-in-autumn-1200x667.jpg",
     placedPlants: [
       {
         id: 1,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 6, //length/2
@@ -227,7 +276,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 2,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 8, //length/2+1*diameter
@@ -237,7 +286,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 3,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 4, //length/2-1*diameter
@@ -247,7 +296,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 4,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 10, //length/2+2*diameter
@@ -257,7 +306,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 5,
-        name: "Boxwood",
+        name: "boxwood",
         diameter: 2,
         height: 5,
         x: 2, //length/2-2*diameter
@@ -268,7 +317,7 @@ export const gardenBedTemplates = [
       //next row loops through next tallest plant
       {
         id: 6,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 4.5, //length/2-radius (optimized for max # of widest plant to start off-center)
@@ -278,7 +327,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 7,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 7.5, //length/2+radius
@@ -288,7 +337,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 8,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 10.5, //length/2+radius+diameter
@@ -298,7 +347,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 9,
-        name: "Spreading Japanese Plum Yew",
+        name: "spreading plum yew",
         diameter: 3,
         height: 3,
         x: 1.5, //length/2-radius-diameter
@@ -308,7 +357,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 10,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 1,
@@ -318,7 +367,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 11,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 2,
@@ -328,7 +377,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 3,
@@ -338,7 +387,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 12,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 4,
@@ -348,7 +397,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 13,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 5,
@@ -358,7 +407,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 14,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 6,
@@ -368,7 +417,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 15,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 7,
@@ -378,7 +427,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 16,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 8,
@@ -388,7 +437,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 17,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 9,
@@ -398,7 +447,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 18,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 10,
@@ -408,7 +457,7 @@ export const gardenBedTemplates = [
       },
       {
         id: 19,
-        name: "Japanese Painted Fern",
+        name: "japanese painted fern",
         diameter: 1,
         height: 1,
         x: 11,
@@ -422,29 +471,41 @@ export const gardenBedTemplates = [
   {
     id: "template-3",
     name: "Native Woodland",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    designStyleName: "naturalistic woodland", // Added for display
+    designStyleId: getDesignId("naturalistic woodland"),
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://hips.hearstapps.com/hmg-prod/images/woodland-garden-ideas-ground-1618242057.jpg?crop=1xw:1xh;center,top&resize=980:*",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-4",
     name: "Cottagecore",
-    bedSize: { bedLength: 12, bedDepth: 6 },
+    designStyleName: "cottage", // Added for display
+    designStyleId: getDesignId("cottage"),
+    bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://cdn.shopify.com/s/files/1/0593/3265/7306/files/01-pollinator-flower-bed.png?v=1727708811",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-5",
     name: "Modern Minimalism",
-    bedSize: { bedLength: 8, bedDepth: 5 },
+    designStyleName: "modern minimalism", // Added for display
+    designStyleId: getDesignId("modern minimalism"),
+    bedSize: { bedWidth: 8, bedDepth: 5 },
     image_url:
       "https://www.almanac.com/sites/default/files/users/The%20Editors/rock-garden-house-shutterstock_1948570909.jpg",
+    placedPlants: [], // Added empty array
   },
   {
     id: "template-6",
     name: "Modern Lush",
-    bedSize: { bedLength: 15, bedDepth: 10 },
+    designStyleName: "modern lush", // Added for display
+    designStyleId: getDesignId("modern lush"),
+    bedSize: { bedWidth: 15, bedDepth: 10 },
     image_url:
       "https://www.monrovia.com/media/amasty/blog/1024x577_Robin_Parsons_garden_designer_-_West_Seattle_project_2514PM_copy.jpg",
+    placedPlants: [], // Added empty array
   },
 ];

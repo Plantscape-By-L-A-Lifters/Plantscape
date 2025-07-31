@@ -13,7 +13,7 @@ const isLoggedIn = async (req, res, next) => {
 }
 
 const isAdmin = async (req, res, next) => {
-    if (req.user.isadmin) {
+    if (req.user.is_admin) {
         next()
     }
     else{
