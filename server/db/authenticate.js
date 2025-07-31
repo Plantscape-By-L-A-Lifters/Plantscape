@@ -21,10 +21,6 @@ const findUserByToken = async (token) => {
 };
 
 const authenticate = async (credentials) => {
-  console.log("\n--- Authenticate Function Call ---");
-  console.log("Attempting to authenticate username:", credentials.username);
-  // console.log('Password received (for debug ONLY - REMOVE IN PROD!):', credentials.password); // <-- DO NOT LEAVE THIS IN PRODUCTION!
-
   try {
     const SQL = `
         SELECT id, password

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import "./Login.css";
+import "./login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -45,9 +45,7 @@ function Login() {
     <div className="login-container">
       <h2>Login:</h2>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={login} id="login-form">
-        {" "}
-        {/* ADDED id="login-form" */}
+      <form onSubmit={login} id="login-form"> {/* ADDED id="login-form" */}
         <label>
           Username:
           <input
@@ -75,10 +73,8 @@ function Login() {
 
       {/* MODIFIED: button-group now contains both Login and Register buttons */}
       <div className="button-group">
-        <button type="submit" form="login-form">
-          Login
-        </button>{" "}
-        {/* ADDED form="login-form" */}
+        <button type="submit" form="login-form">Login</button> {/* ADDED form="login-form" */}
+        
         <button onClick={toRegister}>Register</button>
       </div>
     </div>
