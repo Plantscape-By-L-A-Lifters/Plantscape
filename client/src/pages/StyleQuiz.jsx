@@ -6,56 +6,68 @@ import "./StyleQuiz.css";
 const quizData = [
   {
     question: "1",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287878/Brickelliacalifornica_hxewed.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287878/Brickelliacalifornica_hxewed.jpg",
   },
   {
     question: "2",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
   },
   {
     question: "3",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
   },
   {
     question: "4",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790675/modern01_mtihwb.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790675/modern01_mtihwb.jpg",
   },
   {
     question: "5",
-    imageUrl: "https://res.cloudinary.com/dprixcop0/image/upload/v1753127016/spreading-japanese-plum-yew_c7753v.webp",
+    imageUrl:
+      "https://res.cloudinary.com/dprixcop0/image/upload/v1753127016/spreading-japanese-plum-yew_c7753v.webp",
   },
   {
     question: "6",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790674/modern-minimal-04_wtosek.webp",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790674/modern-minimal-04_wtosek.webp",
   },
   {
     question: "7",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790677/modernlush02_guoc3m.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790677/modernlush02_guoc3m.jpg",
   },
   {
     question: "8",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790672/classical01_kajhvg.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790672/classical01_kajhvg.jpg",
   },
   {
     question: "9",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282055/hakone-grass_inabds.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282055/hakone-grass_inabds.jpg",
   },
   {
     question: "10",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287882/Hairy_Sunflower__1020466042_hodmut.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287882/Hairy_Sunflower__1020466042_hodmut.jpg",
   },
   {
     question: "11",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790673/cottage_template_z6cd3b.webp",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790673/cottage_template_z6cd3b.webp",
   },
   {
     question: "12",
-    imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282044/anacacho-orchid-tree_fw1xpf.jpg",
+    imageUrl:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282044/anacacho-orchid-tree_fw1xpf.jpg",
   },
 ];
 
 // Main App component for the simple Yes/No quiz
-const App = () => {
+export function StyleQuiz() {
   // State to manage the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   // State to store the user's last answer (optional, for demonstration)
@@ -69,7 +81,10 @@ const App = () => {
   // Function to advance to the next question
   const goToNextQuestion = () => {
     // Check if there are more questions up to the 10th question (index 9)
-    if (currentQuestionIndex < 9 && currentQuestionIndex < quizData.length - 1) {
+    if (
+      currentQuestionIndex < 9 &&
+      currentQuestionIndex < quizData.length - 1
+    ) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setLastAnswer(null); // Reset last answer display for the new question
     } else {
@@ -105,8 +120,12 @@ const App = () => {
         {quizFinished ? (
           // Display when the quiz is finished
           <div className="space-y-4">
-            <h1 className="text-4xl font-extrabold text-green-700 font-inter">Congratulations!</h1>
-            <p className="text-xl text-gray-700">Your design style is **Modern**</p>
+            <h1 className="text-4xl font-extrabold text-green-700 font-inter">
+              Congratulations!
+            </h1>
+            <p className="text-xl text-gray-700">
+              Your design style is **Modern**
+            </p>
             <button
               onClick={restartQuiz}
               className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition transform hover:scale-105 duration-200"
@@ -131,7 +150,8 @@ const App = () => {
                 // Fallback for image loading errors
                 onError={(e) => {
                   e.target.onerror = null; // Prevents infinite loop
-                  e.target.src = "https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found";
+                  e.target.src =
+                    "https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found";
                 }}
               />
             </div>
@@ -155,7 +175,8 @@ const App = () => {
             {/* Display user's last answer (optional) */}
             {lastAnswer && (
               <p className="mt-6 text-lg font-medium text-gray-700">
-                You just answered: <span className="font-bold text-blue-600">{lastAnswer}</span>
+                You just answered:{" "}
+                <span className="font-bold text-blue-600">{lastAnswer}</span>
               </p>
             )}
           </>
@@ -163,26 +184,25 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
-export default App;
-
+export default StyleQuiz;
 
 // const quizQuestions = [
 //   {
 //     id: 1,
 //     question: "1",
-//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282045/cedar-sedge_hwoyoo.jpg", 
+//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282045/cedar-sedge_hwoyoo.jpg",
 //   },
 //   {
 //     id: 2,
 //     question: "2",
-//     imageUrl: "https://res.cloudinary.com/dprixcop0/image/upload/v1753128204/boxwood_gqpns0.webp", 
+//     imageUrl: "https://res.cloudinary.com/dprixcop0/image/upload/v1753128204/boxwood_gqpns0.webp",
 //   },
 //   {
 //     id: 3,
 //     question: "3",
-//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790676/modernlush01_fpmdn7.jpg", 
+//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790676/modernlush01_fpmdn7.jpg",
 //   },
 //   {
 //     id: 4,
@@ -192,7 +212,7 @@ export default App;
 //   {
 //     id: 5,
 //     question: "5",
-//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282059/white-autumn-sage_ekfmqt.jpg", 
+//     imageUrl: "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282059/white-autumn-sage_ekfmqt.jpg",
 //   },
 // ];
 
