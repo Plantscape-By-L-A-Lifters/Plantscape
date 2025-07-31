@@ -74,7 +74,7 @@ app.use((err, req, res, next) => {
 const init = async () => {
   // Chelsea's comment
   // const PORT = process.env.PORT || 10000; // Render sets PORT to 10000 by default
-  const PORT = process.env.PORT || 10000; // Local port is set to 3000 by default (Render sets PORT to 10000 by default)
+  const PORT = process.env.PORT || 3000; // Local port is set to 3000 by default (Render sets PORT to 10000 by default)
   await client.connect();
   console.log("connected to database");
 
