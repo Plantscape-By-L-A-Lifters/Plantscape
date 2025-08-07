@@ -36,7 +36,7 @@ export default function Quiz() {
 
   console.log("attempt", plantByName("coneflowers"));
 
-  const plantName = "conflowers"; // Example plant name
+  const plantName = "coneflowers"; // Example plant name
 
   if (!loadingPlants) {
     // Ensure the catalog is loaded before searching
@@ -68,7 +68,7 @@ export default function Quiz() {
       image: (
         <img
           src="coneflowers.image_url"
-          alt="Corn Flowers"
+          alt="Coneflowers"
           className="quiz-image"
         />
       ),

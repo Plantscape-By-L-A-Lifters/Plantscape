@@ -265,6 +265,23 @@ export const styleQuizContent = [
       enclosed_feel,
     ],
   },
+  {
+    id: "boxwood",
+    designStyleNames: ["classical"],
+    image_url:
+      "https://res.cloudinary.com/dprixcop0/image/upload/v1753128204/boxwood_gqpns0.webp",
+  },
+  {
+    id: "coneflowers",
+    designStyleNames: ["naturalistic", "cottage"],
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
+  },
+  {
+    id: "roses",
+    designStyleNames: ["classical"],
+    image_url: "",
+  },
 ];
 
 //helper function which inputs image_tags and outputs designStyleRanking for each design style
