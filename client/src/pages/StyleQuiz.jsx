@@ -322,7 +322,9 @@ export default StyleQuiz;
 
 //   console.log("attempt", plantByName("coneflowers"));
 
+
 //   const plantName = "conflowers"; // Example plant name
+
 
 //   if (!loadingPlants) {
 //     // Ensure the catalog is loaded before searching
@@ -346,7 +348,9 @@ export default StyleQuiz;
 //     }
 //   };
 
+
 //   const { image, question } = quizData[current];
+
 
 //   const quizData = [
 //     {
