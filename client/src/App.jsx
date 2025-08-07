@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Plants from "./pages/Plants";
 import PlantDetails from "./pages/PlantDetails.jsx";
-import StyleQuiz from "./pages/StyleQuiz";
+import StyleQuiz from "./pages/StyleQuiz.jsx";
 import MyProfile from "./pages/MyProfile";
 import ProjectForm from "./pages/ProjectForm";
 import MyProjects from "./pages/MyProjects.jsx";

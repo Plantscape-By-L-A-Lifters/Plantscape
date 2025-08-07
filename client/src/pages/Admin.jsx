@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
-import "./admin.css"; // Import the new CSS file for admin page
+import "./Admin.css"; // Import the new CSS file for admin page
 
 export default function Admin() {
   const { user, getHeaders } = useContext(UserContext); // Get getHeaders for authenticated requests

@@ -2,7 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import "./login.css";
+import "./Login.css";
+
 
 function Login() {
   const navigate = useNavigate();
