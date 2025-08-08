@@ -58,7 +58,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "cottage-modernlush-01",
     designStyleNames: ["modern lush", "cottage"],
     image_url: "/cottage-modernlush-01.jpg",
     image_tags: [
@@ -82,7 +82,7 @@ export const styleQuizContent = [
   },
 
   {
-    id: "",
+    id: "modernlush02",
     designStyleNames: ["modern lush"],
     image_url: "modernlush02.jpg",
     image_tags: [
@@ -101,9 +101,9 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "modernlush03",
     designStyleNames: ["modern lush"],
-    image_url: "modernlush03.jpg",
+    image_url: "/modernlush03.jpg",
     image_tags: [
       linear,
       asymmetrical,
@@ -120,7 +120,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "modernminimal01",
     designStyleNames: ["modern minimalism"],
     image_url: "/modernminimal01.jpg",
     image_tags: [
@@ -139,26 +139,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
-    designStyleNames: ["modern minimalism"],
-    image_url: "/modernminimal01.jpg",
-    image_tags: [
-      linear,
-      asymmetrical,
-      informal_hierarchy,
-      odd_spacing,
-      abstraction,
-      rhythm,
-      massing,
-      limited_palette,
-      white_space,
-      restraint,
-      sparse,
-      sculptural,
-    ],
-  },
-  {
-    id: "",
+    id: "modernminimal02",
     designStyleNames: ["modern minimalism"],
     image_url: "/modernminimal02.jpg",
     image_tags: [
@@ -177,7 +158,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "modernminimal03",
     designStyleNames: ["modern minimalism"],
     image_url: "/modernminimal03.jpg",
     image_tags: [
@@ -196,7 +177,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "modernminimal04",
     designStyleNames: ["modern minimalism"],
     image_url: "/modernminimal04.webp",
     image_tags: [
@@ -215,7 +196,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "naturalistic-prairie-01",
     designStyleNames: ["naturalistic"],
     image_url: "/naturalistic-prairie-01.jpg",
     image_tags: [
@@ -232,7 +213,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "naturalistic-prairie-02",
     designStyleNames: ["naturalistic"],
     image_url: "/naturalistic-prairie-02.jpg",
     image_tags: [
@@ -249,7 +230,7 @@ export const styleQuizContent = [
     ],
   },
   {
-    id: "",
+    id: "naturalistic-woodland-01",
     designStyleNames: ["naturalistic"],
     image_url: "/naturalistic-woodland-01.jpg",
     image_tags: [
@@ -270,21 +251,61 @@ export const styleQuizContent = [
     designStyleNames: ["classical"],
     image_url:
       "https://res.cloudinary.com/dprixcop0/image/upload/v1753128204/boxwood_gqpns0.webp",
+    image_tags: [geometrical],
   },
   {
     id: "coneflowers",
-    designStyleNames: ["naturalistic", "cottage"],
+    designStyleNames: ["cottage", "naturalistic"],
     image_url:
       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
+    image_tags: [wild, whimsical, colorful, clumped, natural],
   },
   {
     id: "roses",
-    designStyleNames: ["classical"],
-    image_url: "",
+    designStyleNames: ["classical", "cottage"],
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
+    image_tags: [formal, traditional, romantic, colorful, fragrant],
+  },
+  {
+    id: "yew",
+    designStyleNames: ["classical", "modern minimalism", "modern lush"],
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
+    image_tags: [geometrical, formal, sculptural, textural],
+  },
+  {
+    id: "sunflowers",
+    designStyleNames: ["cottage", "naturalistic"],
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287882/Hairy_Sunflower__1020466042_hodmut.jpg",
+    image_tags: [
+      wild,
+      colorful,
+      romantic,
+      whimsical,
+      nostalgic,
+      informal,
+      scattered,
+      clumped,
+    ],
+  },
+  {
+    id: "agave",
+    designStyleNames: ["modern minimalism"],
+    image_url: "/agave.webp",
+    image_tags: [sculptural],
+  },
+  {
+    id: "bamboo_muhly",
+    designStyleNames: ["modern lush"],
+    image_url:
+      "/Muhlenbergia_dumosa_(bamboo_muhly_grass)_at_Mounts_Botanical_Garden_in_West_Palm_Beach,_FL_USA.jpg",
+    image_tags: [abstraction, massing, full, textural],
   },
 ];
 
-//helper function which inputs image_tags and outputs designStyleRanking for each design style
+//TODO: helper function which inputs designStyleNames (maybe in future image_tags) and outputs designStyleRanking for each design style
 
 export const styleQuizResults = [
   {
@@ -332,4 +353,4 @@ export const styleQuizResults = [
 // meandering, random, lack_of_hierarchy, no_spacing_rules, wild, scattered, clumped, large_palette
 
 // classical:
-// geometrical, symmetrical, formal_hierarchy, even_spacing, order, repetition, massing, limited_palette
+// geometrical, symmetrical, formal_hierarchy, even_spacing, order, repetition, massing, limited_palette, formal, traditional
