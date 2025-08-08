@@ -267,7 +267,13 @@ CREATE TABLE fave_design(
         /'/g,
         "''"
       );
-      const tags = (style["tags"] || "").toLowerCase().replace(/'/g, "''");
+      //modified to have it add quotes around each comma separated string, rather than quotes, just at the ends of the entire line.
+      const tags = (style["tags"] || "")
+        .toLowerCase()
+        .split(",")
+        .map((tag) => `"${tag.trim().replace(/"/g, "")}"`)
+        .join(", ")
+        .replace(/'/g, "''");
 
       tempDesignInserts.push({
         id,

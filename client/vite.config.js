@@ -1,6 +1,10 @@
 // vite.config.js
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import dotenv from "dotenv";
+
+// ✅ Load .env variable
+dotenv.config();
 
 // Define your deployed API base URL
 const deployedAPI = "https://plantscape-2aqa.onrender.com";
@@ -23,7 +27,6 @@ export default defineConfig({
         target: apiProxyTarget, // The target backend URL
         changeOrigin: true,
         secure: true, //our api is an https so it is secure
-        // rewrite: (path) => path.replace(/^\/api/, ''), // Optional, uncomment if needed
       },
     },
   },

@@ -4,71 +4,72 @@ import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./StyleQuiz.css";
 import { styleQuizContent, styleQuizResults } from "../data/styleQuiz";
 
-const quizData = [
-  {
-    question: "1",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287878/Brickelliacalifornica_hxewed.jpg",
-  },
-  {
-    question: "2",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
-  },
-  {
-    question: "3",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
-  },
-  {
-    question: "4",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790675/modern01_mtihwb.jpg",
-  },
-  {
-    question: "5",
-    imageUrl:
-      "https://res.cloudinary.com/dprixcop0/image/upload/v1753127016/spreading-japanese-plum-yew_c7753v.webp",
-  },
-  {
-    question: "6",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790674/modern-minimal-04_wtosek.webp",
-  },
-  {
-    question: "7",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790677/modernlush02_guoc3m.jpg",
-  },
-  {
-    question: "8",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790672/classical01_kajhvg.jpg",
-  },
-  {
-    question: "9",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282055/hakone-grass_inabds.jpg",
-  },
-  {
-    question: "10",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287882/Hairy_Sunflower__1020466042_hodmut.jpg",
-  },
-  {
-    question: "11",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790673/cottage_template_z6cd3b.webp",
-  },
-  {
-    question: "12",
-    imageUrl:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282044/anacacho-orchid-tree_fw1xpf.jpg",
-  },
-];
+// const styleQuizContent = [
+//   {
+//     question: "1",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287878/Brickelliacalifornica_hxewed.jpg",
+//   },
+//   {
+//     question: "2",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
+//   },
+//   {
+//     question: "3",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282048/Copy_of_cone-flower_zqcl3s.jpg",
+//   },
+//   {
+//     question: "4",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790675/modern01_mtihwb.jpg",
+//   },
+//   {
+//     question: "5",
+//     imageUrl:
+//       "https://res.cloudinary.com/dprixcop0/image/upload/v1753127016/spreading-japanese-plum-yew_c7753v.webp",
+//   },
+//   {
+//     question: "6",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790674/modern-minimal-04_wtosek.webp",
+//   },
+//   {
+//     question: "7",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790677/modernlush02_guoc3m.jpg",
+//   },
+//   {
+//     question: "8",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790672/classical01_kajhvg.jpg",
+//   },
+//   {
+//     question: "9",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282055/hakone-grass_inabds.jpg",
+//   },
+//   {
+//     question: "10",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753287882/Hairy_Sunflower__1020466042_hodmut.jpg",
+//   },
+//   {
+//     question: "11",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790673/cottage_template_z6cd3b.webp",
+//   },
+//   {
+//     question: "12",
+//     imageUrl:
+//       "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753282044/anacacho-orchid-tree_fw1xpf.jpg",
+//   },
+// ];
 
 // Main App component for the simple Yes/No quiz
 export function StyleQuiz() {
+  const { styles } = useContext(DesignStyleContext);
   // State to manage the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   // State to store the user's last answer (optional, for demonstration)
@@ -77,14 +78,24 @@ export function StyleQuiz() {
   const [quizFinished, setQuizFinished] = useState(false);
 
   // Get the current question and image based on the index
-  const currentQuizItem = quizData[currentQuestionIndex];
+  const currentQuizItem = styleQuizContent[currentQuestionIndex];
+
+  const designStyleScores = {
+    cottage: 0,
+    classical: 0,
+    "modern lush": 0,
+    "modern minimalism": 0,
+    naturalistic: 0,
+  };
+
+  let imageTagWeight = styles;
 
   // Function to advance to the next question
   const goToNextQuestion = () => {
     // Check if there are more questions up to the 10th question (index 9)
     if (
       currentQuestionIndex < 9 &&
-      currentQuestionIndex < quizData.length - 1
+      currentQuestionIndex < styleQuizContent.length - 1
     ) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setLastAnswer(null); // Reset last answer display for the new question
@@ -145,7 +156,7 @@ export function StyleQuiz() {
             {/* Image Container */}
             <div className="w-full h-auto overflow-hidden rounded-lg shadow-md border border-gray-300">
               <img
-                src={currentQuizItem.imageUrl}
+                src={currentQuizItem.image_url}
                 alt="Quiz Image"
                 className="w-full h-full object-cover rounded-lg"
                 // Fallback for image loading errors
@@ -289,7 +300,7 @@ export default StyleQuiz;
 //   );
 // }
 
-// const quizData = [
+// const styleQuizContent = [
 //   {
 //     id: 1,
 //     image: (
@@ -340,16 +351,16 @@ export default StyleQuiz;
 //   }
 
 //   const handleAnswer = () => {
-//     if (current < quizData.length - 1) {
+//     if (current < styleQuizContent.length - 1) {
 //       setCurrent(current + 1);
 //     } else {
 //       setIsComplete(true);
 //     }
 //   };
 
-//   const { image, question } = quizData[current];
+//   const { image, question } = styleQuizContent[current];
 
-//   const quizData = [
+//   const styleQuizContent = [
 //     {
 //       id: 1,
 //       image: (
