@@ -60,7 +60,8 @@ export const styleQuizContent = [
   {
     id: "cottage-modernlush-01",
     designStyleNames: ["modern lush", "cottage"],
-    image_url: "/cottage-modernlush-01.jpg",
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790677/modernlush02_guoc3m.jpg",
     image_tags: [
       linear,
       asymmetrical,
@@ -103,7 +104,8 @@ export const styleQuizContent = [
   {
     id: "modernlush03",
     designStyleNames: ["modern lush"],
-    image_url: "/modernlush03.jpg",
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790675/modern01_mtihwb.jpg",
     image_tags: [
       linear,
       asymmetrical,
@@ -161,25 +163,6 @@ export const styleQuizContent = [
     id: "modernminimal03",
     designStyleNames: ["modern minimalism"],
     image_url: "/modernminimal03.jpg",
-    image_tags: [
-      linear,
-      asymmetrical,
-      informal_hierarchy,
-      odd_spacing,
-      abstraction,
-      rhythm,
-      massing,
-      limited_palette,
-      white_space,
-      restraint,
-      sparse,
-      sculptural,
-    ],
-  },
-  {
-    id: "modernminimal04",
-    designStyleNames: ["modern minimalism"],
-    image_url: "/modernminimal04.webp",
     image_tags: [
       linear,
       asymmetrical,
@@ -309,30 +292,40 @@ export const styleQuizContent = [
 
 export const styleQuizResults = [
   {
+    result_blurb:
+      "You love the sharp lines of the modern style when set against the softness of nature.",
     style: "modern lush",
     image_url: "/modernlush01.jpg",
     quote: `More and more, there is a move away from tamed, manicured landscapes towards something more connected to a larger ecological condition. There is an impulse for the garden to be legible as a part of nature.`,
     author: "Surfacedesign partner Roderick Wyllie, The Architect's Newspaper",
   },
   {
+    result_blurb: "You prefer clean lines and sculptural abstractions.",
     style: "modern minimimalism",
-    image_url: "/modernminimal01.jpg",
+    image_url:
+      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753790674/modern-minimal-04_wtosek.webp",
     quote: `Looking at your garden should not make you think of your to-do list. It should actually be the opposite. [A minimalist garden] is powerful and beautiful.`,
     attribution: `Jule Farris, Architectural Digest`,
   },
   {
+    result_blurb:
+      "You love order, symmetry, and appreciate hierarchical expressions of nature.",
     style: "classical",
     image_url: "/classical01.jpg",
     quote: `The art of composing a garden is a question first of selection and then of emphasis.`,
     attribution: `Russell Page`,
   },
   {
+    result_blurb:
+      "You love to see nature arranged in it's most idealized form. Raw, wild, and magical.",
     style: "cottage",
     image_url: "/cottage01.webp",
     quote: `It’s a style of gardening that can feel very personal, where you can always tuck in a new plant easily here or there. It’s a magical space that feels more to me like a diary filled with memories.`,
     attribution: `Rebecca Sweet, monrovia.com`,
   },
   {
+    result_blurb:
+      "You have a deep appreciation for the beauty and authenticity of natural landscapes.",
     style: "naturalistic",
     image_url: "/naturalistic01.jpg",
     quote: `It’s about setting aside our desire for control to instead work in partnership with nature.`,
