@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { DesignStyleContext } from "../context/DesignStyleContext";
-import { PlantCatalogContext } from "../context/PlantCatalogContext";
 import "./StyleQuiz.css";
 import { styleQuizContent, styleQuizResults } from "../data/styleQuiz";
+import { preProcessQuizData } from "../utils/preProcessQuizData";
 
 // const styleQuizContent = [
 //   {
@@ -70,6 +70,8 @@ import { styleQuizContent, styleQuizResults } from "../data/styleQuiz";
 // Main App component for the simple Yes/No quiz
 export function StyleQuiz() {
   const { styles } = useContext(DesignStyleContext);
+  // State to hold the pre-processed quiz data and style counts
+  const [processedQuizData, setProcessedQuizData] = useState(null);
   // State to manage the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   // State to store the user's last answer (optional, for demonstration)
@@ -77,18 +79,62 @@ export function StyleQuiz() {
   // State to track if the quiz is finished
   const [quizFinished, setQuizFinished] = useState(false);
 
-  // Get the current question and image based on the index
-  const currentQuizItem = styleQuizContent[currentQuestionIndex];
+  const [quizScore, setQuizScore] = useState({});
 
-  const designStyleScores = {
-    cottage: 0,
-    classical: 0,
-    "modern lush": 0,
-    "modern minimalism": 0,
-    naturalistic: 0,
+  //NEW
+
+  const prepareQuiz = (quizData, styleDefs) => {
+    try {
+      const { enhancedQuizItems, styleTagCounts: counts } = preProcessQuizData(
+        quizData,
+        styleDefs
+      );
+
+      // Shuffle the enhanced quiz items and limit to 10 questions
+      const shuffledItems = shuffleArray(enhancedQuizItems);
+      const limitedItems = shuffledItems.slice(0, 10);
+
+      return { limitedItems, counts };
+    } catch (e) {
+      console.error("Error preparing quiz data:", e.message);
+      return null;
+    }
   };
 
-  let imageTagWeight = styles;
+  // Use a useEffect to pre-process the data when the styles from the API are available
+  useEffect(() => {
+    if (styles.length > 0) {
+      try {
+        const processedData = preProcessQuizData(styleQuizContent, styles);
+        setProcessedQuizData(processedData);
+
+        // Initialize quizScore based on the processed styles
+        const initialScore = {};
+        styles.forEach((style) => {
+          initialScore[style.design_style_name] = 0;
+        });
+        setQuizScore(initialScore);
+      } catch (e) {
+        console.error("Error pre-processing quiz data:", e.message);
+        // You might want to handle this error more gracefully in your app
+      }
+    }
+  }, [styles]);
+
+  // Handle case where data is still loading
+  if (!processedQuizData) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-bold text-gray-700">Loading Quiz...</h1>
+      </div>
+    );
+  }
+
+  const { enhancedQuizItems, styleTagCounts } = processedQuizData;
+  // Get the current question and image based on the index
+  const currentQuizItem = enhancedQuizItems[currentQuestionIndex];
+
+  // NEW
 
   // Function to advance to the next question
   const goToNextQuestion = () => {

@@ -1,4 +1,7 @@
-import { getDesignId } from "./designStyles";
+import { useContext } from "react";
+import { DesignStyleContext } from "../context/DesignStyleContext";
+
+const { getStyleId } = useContext(DesignStyleContext);
 
 // gardenBedTemplates.js
 // Ideally, the garden bed templates would be part of the generateSeed.js function.
@@ -9,7 +12,7 @@ export const gardenBedTemplates = [
     id: "template-1",
     name: "Classically Arranged",
     designStyleName: "classical", // Added for display
-    designStyleId: getDesignId("classical"),
+    designStyleId: getStyleId("classical"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://ecogardenconstruct.com/wp-content/uploads/2023/01/amenajare-peisagistica-bg.jpg",
@@ -222,7 +225,7 @@ export const gardenBedTemplates = [
     id: "template-2",
     name: "Prairie Paradise",
     designStyleName: "naturalistic prairie", // Added for display
-    designStyleId: getDesignId("naturalistic prairie"),
+    designStyleId: getStyleId("naturalistic prairie"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://www.epicgardening.com/wp-content/uploads/2023/09/Herb-garden-with-ornamental-grasses-and-herbs-in-autumn-1200x667.jpg",
@@ -435,7 +438,7 @@ export const gardenBedTemplates = [
     id: "template-3",
     name: "Native Woodland",
     designStyleName: "naturalistic woodland", // Added for display
-    designStyleId: getDesignId("naturalistic woodland"),
+    designStyleId: getStyleId("naturalistic woodland"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://hips.hearstapps.com/hmg-prod/images/woodland-garden-ideas-ground-1618242057.jpg?crop=1xw:1xh;center,top&resize=980:*",
@@ -445,7 +448,7 @@ export const gardenBedTemplates = [
     id: "template-4",
     name: "Cottagecore",
     designStyleName: "cottage", // Added for display
-    designStyleId: getDesignId("cottage"),
+    designStyleId: getStyleId("cottage"),
     bedSize: { bedWidth: 12, bedDepth: 6 },
     image_url:
       "https://cdn.shopify.com/s/files/1/0593/3265/7306/files/01-pollinator-flower-bed.png?v=1727708811",
@@ -455,7 +458,7 @@ export const gardenBedTemplates = [
     id: "template-5",
     name: "Modern Minimalism",
     designStyleName: "modern minimalism", // Added for display
-    designStyleId: getDesignId("modern minimalism"),
+    designStyleId: getStyleId("modern minimalism"),
     bedSize: { bedWidth: 8, bedDepth: 5 },
     image_url:
       "https://www.almanac.com/sites/default/files/users/The%20Editors/rock-garden-house-shutterstock_1948570909.jpg",
@@ -465,7 +468,7 @@ export const gardenBedTemplates = [
     id: "template-6",
     name: "Modern Lush",
     designStyleName: "modern lush", // Added for display
-    designStyleId: getDesignId("modern lush"),
+    designStyleId: getStyleId("modern lush"),
     bedSize: { bedWidth: 15, bedDepth: 10 },
     image_url:
       "https://www.monrovia.com/media/amasty/blog/1024x577_Robin_Parsons_garden_designer_-_West_Seattle_project_2514PM_copy.jpg",
