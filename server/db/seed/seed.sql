@@ -122,7 +122,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
   'classical',
   'Emphasizes symmetry, order, and geometry with manicured lawns, sculpted shrubs, and a restrained palette. Formal structure and repetition create timeless elegance.',
   'A Classical garden emphasizes structure, balance, and timeless elegance. Rooted in symmetry and formal hierarchy, this style features linear layouts, geometric planting patterns, and meticulously defined borders—often through evergreen hedges or hardscaping that remain present year-round. Gardens are typically curated around a formal path system that leads the eye toward focal points such as fountains, sculptures, or neatly clipped topiary. Plantings follow a limited color palette, typically favoring greens and whites, with repetition and order reinforcing a sense of calm and control. Manicured lawns, sculpted shrubs, and ornamental elements lend a sense of refinement and grandeur.',
-  'geometrical, symmetrical, formal_hierarchy, even_spacing, order, repetition, massing, limited_palette'
+  'geometrical, symmetrical, formal_hierarchy, even_spacing, order, repetition, massing, limited_palette, formal, traditional'
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
@@ -146,7 +146,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
   'naturalistic woodland',
   'Shade-loving native plants arranged in soft layers under trees. Inspired by forest floors, it feels quiet, textured, and seasonal.',
   'Shaded and serene, the Woodland naturalistic garden draws inspiration from forest understories and dappled glades. Plantings emphasize shade-loving natives such as ferns, groundcovers, woodland grasses, and spring ephemerals, arranged in loose layers that follow the natural contours of the land. Trees and understory shrubs provide vertical structure, while mosses, leaf litter, and natural stone pathways create a grounded, organic feel. Designed to feel untouched and timeless, this garden thrives in full to partial shade and encourages seasonal shifts, from early spring blooms to the golden tones of fall.',
-  'meandering, random, lack_of_hierarchy, no_spacing_rules, wild, scattered, clumped, large_palette'
+  'meandering, random, lack_of_hierarchy, no_spacing_rules, wild, scattered, clumped, large_palette, full-shade'
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO designs (id, design_style_name, design_attributes, design_description, design_tags) VALUES (
@@ -154,7 +154,7 @@ INSERT INTO designs (id, design_style_name, design_attributes, design_descriptio
   'naturalistic prairie',
   'Sun-loving grasses and wildflowers arranged in natural drifts. A dynamic, low-intervention garden full of movement, color, and habitat value.',
   'Expansive, sun-filled, and dynamic, the Prairie naturalistic garden mimics the beauty and resilience of native grasslands. Tall and short grasses—such as little bluestem or switchgrass—sway among vibrant wildflowers in irregular, intermingled groupings. Designed for full sun and open exposure, this style values movement, pollinator support, and long-season interest. Drifts of color, clumps of texture, and soft transitions between plants create a living tapestry that changes daily. Hardscaping is minimal, allowing the planting palette and the play of wind and light to take center stage.',
-  'meandering, random, lack_of_hierarchy, no_spacing_rules, wild, scattered, clumped, large_palette'
+  'meandering, random, lack_of_hierarchy, no_spacing_rules, wild, scattered, clumped, large_palette, full-sun'
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Plants Inserts
