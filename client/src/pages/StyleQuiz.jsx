@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { DesignStyleContext } from "../context/DesignStyleContext";
-import "./StyleQuiz.css";
+
 import { styleQuizContent, styleQuizResults } from "../data/styleQuiz";
 import { preProcessQuizData } from "../utils/preProcessQuizData";
+import "./StyleQuiz.css";
 
 // const styleQuizContent = [
 //   {
@@ -67,11 +68,24 @@ import { preProcessQuizData } from "../utils/preProcessQuizData";
 //   },
 // ];
 
+// Helper function to shuffle an array (Fisher-Yates algorithm)
+const shuffleArray = (array) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 // Main App component for the simple Yes/No quiz
 export function StyleQuiz() {
   const { styles } = useContext(DesignStyleContext);
-  // State to hold the pre-processed quiz data and style counts
-  const [processedQuizData, setProcessedQuizData] = useState(null);
+
+  // State to hold the final, randomized quiz items and style counts
+  const [quizItems, setQuizItems] = useState(null);
+  const [styleTagCounts, setStyleTagCounts] = useState(null);
+
   // State to manage the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   // State to store the user's last answer (optional, for demonstration)
@@ -81,8 +95,7 @@ export function StyleQuiz() {
 
   const [quizScore, setQuizScore] = useState({});
 
-  //NEW
-
+  // prepare quiz with randomized questions and a 10-question limit
   const prepareQuiz = (quizData, styleDefs) => {
     try {
       const { enhancedQuizItems, styleTagCounts: counts } = preProcessQuizData(
@@ -104,9 +117,10 @@ export function StyleQuiz() {
   // Use a useEffect to pre-process the data when the styles from the API are available
   useEffect(() => {
     if (styles.length > 0) {
-      try {
-        const processedData = preProcessQuizData(styleQuizContent, styles);
-        setProcessedQuizData(processedData);
+      const quizPrep = prepareQuiz(styleQuizContent, styles);
+      if (quizPrep) {
+        setQuizItems(quizPrep.limitedItems);
+        setStyleTagCounts(quizPrep.counts);
 
         // Initialize quizScore based on the processed styles
         const initialScore = {};
@@ -114,39 +128,27 @@ export function StyleQuiz() {
           initialScore[style.design_style_name] = 0;
         });
         setQuizScore(initialScore);
-      } catch (e) {
-        console.error("Error pre-processing quiz data:", e.message);
-        // You might want to handle this error more gracefully in your app
       }
     }
   }, [styles]);
 
   // Handle case where data is still loading
-  if (!processedQuizData) {
+  if (!quizItems || !styleTagCounts) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-bold text-gray-700">Loading Quiz...</h1>
+      <div className="quiz-wrapper">
+        <h1 className="loading-text">Loading Quiz...</h1>
       </div>
     );
   }
 
-  const { enhancedQuizItems, styleTagCounts } = processedQuizData;
-  // Get the current question and image based on the index
-  const currentQuizItem = enhancedQuizItems[currentQuestionIndex];
+  const currentQuizItem = quizItems[currentQuestionIndex];
 
-  // NEW
-
-  // Function to advance to the next question
+  // Function to advance to the next question (NOTE: limiting to 10 questions is handled elsewhere)
   const goToNextQuestion = () => {
-    // Check if there are more questions up to the 10th question (index 9)
-    if (
-      currentQuestionIndex < 9 &&
-      currentQuestionIndex < styleQuizContent.length - 1
-    ) {
+    if (currentQuestionIndex < quizItems.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setLastAnswer(null); // Reset last answer display for the new question
     } else {
-      // If 10 questions are answered or no more questions, mark quiz as finished
       setQuizFinished(true);
     }
   };
@@ -155,10 +157,27 @@ export function StyleQuiz() {
   const handleYesClick = () => {
     setLastAnswer("Yes");
     console.log(`Question ${currentQuestionIndex + 1}: Yes`);
+
+    // Scoring logic based on the completeness score
+    const { designStyleNames, image_tags } = currentQuizItem;
+    const matchedTagsCount = image_tags.length;
+
+    setQuizScore((prevScore) => {
+      const newScore = { ...prevScore };
+      designStyleNames.forEach((styleName) => {
+        const totalTagsForStyle = styleTagCounts[styleName];
+        if (totalTagsForStyle > 0) {
+          const completenessScore = matchedTagsCount / totalTagsForStyle;
+          newScore[styleName] += completenessScore;
+        }
+      });
+      return newScore;
+    });
+
     goToNextQuestion();
   };
 
-  // Function to handle 'No' button click
+  // Function to handle 'No' button click (score is only modified with "yes" responses)
   const handleNoClick = () => {
     setLastAnswer("No");
     console.log(`Question ${currentQuestionIndex + 1}: No`);
@@ -167,74 +186,93 @@ export function StyleQuiz() {
 
   // Function to restart the quiz
   const restartQuiz = () => {
+    // Re-prepare the quiz to get a new set of random questions
+    const quizPrep = prepareQuiz(styleQuizContent, styles);
+    if (quizPrep) {
+      setQuizItems(quizPrep.limitedItems);
+      setStyleTagCounts(quizPrep.counts);
+    }
+
     setCurrentQuestionIndex(0);
     setLastAnswer(null);
     setQuizFinished(false);
+
+    // Reset the quiz scores
+    const initialScore = {};
+    styles.forEach((style) => {
+      initialScore[style.design_style_name] = 0;
+    });
+    setQuizScore(initialScore);
+  };
+
+  // Logic to determine the final result style
+  const getFinalResult = () => {
+    if (quizScore && Object.keys(quizScore).length > 0) {
+      let highestScore = -1;
+      let winningStyle = "Undetermined";
+      let tieStyles = [];
+
+      for (const styleName in quizScore) {
+        if (quizScore[styleName] > highestScore) {
+          highestScore = quizScore[styleName];
+          winningStyle = styleName;
+          tieStyles = [styleName]; // Reset tie array
+        } else if (quizScore[styleName] === highestScore && highestScore > 0) {
+          tieStyles.push(styleName); // Add to tie array
+        }
+      }
+
+      if (tieStyles.length > 1) {
+        return `Your design styles are: ${tieStyles.join(" and ")}`;
+      } else {
+        return `Your design style is: ${winningStyle}`;
+      }
+    }
+    return "Your results are being calculated...";
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full text-center space-y-6 border border-gray-200">
+    <div className="quiz-wrapper">
+      <div className="quiz-container">
         {quizFinished ? (
           // Display when the quiz is finished
-          <div className="space-y-4">
-            <h1 className="text-4xl font-extrabold text-green-700 font-inter">
-              Congratulations!
-            </h1>
-            <p className="text-xl text-gray-700">
-              Your design style is **Modern**
-            </p>
-            <button
-              onClick={restartQuiz}
-              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition transform hover:scale-105 duration-200"
-            >
-              Restart Quiz
-            </button>
+          <div className="quiz-end-screen">
+            <h1 className="quiz-question">Congratulations!</h1>
+            <p className="quiz-end-text">{getFinalResult()}</p>
+            <button onClick={restartQuiz}>Restart Quiz</button>
           </div>
         ) : (
           // Display during the quiz
           <>
             {/* Question Text */}
-            <h1 className="text-3xl font-extrabold text-gray-800 mb-4 font-inter">
-              {currentQuizItem.question}
+            <h1 className="quiz-question">
+              {currentQuizItem.question || `Do you like this image?`}
             </h1>
 
             {/* Image Container */}
-            <div className="w-full h-auto overflow-hidden rounded-lg shadow-md border border-gray-300">
-              <img
-                src={currentQuizItem.image_url}
-                alt="Quiz Image"
-                className="w-full h-full object-cover rounded-lg"
-                // Fallback for image loading errors
-                onError={(e) => {
-                  e.target.onerror = null; // Prevents infinite loop
-                  e.target.src =
-                    "https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found";
-                }}
-              />
-            </div>
+            <img
+              src={currentQuizItem.image_url}
+              alt="Quiz Image"
+              className="quiz-image"
+              // Fallback for image loading errors
+              onError={(e) => {
+                e.target.onerror = null; // Prevents infinite loop
+                e.target.src =
+                  "https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found";
+              }}
+            />
 
             {/* Buttons Container */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-              <button
-                onClick={handleYesClick}
-                className="flex-1 px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition transform hover:scale-105 duration-200"
-              >
-                Yes
-              </button>
-              <button
-                onClick={handleNoClick}
-                className="flex-1 px-8 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 transition transform hover:scale-105 duration-200"
-              >
-                No
-              </button>
+            <div className="quiz-buttons">
+              <button onClick={handleYesClick}>Yes</button>
+              <button onClick={handleNoClick}>No</button>
             </div>
 
             {/* Display user's last answer (optional) */}
             {lastAnswer && (
-              <p className="mt-6 text-lg font-medium text-gray-700">
+              <p className="last-answer-text">
                 You just answered:{" "}
-                <span className="font-bold text-blue-600">{lastAnswer}</span>
+                <span className="last-answer-value">{lastAnswer}</span>
               </p>
             )}
           </>

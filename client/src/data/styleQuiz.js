@@ -1,8 +1,3 @@
-import { useContext } from "react";
-import { DesignStyleContext } from "../context/DesignStyleContext";
-
-const { getStyleId } = useContext(DesignStyleContext);
-
 //for image_tags, items with one designStyle, the pre-processor file will load all of the relevant tags for its singular designstyle
 export const styleQuizContent = [
   {

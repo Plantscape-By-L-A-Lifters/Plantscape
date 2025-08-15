@@ -1,5 +1,5 @@
 /**
- * Pre-processes the raw quiz data to prepare it for the scoring algorithm.
+ * Pre-processes the raw quiz data to prepare it for the scoring algorithm. (Based on completeness)
  * It fills in the image_tags array for images that represent a single style,
  * and throws an error if a multi-style image has no tags or if an image_tag
  * does not match any of its associated design style's tags.
@@ -30,7 +30,7 @@ export function preProcessQuizData(quizContent, styles) {
       style.design_tags.forEach((tag) => allValidTagsForStyles.add(tag));
     });
 
-    // Check if the item has a single design style and an empty image_tags array
+    // Check if the item has a single design style and an empty image_tags array -- if so styleMatch by adding all the design style tags = 100% style completeness score
     if (item.designStyleNames.length === 1 && item.image_tags.length === 0) {
       const styleName = item.designStyleNames[0];
       const styleMatch = associatedStyles[0];
