@@ -9,7 +9,7 @@ export const styleQuizContent = [
   {
     id: "classical-cottage-02",
     designStyleNames: ["cottage", "classical"],
-    image_url: "../../public/classical-cottage-02.jpg",
+    image_url: "/classical-cottage-02.jpg",
     image_tags: [
       "layered",
       "romantic",
@@ -28,7 +28,7 @@ export const styleQuizContent = [
   {
     id: "classical-cottage-01",
     designStyleNames: ["cottage", "classical"],
-    image_url: "../../public/classical-cottage-01.jpg",
+    image_url: "/classical-cottage-01.jpg",
     image_tags: [
       "overflowing",
       "layered",
@@ -73,7 +73,7 @@ export const styleQuizContent = [
   {
     id: "modernlush02",
     designStyleNames: ["modern lush"],
-    image_url: "../../public/modernlush02.jpg",
+    image_url: "/modernlush02.jpg",
     image_tags: [],
   },
   {
@@ -86,37 +86,37 @@ export const styleQuizContent = [
   {
     id: "modernminimal01",
     designStyleNames: ["modern minimalism"],
-    image_url: "../../public/modernminimal01.jpg",
+    image_url: "/modernminimal01.jpg",
     image_tags: [],
   },
   {
     id: "modernminimal02",
     designStyleNames: ["modern minimalism"],
-    image_url: "../../public/modernminimal02.jpg",
+    image_url: "/modernminimal02.jpg",
     image_tags: [],
   },
   {
     id: "modernminimal03",
     designStyleNames: ["modern minimalism"],
-    image_url: "../../public/modernminimal03.jpg",
+    image_url: "/modernminimal03.jpg",
     image_tags: [],
   },
   {
     id: "naturalistic-prairie-01",
     designStyleNames: ["naturalistic"],
-    image_url: "../../public/naturalistic-prairie-01.jpg",
+    image_url: "/naturalistic-prairie-01.jpg",
     image_tags: [],
   },
   {
     id: "naturalistic-prairie-02",
     designStyleNames: ["naturalistic"],
-    image_url: "../../public/naturalistic-prairie-02.jpg",
+    image_url: "/naturalistic-prairie-02.jpg",
     image_tags: [],
   },
   {
     id: "naturalistic-woodland-01",
     designStyleNames: ["naturalistic"],
-    image_url: "../../public/naturalistic-woodland-01.jpg",
+    image_url: "/naturalistic-woodland-01.jpg",
     image_tags: [],
   },
   {
@@ -166,14 +166,14 @@ export const styleQuizContent = [
   {
     id: "agave",
     designStyleNames: ["modern minimalism"],
-    image_url: "../../public/agave.webp",
+    image_url: "/agave.webp",
     image_tags: ["sculptural", "white_space"],
   },
   {
     id: "bamboo_muhly",
     designStyleNames: ["modern lush"],
     image_url:
-      "../../public/Muhlenbergia_dumosa_(bamboo_muhly_grass)_at_Mounts_Botanical_Garden_in_West_Palm_Beach,_FL_USA.jpg",
+      "/Muhlenbergia_dumosa_(bamboo_muhly_grass)_at_Mounts_Botanical_Garden_in_West_Palm_Beach,_FL_USA.jpg",
     image_tags: ["abstraction", "massing", "full", "textural"],
   },
 ];
@@ -185,7 +185,7 @@ export const styleQuizResults = [
     result_blurb:
       "You love the sharp lines of the modern style when set against the softness of nature.",
     style: "modern lush",
-    image_url: "../../public/modernlush01.jpg",
+    image_url: "/modernlush01.jpg",
     quote: `More and more, there is a move away from tamed, manicured landscapes towards something more connected to a larger ecological condition. There is an impulse for the garden to be legible as a part of nature.`,
     author: "Surfacedesign partner Roderick Wyllie, The Architect's Newspaper",
   },
@@ -201,7 +201,7 @@ export const styleQuizResults = [
     result_blurb:
       "You love order, symmetry, and appreciate hierarchical expressions of nature.",
     style: "classical",
-    image_url: "../../public/classical01.jpg",
+    image_url: "/classical01.jpg",
     quote: `The art of composing a garden is a question first of selection and then of emphasis.`,
     attribution: `Russell Page`,
   },
@@ -209,14 +209,14 @@ export const styleQuizResults = [
     result_blurb:
       "You love to see nature arranged in it's most idealized form. Raw, wild, and magical.",
     style: "cottage",
-    image_url: "../../public/cottage01.webp",
+    image_url: "/cottage01.webp",
     quote: `It’s a style of gardening that can feel very personal, where you can always tuck in a new plant easily here or there. It’s a magical space that feels more to me like a diary filled with memories.`,
     attribution: `Rebecca Sweet, monrovia.com`,
   },
   {
     result_blurb: "You have a deep appreciation for the wisdom of nature.",
     style: "naturalistic",
-    image_url: "../../public/naturalistic01.jpg",
+    image_url: "/naturalistic01.jpg",
     quote: `It’s about setting aside our desire for control to instead work in partnership with nature.`,
     attribution: `Naturalistic-ish at Heart: Naturalistic planting design`,
   },
