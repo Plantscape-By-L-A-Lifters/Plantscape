@@ -144,7 +144,7 @@ export const styleQuizContent = [
     id: "yew",
     designStyleNames: ["classical", "modern minimalism", "modern lush"],
     image_url:
-      "https://res.cloudinary.com/dmlezxkp3/image/upload/v1753395839/Rosa_Ingrid_Bergman_2018-07-16_6611__cropped_i376sl.jpg",
+      "https://res.cloudinary.com/dprixcop0/image/upload/v1753127016/spreading-japanese-plum-yew_c7753v.webp",
     image_tags: ["geometrical", "formal", "sculptural", "textural"],
   },
   {
@@ -209,7 +209,7 @@ export const styleQuizResults = [
     result_blurb:
       "You love to see nature arranged in it's most idealized form. Raw, wild, and magical.",
     style: "cottage",
-    image_url: "/cottage01.webp",
+    image_url: "/cottage01.jpg",
     quote: `It’s a style of gardening that can feel very personal, where you can always tuck in a new plant easily here or there. It’s a magical space that feels more to me like a diary filled with memories.`,
     attribution: `Rebecca Sweet, monrovia.com`,
   },
