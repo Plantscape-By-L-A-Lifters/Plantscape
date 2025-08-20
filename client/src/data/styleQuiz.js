@@ -9,7 +9,7 @@ export const styleQuizContent = [
   {
     id: "classical-cottage-02",
     designStyleNames: ["cottage", "classical"],
-    image_url: "/classical-cottage-02.jpg",
+    image_url: "/classical-cottage-02.JPG",
     image_tags: [
       "layered",
       "romantic",
@@ -28,7 +28,7 @@ export const styleQuizContent = [
   {
     id: "classical-cottage-01",
     designStyleNames: ["cottage", "classical"],
-    image_url: "/classical-cottage-01.jpg",
+    image_url: "/classical-cottage-01.JPG",
     image_tags: [
       "overflowing",
       "layered",
@@ -209,7 +209,7 @@ export const styleQuizResults = [
     result_blurb:
       "You love to see nature arranged in it's most idealized form. Raw, wild, and magical.",
     style: "cottage",
-    image_url: "/cottage01.jpg",
+    image_url: "/cottage01.JPG",
     quote: `It’s a style of gardening that can feel very personal, where you can always tuck in a new plant easily here or there. It’s a magical space that feels more to me like a diary filled with memories.`,
     attribution: `Rebecca Sweet, monrovia.com`,
   },
