@@ -259,6 +259,10 @@ export function StyleQuiz() {
                 e.target.onerror = null; // Prevents infinite loop
                 e.target.src =
                   "https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found";
+                console.log(
+                  "could not find image at",
+                  currentQuizItem.image_url
+                );
               }}
             />
 
